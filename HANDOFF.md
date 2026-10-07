@@ -44,6 +44,24 @@ Campos vazios ou `null` aparecem no site com o selo **EM CONSTRUÇÃO**.
 - [ ] Endereço completo e sala
 - [ ] Contato oficial
 
-## 5. Observações
+## 5. Deploy na Vercel (etapa 8, aguardando aprovação)
+O site é estático, então a Vercel detecta o Astro sozinha (build `npm run build`, saída `dist/`).
+
+**Opção A: GitHub + Vercel (recomendada; cada push publica sozinho)**
+1. Criar um repositório no GitHub e enviar o código: `git remote add origin <url>` e depois `git push -u origin main`.
+2. Em vercel.com → *Add New → Project* → importar o repositório → *Deploy*.
+
+**Opção B: CLI**
+1. `npm i -g vercel` e depois `vercel login`
+2. `vercel` (gera uma URL de preview) e, depois de conferir, `vercel --prod`
+
+**Depois do primeiro deploy:** atualize o domínio em `astro.config.mjs` (`site`) e em `public/robots.txt`, se a URL final for diferente de `hackathon-univassouras-marica.vercel.app`.
+
+## 6. Como testar localmente
+- `npm run dev`, depois abrir http://localhost:4321
+- Testar os estados da contagem: `http://localhost:4321/?agora=2026-10-20T10:00` (durante) e `?agora=2026-10-25T10:00` (encerrado)
+- Cartões: passar o mouse, clicar (fixa), clicar fora (solta), Esc (solta)
+
+## 7. Observações
 - O PDF do Lattes fica em `docs/referencias/` e **não** vai para o git nem para o site.
 - A pasta está no OneDrive. Se a `node_modules` deixar a sincronização lenta, pause a sincronização durante o desenvolvimento.
