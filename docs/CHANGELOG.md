@@ -109,3 +109,4 @@ Uma entrada por etapa de desenvolvimento (cada etapa = um commit).
 ## Correção do menu "sanduíche" no iPhone (2026-10-07)
 - No Safari do iPhone, as 3 linhas do botão de menu não apareciam: flexbox dentro de `<button>` deixava as `<span>` com largura 0. **Correção:** o botão passou a usar `display: grid` e as linhas têm tamanho explícito (20×2 px). O "X" ao abrir foi recalculado (deslocamento de 7 px).
 - Testado com emulação mobile: 3 linhas visíveis (20×2 px cada), abrir vira "X" ("Fechar menu"), menu aparece, e o botão continua oculto a partir de 1024 px.
+- `HANDOFF.md` atualizado: checklist detalhado de pendências para a próxima sessão, textos a validar, comportamento atual dos cartões e seção de compatibilidade com iPhone.

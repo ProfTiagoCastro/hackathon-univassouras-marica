@@ -1,7 +1,7 @@
 # HANDOFF: Site do Hackathon Univassouras Maricá
 
 > Documento de passagem de bastão. Atualizado a cada etapa concluída.
-> **Última atualização:** 2026-10-07 · **Etapa atual:** 8 de 8 concluídas · **No ar:** https://hackathon-univassouras-marica.vercel.app
+> **Última atualização:** 2026-10-07 (fim do dia) · **Etapa atual:** 8 de 8 concluídas + ajustes mobile · **No ar:** https://hackathon-univassouras-marica.vercel.app
 
 ## 1. Resumo
 Site estático de divulgação do Hackathon (19, 20 e 21/10/2026) dos cursos de Engenharia de Software e ADS da Univassouras, Campus Maricá. Ele mostra a programação dos três dias, o botão de inscrição (Google Forms), os professores organizadores em cartões que giram, o **Mural** de fotos e vídeos por dia, o local e o FAQ.
@@ -41,15 +41,30 @@ Stack: **Astro 7 + Tailwind 4 + TypeScript**, com deploy na **Vercel**. Detalhes
 
 Campos vazios ou `null` aparecem no site com o selo **EM CONSTRUÇÃO**.
 
-## 4. Pendências de conteúdo (aguardando a organização)
-- [ ] Link do Google Forms
-- [ ] Horários e atividades dos 3 dias
-- [x] Coordenador Wellington Ávila adicionado
-- [ ] Dados e fotos de mais 4 professores
-- [ ] Regras, premiação e respostas do FAQ
-- [ ] Endereço completo e sala
-- [ ] Contato oficial
-- [ ] Fotos e vídeos do Mural (durante/depois do evento)
+## 4. Pendências de conteúdo: próxima sessão
+O site está no ar, e o próximo passo é **alimentar as informações**. Itens a trazer, por prioridade:
+
+**Antes do evento (19/10):**
+- [ ] **Link do Google Forms** de inscrição → `event.ts` › `registrationUrl` (os 3 botões passam a funcionar sozinhos)
+- [ ] **Horários e atividades** de cada dia (início, fim, título, descrição curta, tipo: abertura, palestra, mentoria, mão na massa, intervalo, apresentação, premiação) → `schedule.ts`
+- [ ] **Regras** do hackathon (lista de itens) → `faq.ts` › `rules`
+- [ ] **Premiação** (colocação e prêmio) → `faq.ts` › `prizes`
+- [ ] **Respostas do FAQ** (perguntas já criadas: quem pode participar, custo, pessoas por equipe, equipe formada, notebook, certificado; dá para trocar ou incluir perguntas) → `faq.ts` › `faq`
+- [ ] **Público** e **formato** (ficha "Sobre") → `About.astro` › `specs`
+- [ ] **Endereço completo e sala/auditório** (deixa o pino do mapa exato) → `event.ts` › `location`
+- [ ] **Contato oficial** (e-mail ou Instagram) → `event.ts` › `contact`
+- [ ] **Demais professores organizadores** (até 4 cartões "a definir" hoje): nome, cargo, foto quadrada, formação, 4 a 7 especialidades, link do Lattes. O PDF do Lattes também serve, porque eu extraio os dados. → `organizers.ts` e `src/assets/professores/`
+
+**Durante e depois do evento:**
+- [ ] **Fotos** de cada dia → `src/assets/mural/dia-1`, `dia-2` e `dia-3`
+- [ ] **Vídeos** (links do YouTube) → `mural.ts` › `videos`
+
+**Textos para validar** (escritos por mim, sem confirmação ainda):
+- [ ] Bloco "Sobre": título "Três dias para tirar uma ideia do papel" e o parágrafo de apresentação
+- [ ] Mural: manter ou tirar a frase "Escolha uma data para ver os registros" (a frase equivalente já saiu da Programação)
+
+**Já concluído:**
+- [x] Prof. Tiago Ruiz de Castro e Coordenador Wellington Ávila nos cartões
 
 ## 5. Deploy (Vercel) e como publicar atualizações
 - **Site:** https://hackathon-univassouras-marica.vercel.app
@@ -60,15 +75,24 @@ Campos vazios ou `null` aparecem no site com o selo **EM CONSTRUÇÃO**.
 **Como a ligação ficou configurada (para não quebrar):**
 - O login da Vercel usa o GitHub **ProfTiagoCastro** (Account Settings → Authentication). Antes era a oBombista, mas a Vercel só enxerga instalações do app que pertencem à conta GitHub do login.
 - O app "Vercel" está instalado na ProfTiagoCastro com acesso **só** a este repositório.
-- A conta **oBombista** é colaboradora (write) do repositório. Foi uma tentativa durante o deploy e não é mais necessária; pode ser removida em *Settings → Collaborators* no GitHub.
+- A conta **oBombista** é colaboradora (write) do repositório. Foi uma tentativa durante o deploy e não é mais necessária; pode ser removida em *Settings → Collaborators* no GitHub (pendente de decisão).
 - Domínio próprio: se a universidade apontar um domínio, adicione em Vercel → Project → Domains e atualize `site` em `astro.config.mjs` e a linha `Sitemap:` em `public/robots.txt`.
 
 ## 6. Como testar localmente
 - `npm run dev`, depois abrir http://localhost:4321
 - Testar os estados da contagem: `http://localhost:4321/?agora=2026-10-20T10:00` (durante) e `?agora=2026-10-25T10:00` (encerrado)
-- Cartões: passar o mouse, clicar (fixa), clicar fora (solta), Esc (solta)
+- Cartões: no computador, o hover vira o cartão; clicar fixa e clicar de novo desvira; clicar fora ou Esc solta. No celular, o toque vira e o novo toque desvira.
+- Para simular o celular: Chrome DevTools → Toggle device toolbar (375 px, touch).
+- Se o servidor local for encerrado (por exemplo, por falta de memória), basta rodar `npm run dev` de novo.
 
-## 7. Observações
+## 7. Compatibilidade com iPhone (Safari/WebKit): não reverter
+Duas correções específicas para o Safari, explicadas nos comentários do código:
+- **Cartões flip** (`OrganizerCard.astro`): a face de costas recebe `visibility: hidden`, trocada no meio do giro. Só o `backface-visibility` deixava o nome e o botão espelhados no verso.
+- **Menu sanduíche** (`Header.astro`): o botão usa `display: grid` e as linhas têm largura e altura fixas. Com flexbox dentro de `<button>`, as linhas ficavam com largura 0 e o ícone sumia.
+
+Testado com emulação mobile no Chrome. O usuário aprovou a correção dos cartões ("perfeito"); a do menu ainda precisa ser conferida num iPhone real.
+
+## 8. Observações
 - **GitHub ProfTiagoCastro:** a verificação em duas etapas (2FA) é obrigatória a partir de **07/11/2026**. Ative antes disso, ou a conta fica restrita, e com ela os deploys.
 - **Fotos do Mural:** prefira JPG de até ~3 MB. O build gera versões WebP otimizadas sozinho. Vídeos longos ficam melhor no YouTube (o repositório e o deploy ficam leves).
 - O PDF do Lattes fica em `docs/referencias/` e **não** vai para o git nem para o site.
