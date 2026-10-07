@@ -1,0 +1,77 @@
+---
+/**
+ * Grade de cartões de professores + lógica de "fixar" o cartão virado.
+ * Regras:
+ *  - clique/toque num cartão → fica fixado virado (e solta qualquer outro)
+ *  - clique no mesmo cartão fixado → continua fixado
+ *  - clique fora de qualquer cartão ou tecla Esc → solta
+ */
+import OrganizerCard from './OrganizerCard.astro';
+import { organizers } from '../../data/organizers';
+---
+
+<ul class="org-grid" data-org-grid role="list">
+  {organizers.map((o, i) => <OrganizerCard organizer={o} index={i} />)}
+</ul>
+
+<style is:global>
+  .org-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 17.5rem), 1fr));
+    gap: clamp(1rem, 2.5vw, 1.75rem);
+  }
+  /* destaque: os outros cartões recuam quando um está em foco/fixado */
+  .org-grid:has(.org-card[data-pinned]) .org-card:not([data-pinned]) {
+    opacity: 0.45;
+    filter: grayscale(0.5);
+  }
+  @media (hover: hover) {
+    .org-grid:has(.org-card:hover) .org-card:not(:hover):not([data-pinned]) {
+      opacity: 0.45;
+      filter: grayscale(0.5);
+    }
+  }
+</style>
+
+<script>
+  const grid = document.querySelector<HTMLElement>('[data-org-grid]');
+  if (grid) {
+    const cards = [...grid.querySelectorAll<HTMLElement>('[data-org-card]')];
+
+    const setPinned = (card: HTMLElement | null) => {
+      for (const c of cards) {
+        const on = c === card;
+        c.toggleAttribute('data-pinned', on);
+        c.querySelector('[data-flip-btn]')?.setAttribute('aria-pressed', String(on));
+      }
+    };
+
+    for (const card of cards) {
+      card.addEventListener('click', () => {
+        if (!card.hasAttribute('data-pinned')) setPinned(card);
+      });
+    }
+
+    // clique/toque fora de qualquer cartão solta o fixado
+    document.addEventListener('click', (e) => {
+      if (!(e.target as HTMLElement).closest('[data-org-card]')) setPinned(null);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        setPinned(null);
+      }
+    });
+
+    // entrada escalonada ao aparecer na tela
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((en) => en.isIntersecting)) {
+          grid.classList.add('is-in');
+          io.disconnect();
+        }
+      },
+      { threshold: 0.1 },
+    );
+    io.observe(grid);
+  }
+</script>

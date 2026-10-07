@@ -1,0 +1,317 @@
+---
+/**
+ * Cartão de professor com efeito flip.
+ * - Mouse: gira no hover; clique fixa virado; clique fora solta (lógica em OrganizersGrid)
+ * - Toque: toque fixa; toque fora solta
+ * - Teclado: Enter/Espaço no botão "Ver especializações" fixa; Esc solta
+ */
+import { Image } from 'astro:assets';
+import UnderConstruction from '../ui/UnderConstruction.astro';
+import type { Organizer } from '../../data/organizers';
+
+interface Props {
+  organizer: Organizer;
+  index: number;
+}
+const { organizer: o, index } = Astro.props;
+const pending = !o.name;
+const displayName = o.name ?? 'Professor(a) organizador(a)';
+---
+
+<li class="org-item" style={`--i:${index}`}>
+  <article class:list={['org-card', pending && 'is-pending']} data-org-card aria-label={displayName}>
+    <div class="org-inner">
+      <!-- FRENTE -->
+      <div class="face front">
+        {
+          o.photo ? (
+            <Image src={o.photo} alt={`Foto de ${displayName}`} widths={[360, 540, 720]} sizes="(min-width: 1024px) 360px, (min-width: 640px) 45vw, 90vw" class="photo" />
+          ) : (
+            <div class="photo photo--empty" aria-hidden="true">
+              <svg viewBox="0 0 120 120" class="h-2/5 w-2/5" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="60" cy="44" r="20" />
+                <path d="M22 108c4-22 20-34 38-34s34 12 38 34" stroke-linecap="round" />
+              </svg>
+            </div>
+          )
+        }
+        <div class="front-info">
+          {pending ? <UnderConstruction /> : <p class="role">{o.role}</p>}
+          <h3 class="name">{pending ? 'A definir' : displayName}</h3>
+          <button type="button" class="flip-btn" aria-pressed="false" data-flip-btn>
+            <span>{pending ? 'Ver detalhes' : 'Ver especializações'}</span>
+            <svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3M18 3v4h-4M6 21v-4h4" /></svg>
+          </button>
+        </div>
+        <span class="corner c-tl" aria-hidden="true"></span>
+        <span class="corner c-br" aria-hidden="true"></span>
+      </div>
+
+      <!-- VERSO -->
+      <div class="face back">
+        {
+          pending ? (
+            <div class="flex h-full flex-col items-start justify-center gap-4">
+              <p class="eyebrow">Organização</p>
+              <p class="font-display text-2xl font-bold">Informações em breve</p>
+              <UnderConstruction variant="block" hint="Os dados deste(a) professor(a) organizador(a) serão publicados em breve." class="w-full" />
+            </div>
+          ) : (
+            <div class="flex h-full flex-col">
+              <p class="eyebrow">Especialidades</p>
+              <p class="mt-2 font-display text-xl leading-tight font-bold">{displayName}</p>
+
+              {o.education.length > 0 && (
+                <ul class="mt-4 space-y-1.5 text-[0.82rem] leading-snug text-paper/85">
+                  {o.education.map((e) => (
+                    <li class="flex gap-2">
+                      <span class="mt-1.5 size-1.5 shrink-0 rounded-full bg-sky" aria-hidden="true" />
+                      {e}
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              <ul class="chips mt-4" aria-label="Especializações">
+                {o.specialties.map((s) => (
+                  <li class="chip">{s}</li>
+                ))}
+              </ul>
+
+              {o.lattes && (
+                <a href={o.lattes} target="_blank" rel="noopener noreferrer" class="lattes mt-auto">
+                  Currículo Lattes
+                  <svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9" /></svg>
+                  <span class="sr-only">(abre em nova aba)</span>
+                </a>
+              )}
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </article>
+</li>
+
+<style>
+  .org-item {
+    perspective: 1400px;
+    transition:
+      opacity 0.7s var(--ease-out-expo) calc(var(--i) * 90ms),
+      transform 0.7s var(--ease-out-expo) calc(var(--i) * 90ms);
+  }
+  /* entrada escalonada: só esconde quando há JS (classe .js no <html>) */
+  :global(.js .org-grid:not(.is-in)) .org-item {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  .org-card {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    min-height: 26rem;
+    cursor: pointer;
+    transition:
+      transform 0.5s var(--ease-out-expo),
+      opacity 0.4s,
+      filter 0.4s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .org-inner {
+    position: absolute;
+    inset: 0;
+    transform-style: preserve-3d;
+    transition: transform 0.8s var(--ease-out-expo);
+  }
+
+  /* --- quando o cartão gira --- */
+  @media (hover: hover) {
+    .org-card:hover .org-inner {
+      transform: rotateY(180deg);
+    }
+    .org-card:hover {
+      transform: translateY(-6px) scale(1.03);
+      z-index: 2;
+    }
+  }
+  .org-card:has(.back :focus-visible) .org-inner,
+  .org-card[data-pinned] .org-inner {
+    transform: rotateY(180deg);
+  }
+  .org-card[data-pinned] {
+    transform: translateY(-6px) scale(1.03);
+    z-index: 3;
+  }
+
+  .face {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    border-radius: 1.25rem;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border: 1px solid rgb(255 255 255 / 0.09);
+  }
+
+  /* FRENTE */
+  .front {
+    background: var(--color-ink-2);
+  }
+  .photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    filter: saturate(0.92) contrast(1.03);
+    transition: transform 0.8s var(--ease-out-expo);
+  }
+  .photo--empty {
+    display: grid;
+    place-items: center;
+    color: color-mix(in oklab, var(--color-stone) 45%, transparent);
+    background:
+      repeating-linear-gradient(-45deg, rgb(255 255 255 / 0.025) 0 10px, transparent 10px 20px),
+      radial-gradient(circle at 50% 35%, var(--color-ink-3), var(--color-ink-2) 70%);
+  }
+  .front::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 40%, color-mix(in oklab, var(--color-ink) 70%, transparent) 65%, var(--color-ink) 100%);
+    pointer-events: none;
+  }
+  .front-info {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+    padding: 1.4rem;
+  }
+  .role {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-sky);
+  }
+  .name {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1.05;
+  }
+  .flip-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: 0.6rem;
+    padding: 0.4rem 0.75rem;
+    border: 1px solid color-mix(in oklab, var(--color-rose) 50%, transparent);
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    color: var(--color-paper);
+    background: color-mix(in oklab, var(--color-wine) 35%, transparent);
+    cursor: pointer;
+  }
+  .corner {
+    position: absolute;
+    z-index: 1;
+    width: 22px;
+    height: 22px;
+    border-color: var(--color-rose);
+    border-style: solid;
+    opacity: 0.8;
+  }
+  .c-tl {
+    top: 12px;
+    left: 12px;
+    border-width: 2px 0 0 2px;
+    border-top-left-radius: 6px;
+  }
+  .c-br {
+    right: 12px;
+    bottom: 12px;
+    border-width: 0 2px 2px 0;
+    border-bottom-right-radius: 6px;
+    border-color: var(--color-sky);
+  }
+
+  /* VERSO */
+  .back {
+    transform: rotateY(180deg);
+    padding: 1.5rem;
+    overflow-y: auto;
+    border-color: color-mix(in oklab, var(--color-rose) 45%, transparent);
+    background:
+      radial-gradient(120% 70% at 100% 0%, color-mix(in oklab, var(--color-navy) 85%, transparent), transparent 60%),
+      radial-gradient(100% 60% at 0% 100%, color-mix(in oklab, var(--color-wine) 75%, transparent), transparent 65%),
+      var(--color-ink-2);
+    box-shadow: 0 30px 70px -25px var(--color-wine);
+  }
+  .back::before {
+    /* trilha de circuito decorativa no verso */
+    content: '';
+    position: absolute;
+    right: 1.25rem;
+    top: 1.25rem;
+    width: 46px;
+    height: 46px;
+    border-top: 1.5px solid color-mix(in oklab, var(--color-sky) 60%, transparent);
+    border-right: 1.5px solid color-mix(in oklab, var(--color-sky) 60%, transparent);
+    border-top-right-radius: 10px;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .chip {
+    padding: 0.3rem 0.6rem;
+    border: 1px solid rgb(255 255 255 / 0.14);
+    border-radius: 0.5rem;
+    background: rgb(6 11 24 / 0.55);
+    font-size: 0.76rem;
+    line-height: 1.2;
+  }
+  .lattes {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    align-self: flex-start;
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-sky);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .lattes:hover {
+    color: var(--color-paper);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .org-item {
+      transition: none;
+    }
+    .org-inner {
+      transition: none;
+    }
+    .org-card,
+    .org-card:hover,
+    .org-card[data-pinned] {
+      transform: none !important;
+    }
+  }
+</style>

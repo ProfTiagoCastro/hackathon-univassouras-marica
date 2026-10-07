@@ -31,3 +31,17 @@ Uma entrada por etapa de desenvolvimento (cada etapa = um commit).
 ## Etapa 4: Sobre, Regras, Premiação e Programação (2026-10-07)
 - `About`: ficha do evento em estilo `hackathon.config` (quando, onde, cursos, público, formato) e cartões de Regras e Premiação (lidos de `faq.ts`, com "EM CONSTRUÇÃO" enquanto vazios).
 - `Schedule`: abas acessíveis por dia (ARIA tabs, setas, Home e End). Cada atividade é um pad numa trilha vertical, com cor por tipo. Sem atividades, o dia mostra linhas fantasma e o selo "Horários em construção". Durante o evento, a aba do dia atual abre sozinha (fuso America/Sao_Paulo).
+
+## Etapa 5: Organizadores com cartões flip (2026-10-07)
+- Página `/organizadores` com a grade `OrganizersGrid` (colunas automáticas, aceita qualquer quantidade de professores).
+- `OrganizerCard`:
+  - frente: foto, cargo, nome e botão "Ver especializações";
+  - verso: formação, especializações em chips e link do Lattes;
+  - cartões sem dados: silhueta, selo "EM CONSTRUÇÃO" e verso "Informações em breve".
+- Interação, testada no navegador:
+  - hover (apenas dispositivos com mouse): gira, levanta o cartão e esmaece os demais;
+  - clique/toque: fixa virado (`data-pinned`, `aria-pressed=true`); clicar de novo mantém; clicar em outro cartão troca;
+  - clique fora de qualquer cartão ou Esc: solta;
+  - teclado: Tab até o botão, Enter fixa e Esc solta. O Tab até o link do Lattes também vira o cartão.
+- Entrada escalonada ao rolar (IntersectionObserver). Sem JS, os cartões aparecem normalmente (classe `.js` no `<html>`).
+- Home: bloco `OrganizersTeaser` com avatares, levando para `/organizadores`.

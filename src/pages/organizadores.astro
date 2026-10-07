@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionTitle from '../components/ui/SectionTitle.astro';
+import OrganizersGrid from '../components/organizers/OrganizersGrid.astro';
+import RegisterCta from '../components/RegisterCta.astro';
+---
+
+<BaseLayout
+  title="Organizadores"
+  description="Conheça os professores de Engenharia de Software e ADS da Univassouras Maricá que organizam o Hackathon 2026."
+>
+  <section class="pt-32 pb-12 sm:pt-40" aria-labelledby="org-title">
+    <div class="shell">
+      <SectionTitle
+        id="org-title"
+        eyebrow="Organizadores"
+        title="Os professores por trás do Hackathon"
+        lead="Passe o mouse sobre um cartão para ver as especializações. Clique para deixá-lo aberto e clique fora para fechar."
+      />
+      <OrganizersGrid />
+    </div>
+  </section>
+  <RegisterCta />
+</BaseLayout>
