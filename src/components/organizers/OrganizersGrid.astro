@@ -3,8 +3,9 @@
  * Grade de cartões de professores + lógica de "fixar" o cartão virado.
  * Regras:
  *  - clique/toque num cartão → fica fixado virado (e solta qualquer outro)
- *  - clique no mesmo cartão fixado → continua fixado
+ *  - clique/toque de novo no mesmo cartão → desvira
  *  - clique fora de qualquer cartão ou tecla Esc → solta
+ *  (no computador, o hover continua virando o cartão enquanto o mouse está em cima)
  */
 import OrganizerCard from './OrganizerCard.astro';
 import { organizers } from '../../data/organizers';
@@ -47,8 +48,10 @@ import { organizers } from '../../data/organizers';
     };
 
     for (const card of cards) {
-      card.addEventListener('click', () => {
-        if (!card.hasAttribute('data-pinned')) setPinned(card);
+      card.addEventListener('click', (e) => {
+        // clicar no link do Lattes não desvira o cartão
+        if ((e.target as HTMLElement).closest('a')) return;
+        setPinned(card.hasAttribute('data-pinned') ? null : card);
       });
     }
 

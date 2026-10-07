@@ -99,3 +99,9 @@ Uma entrada por etapa de desenvolvimento (cada etapa = um commit).
 - Ligação GitHub ↔ Vercel: o app Vercel foi instalado na ProfTiagoCastro (só este repositório) e o GitHub do login da Vercel trocado de oBombista para ProfTiagoCastro. Detalhes no HANDOFF, seção 5.
 - Verificado em produção: `/`, `/organizadores` e `/mural` com 200, `/mural/` redireciona (308) para `/mural`, 404 funcionando, `og-image`, `sitemap` e `robots` ok, canonical correto, cartões fixam e soltam, fotos carregando.
 - Publicação automática: cada `git push` na `main` publica sozinho.
+
+## Correções nos cartões dos organizadores (2026-10-07)
+- **Bug no celular (Safari/iPhone):** depois de virar o cartão, o nome do professor e o botão "Ver especializações" apareciam espelhados no verso. O `backface-visibility: hidden` do WebKit não esconde filhos com camada própria (nome, botão, degradê). **Correção:** a face de costas também recebe `visibility: hidden`, trocada perto da metade do giro (`transition: visibility 0s 0.1s`). O `backface-visibility` continua como reforço.
+- **Novo:** clicar ou tocar de novo no cartão aberto **desvira**. Também desvira com clique fora ou Esc. Clicar no link do Lattes não desvira. No computador, o hover continua virando o cartão.
+- O verso fechado agora fica fora da navegação por Tab. O teclado usa o botão "Ver especializações" (Enter alterna, `aria-pressed`).
+- Testado: hover no desktop, clique e toque alternando, troca entre cartões, clique fora, Esc e link do Lattes. Em cada estado, a face de costas fica `visibility: hidden`.

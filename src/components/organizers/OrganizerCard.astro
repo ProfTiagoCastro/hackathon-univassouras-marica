@@ -1,9 +1,9 @@
 ---
 /**
  * Cartão de professor com efeito flip.
- * - Mouse: gira no hover; clique fixa virado; clique fora solta (lógica em OrganizersGrid)
- * - Toque: toque fixa; toque fora solta
- * - Teclado: Enter/Espaço no botão "Ver especializações" fixa; Esc solta
+ * - Mouse: gira no hover; clique fixa virado; novo clique ou clique fora solta (lógica em OrganizersGrid)
+ * - Toque: toque vira; novo toque ou toque fora desvira
+ * - Teclado: Enter/Espaço no botão "Ver especializações" alterna; Esc solta
  */
 import { Image } from 'astro:assets';
 import UnderConstruction from '../ui/UnderConstruction.astro';
@@ -138,10 +138,22 @@ const displayName = o.name ?? 'Professor(a) organizador(a)';
       transform: translateY(-6px) scale(1.03);
       z-index: 2;
     }
+    /* troca de face no meio do giro (ver comentário em .face) */
+    .org-card:hover .front {
+      visibility: hidden;
+    }
+    .org-card:hover .back {
+      visibility: visible;
+    }
   }
-  .org-card:has(.back :focus-visible) .org-inner,
   .org-card[data-pinned] .org-inner {
     transform: rotateY(180deg);
+  }
+  .org-card[data-pinned] .front {
+    visibility: hidden;
+  }
+  .org-card[data-pinned] .back {
+    visibility: visible;
   }
   .org-card[data-pinned] {
     transform: translateY(-6px) scale(1.03);
@@ -157,6 +169,11 @@ const displayName = o.name ?? 'Professor(a) organizador(a)';
     border-radius: 1.25rem;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
+    /* No Safari/iPhone, o backface-visibility não esconde filhos com camada própria
+       (nome, botão, degradê), que apareciam espelhados no verso. Por isso a face de
+       costas também recebe visibility: hidden, trocada perto da metade do giro
+       (a curva ease-out-expo chega a 90° em ~0,1 s). */
+    transition: visibility 0s linear 0.1s;
     border: 1px solid rgb(255 255 255 / 0.09);
   }
 
@@ -254,6 +271,7 @@ const displayName = o.name ?? 'Professor(a) organizador(a)';
 
   /* VERSO */
   .back {
+    visibility: hidden;
     transform: rotateY(180deg);
     padding: 1.35rem 1.4rem;
     border-color: color-mix(in oklab, var(--color-rose) 45%, transparent);
@@ -311,7 +329,8 @@ const displayName = o.name ?? 'Professor(a) organizador(a)';
     .org-item {
       transition: none;
     }
-    .org-inner {
+    .org-inner,
+    .face {
       transition: none;
     }
     .org-card,
