@@ -1,0 +1,209 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logos/logo-hackathon.png';
+import RegisterButton from './ui/RegisterButton.astro';
+import Countdown from './Countdown.astro';
+import { event } from '../data/event';
+import { schedule } from '../data/schedule';
+---
+
+<section class="hero relative overflow-hidden pt-28 pb-20 sm:pt-32 lg:pt-36" aria-labelledby="hero-title">
+  <div class="shell grid items-center gap-14 lg:grid-cols-[1.15fr_1fr]">
+    <div class="reveal">
+      <p class="eyebrow">Univassouras · Campus Maricá</p>
+
+      <h1 id="hero-title" class="mt-5 font-display leading-[0.88] font-bold tracking-tight">
+        <span class="block text-[clamp(3.4rem,11vw,7.5rem)]">
+          <span class="text-rose">HACK</span><span class="text-sky">ATHON</span>
+        </span>
+        <span class="mt-3 block text-[clamp(1.25rem,3vw,1.9rem)] font-medium tracking-[0.12em] text-paper/90 uppercase">
+          {event.tagline}
+        </span>
+      </h1>
+
+      <p class="mt-7 max-w-xl text-lg text-pretty text-stone">
+        Três dias de código, trabalho em equipe e mentoria, promovidos pelos cursos de{' '}
+        <strong class="font-medium text-paper">{event.courses[0]}</strong> e{' '}
+        <strong class="font-medium text-paper">{event.courses[1]}</strong>.
+      </p>
+
+      <!-- Datas como "pads" de circuito -->
+      <ol class="days mt-9" aria-label="Datas do evento">
+        {
+          schedule.map((d) => (
+            <li class="day">
+              <span class="day-num">{d.date.slice(8)}</span>
+              <span class="day-wd">{d.weekday}</span>
+            </li>
+          ))
+        }
+        <li class="days-month" aria-hidden="true">out<br />2026</li>
+      </ol>
+      <p class="sr-only">De 19 a 21 de outubro de 2026.</p>
+
+      <div class="mt-10 flex flex-wrap items-center gap-4">
+        <RegisterButton />
+        <a href="#programacao" class="group inline-flex items-center gap-2 px-2 py-3 font-mono text-sm text-paper/85 hover:text-paper">
+          Ver programação
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" class="transition-transform group-hover:translate-y-0.5"><path d="M12 5v14M6 13l6 6 6-6" /></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="reveal reveal-delay flex flex-col gap-5">
+      <figure class="logo-card">
+        <span class="pad pad-tl" aria-hidden="true"></span>
+        <span class="pad pad-tr" aria-hidden="true"></span>
+        <span class="pad pad-bl" aria-hidden="true"></span>
+        <span class="pad pad-br" aria-hidden="true"></span>
+        <Image
+          src={logo}
+          alt="Logo do Hackathon Universidade de Vassouras, Campus Maricá: Engenharia de Software e Análise e Desenvolvimento de Sistemas, Ideias que transformam"
+          widths={[480, 720, 960]}
+          sizes="(min-width: 1024px) 460px, 90vw"
+          loading="eager"
+          fetchpriority="high"
+          class="relative h-auto w-full"
+        />
+      </figure>
+      <Countdown />
+    </div>
+  </div>
+</section>
+
+<style>
+  .days {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    width: fit-content;
+  }
+  .day {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 4.6rem;
+    padding: 0.75rem 0.9rem 0.65rem;
+    border: 1px solid color-mix(in oklab, var(--color-rose) 40%, transparent);
+    border-radius: 0.9rem;
+    background: color-mix(in oklab, var(--color-ink-2) 75%, transparent);
+  }
+  /* trilha que liga um dia ao próximo */
+  .day + .day {
+    margin-left: 1.6rem;
+  }
+  .day + .day::before {
+    content: '';
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    width: 1.6rem;
+    height: 1px;
+    background: linear-gradient(90deg, var(--color-rose), var(--color-sky));
+  }
+  .day-num {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .day-wd {
+    margin-top: 0.3rem;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-stone);
+  }
+  .days-month {
+    align-self: center;
+    margin-left: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    line-height: 1.3;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-sky);
+  }
+
+  .logo-card {
+    position: relative;
+    padding: clamp(1rem, 3vw, 1.75rem);
+    border-radius: 1.5rem;
+    background: #fff;
+    box-shadow:
+      0 0 0 1px rgb(255 255 255 / 0.6),
+      0 0 0 8px color-mix(in oklab, var(--color-ink-3) 80%, transparent),
+      0 0 0 9px color-mix(in oklab, var(--color-rose) 35%, transparent),
+      0 30px 80px -20px color-mix(in oklab, var(--color-wine) 70%, transparent),
+      0 0 120px -10px color-mix(in oklab, var(--color-navy) 80%, transparent);
+    transform: rotate(-1.2deg);
+    transition: transform 0.6s var(--ease-out-expo);
+  }
+  .logo-card:hover {
+    transform: rotate(0deg) scale(1.01);
+  }
+  .pad {
+    position: absolute;
+    width: 11px;
+    height: 11px;
+    border-radius: 999px;
+    border: 2px solid var(--color-rose);
+    background: var(--color-ink);
+    z-index: 1;
+  }
+  .pad-tl {
+    top: -14px;
+    left: -14px;
+  }
+  .pad-tr {
+    top: -14px;
+    right: -14px;
+    border-color: var(--color-sky);
+  }
+  .pad-bl {
+    bottom: -14px;
+    left: -14px;
+    border-color: var(--color-sky);
+  }
+  .pad-br {
+    bottom: -14px;
+    right: -14px;
+  }
+
+  /* entrada da página */
+  .reveal {
+    animation: rise 0.9s var(--ease-out-expo) both;
+  }
+  .reveal-delay {
+    animation-delay: 0.15s;
+  }
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      animation: none;
+    }
+    .logo-card,
+    .logo-card:hover {
+      transform: none;
+    }
+  }
+  @media (max-width: 420px) {
+    .day {
+      min-width: 3.9rem;
+      padding-inline: 0.6rem;
+    }
+    .day + .day {
+      margin-left: 1rem;
+    }
+    .day + .day::before {
+      width: 1rem;
+    }
+  }
+</style>

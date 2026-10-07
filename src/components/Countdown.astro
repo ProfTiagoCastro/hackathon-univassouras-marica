@@ -1,0 +1,115 @@
+---
+/**
+ * Contagem regressiva até `event.startsAt`.
+ * Durante o evento mostra "Acontecendo agora"; depois, "Evento encerrado".
+ */
+import { event } from '../data/event';
+
+const units = [
+  { key: 'd', label: 'dias' },
+  { key: 'h', label: 'horas' },
+  { key: 'm', label: 'min' },
+  { key: 's', label: 'seg' },
+];
+---
+
+<div class="countdown panel" data-countdown data-start={event.startsAt} data-end={event.endsAt}>
+  <p class="font-mono text-[0.68rem] tracking-[0.2em] text-stone uppercase" data-cd-caption>Começa em</p>
+  <div class="mt-3 grid grid-cols-4 gap-2 sm:gap-3" data-cd-grid aria-live="off">
+    {
+      units.map((u) => (
+        <div class="cd-cell">
+          <span class="cd-num" data-unit={u.key}>
+            --
+          </span>
+          <span class="cd-label">{u.label}</span>
+        </div>
+      ))
+    }
+  </div>
+  <p class="cd-status hidden font-display text-2xl font-bold" data-cd-status role="status"></p>
+</div>
+
+<style>
+  .countdown {
+    padding: 1.1rem 1.1rem 1.25rem;
+  }
+  .cd-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.7rem 0.25rem 0.55rem;
+    border-radius: 0.75rem;
+    background: linear-gradient(180deg, color-mix(in oklab, var(--color-ink-3) 90%, transparent), var(--color-ink));
+    border: 1px solid rgb(255 255 255 / 0.06);
+  }
+  .cd-num {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: clamp(1.6rem, 5vw, 2.4rem);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-paper);
+  }
+  .cd-cell:first-child .cd-num {
+    color: var(--color-rose);
+  }
+  .cd-label {
+    margin-top: 0.35rem;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-stone);
+  }
+</style>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-countdown]');
+  if (root) {
+    const start = new Date(root.dataset.start!).getTime();
+    const end = new Date(root.dataset.end!).getTime();
+    const cells = Object.fromEntries(
+      [...root.querySelectorAll<HTMLElement>('[data-unit]')].map((el) => [el.dataset.unit!, el]),
+    );
+    const grid = root.querySelector<HTMLElement>('[data-cd-grid]')!;
+    const caption = root.querySelector<HTMLElement>('[data-cd-caption]')!;
+    const status = root.querySelector<HTMLElement>('[data-cd-status]')!;
+    const pad = (n: number) => String(n).padStart(2, '0');
+
+    // ?agora=2026-10-20T10:00 permite testar os estados (só para desenvolvimento)
+    const override = new URLSearchParams(location.search).get('agora');
+    const offset = override ? new Date(override).getTime() - Date.now() : 0;
+
+    let timer = 0;
+    const tick = () => {
+      const now = Date.now() + offset;
+      if (now >= start) {
+        grid.hidden = true;
+        status.classList.remove('hidden');
+        if (now <= end) {
+          caption.textContent = 'Status';
+          status.textContent = 'Acontecendo agora!';
+        } else {
+          caption.textContent = 'Status';
+          status.textContent = 'Evento encerrado. Obrigado a todos!';
+          clearInterval(timer);
+        }
+        return;
+      }
+      let diff = Math.floor((start - now) / 1000);
+      const d = Math.floor(diff / 86400);
+      diff -= d * 86400;
+      const h = Math.floor(diff / 3600);
+      diff -= h * 3600;
+      const m = Math.floor(diff / 60);
+      const s = diff - m * 60;
+      cells.d.textContent = pad(d);
+      cells.h.textContent = pad(h);
+      cells.m.textContent = pad(m);
+      cells.s.textContent = pad(s);
+    };
+    tick();
+    timer = window.setInterval(tick, 1000);
+  }
+</script>
