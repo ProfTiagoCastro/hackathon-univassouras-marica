@@ -74,3 +74,4 @@ Uma entrada por etapa de desenvolvimento (cada etapa = um commit).
 - Especialidades do Prof. Tiago: "Computação em Nuvem" trocada por "Desenvolvimento de Jogos 2D/3D", a pedido dele.
 - Texto de apresentação do hero trocado a pedido: "**Três dias. Grandes desafios. Ideias que podem transformar o futuro.**" (negrito) + "Forme sua equipe, desenvolva sua solução e viva uma experiência de inovação, tecnologia e colaboração." Os nomes dos cursos continuam na ficha "Sobre" e no rodapé.
 - Removida a frase "Escolha um dia para ver as atividades e os horários." da Programação (as abas já são autoexplicativas).
+- Removido o texto de instrução da página Organizadores ("Passe o mouse (ou toque)...").
