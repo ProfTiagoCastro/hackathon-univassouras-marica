@@ -42,7 +42,7 @@ export const organizers: Organizer[] = [
       'Banco de Dados (MySQL)',
       'Dados com Python',
       'BI com Power BI',
-      'Computação em Nuvem',
+      'Desenvolvimento de Jogos 2D/3D',
       'IA & Machine Learning',
       'Empreendedorismo Tecnológico',
     ],

@@ -69,3 +69,6 @@ Uma entrada por etapa de desenvolvimento (cada etapa = um commit).
 - **Refatoração:** as abas de dias viraram o componente `src/components/ui/DayTabs.astro`, usado pela Programação e pelo Mural. O estilo `.day-panel` foi para `global.css`.
 - Header: menu mais compacto entre 1024 e 1280 px (6 itens). Botão de inscrição sem quebra de linha.
 - Testado com fotos e um vídeo temporários (removidos depois): galeria, lightbox (com volta do fim ao início) e player do YouTube funcionando.
+
+## Ajuste de conteúdo (2026-10-07)
+- Especialidades do Prof. Tiago: "Computação em Nuvem" trocada por "Desenvolvimento de Jogos 2D/3D", a pedido dele.
