@@ -1,0 +1,104 @@
+---
+import SectionTitle from './ui/SectionTitle.astro';
+import UnderConstruction from './ui/UnderConstruction.astro';
+import { event } from '../data/event';
+import { rules, prizes } from '../data/faq';
+
+const specs: { k: string; v: string | null }[] = [
+  { k: 'quando', v: '19, 20 e 21 de outubro de 2026' },
+  { k: 'onde', v: event.location.name },
+  { k: 'cursos', v: `${event.courses[0]} · ${event.courses[1]}` },
+  { k: 'público', v: null },
+  { k: 'formato', v: null },
+];
+---
+
+<section id="sobre" class="py-20 sm:py-28" aria-labelledby="sobre-title">
+  <div class="shell">
+    <SectionTitle
+      id="sobre-title"
+      eyebrow="Sobre o evento"
+      title="Três dias para tirar uma ideia do papel"
+      lead="O Hackathon Univassouras reúne estudantes em equipes para criar soluções de software em três dias, com acompanhamento dos professores dos cursos."
+    />
+
+    <div class="grid gap-6 lg:grid-cols-[1.1fr_1fr]">
+      <!-- ficha técnica do evento -->
+      <dl class="panel spec p-6 font-mono text-sm sm:p-8">
+        <p class="mb-5 text-xs tracking-[0.2em] text-stone uppercase" aria-hidden="true">hackathon.config</p>
+        {
+          specs.map((s) => (
+            <div class="spec-row">
+              <dt class="text-sky">{s.k}</dt>
+              <dd>{s.v ?? <UnderConstruction />}</dd>
+            </div>
+          ))
+        }
+      </dl>
+
+      <div class="grid gap-6">
+        <article class="panel p-6 sm:p-8" aria-labelledby="regras-title">
+          <h3 id="regras-title" class="font-display text-2xl font-bold">Regras</h3>
+          {
+            rules.length ? (
+              <ul class="mt-4 space-y-2 text-paper/85">
+                {rules.map((r) => (
+                  <li class="flex gap-3">
+                    <span class="mt-2 size-1.5 shrink-0 rounded-full bg-rose" />
+                    {r}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <UnderConstruction variant="block" class="mt-4" hint="O regulamento completo será publicado aqui." />
+            )
+          }
+        </article>
+
+        <article class="panel p-6 sm:p-8" aria-labelledby="premiacao-title">
+          <h3 id="premiacao-title" class="font-display text-2xl font-bold">Premiação</h3>
+          {
+            prizes.length ? (
+              <ol class="mt-4 space-y-2">
+                {prizes.map((p) => (
+                  <li class="flex justify-between gap-4 border-b border-white/8 pb-2">
+                    <span class="font-display font-bold text-rose">{p.place}</span>
+                    <span class="text-paper/85">{p.prize}</span>
+                  </li>
+                ))}
+              </ol>
+            ) : (
+              <UnderConstruction variant="block" class="mt-4" hint="Os prêmios das equipes vencedoras serão divulgados em breve." />
+            )
+          }
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .spec-row {
+    display: grid;
+    grid-template-columns: 6.5rem 1fr;
+    gap: 1rem;
+    align-items: center;
+    padding: 0.9rem 0;
+    border-top: 1px dashed rgb(255 255 255 / 0.08);
+  }
+  .spec-row dd {
+    color: var(--color-paper);
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+  }
+  .spec-row dt::after {
+    content: ':';
+    color: var(--color-stone);
+  }
+  @media (max-width: 480px) {
+    .spec-row {
+      grid-template-columns: 1fr;
+      gap: 0.35rem;
+    }
+  }
+</style>

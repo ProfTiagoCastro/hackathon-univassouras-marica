@@ -27,3 +27,7 @@ Uma entrada por etapa de desenvolvimento (cada etapa = um commit).
 - `RegisterCta`: faixa de inscrição com recorte angular (inspirado na faixa "IDEIAS QUE TRANSFORMAM").
 - `.gitattributes` (LF) adicionado.
 - Correção: o `<style>` de componente (sem layer) vence as utilities do Tailwind, então a visibilidade responsiva é controlada no CSS do componente ou num wrapper.
+
+## Etapa 4: Sobre, Regras, Premiação e Programação (2026-10-07)
+- `About`: ficha do evento em estilo `hackathon.config` (quando, onde, cursos, público, formato) e cartões de Regras e Premiação (lidos de `faq.ts`, com "EM CONSTRUÇÃO" enquanto vazios).
+- `Schedule`: abas acessíveis por dia (ARIA tabs, setas, Home e End). Cada atividade é um pad numa trilha vertical, com cor por tipo. Sem atividades, o dia mostra linhas fantasma e o selo "Horários em construção". Durante o evento, a aba do dia atual abre sozinha (fuso America/Sao_Paulo).
