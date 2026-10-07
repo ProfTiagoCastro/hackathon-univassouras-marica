@@ -82,3 +82,4 @@ Uma entrada por etapa de desenvolvimento (cada etapa = um commit).
 - **Cartão flip reestruturado:** frente e verso ficam empilhados na mesma célula de grid (`grid-area: 1/1`), em vez de `position: absolute`. O cartão cresce até caber o lado com mais conteúdo, então o verso nunca é cortado. Os cartões da mesma linha têm a mesma altura e a proporção de 4:5 continua (`min-height: max(26rem, 125cqw)`).
 - Verificado em 375, 640 e 1440 px: sem estouro, sem rolagem lateral, e fixar/trocar/clicar fora/Esc funcionando.
 - Home, bloco Organizadores: o texto "6 professores…" virou "Especialistas, mestres e doutores dos cursos de Engenharia de Software e ADS." Os avatares (incluindo os "?") continuam como estavam, a pedido.
+- Home, bloco Organizadores: no hover, a seta da bolinha vermelha agora desliza para a direita em vez de girar 45° (girando, parecia apontar para cima).
