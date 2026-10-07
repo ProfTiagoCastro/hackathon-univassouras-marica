@@ -2,8 +2,7 @@
 import { Image } from 'astro:assets';
 import { organizers } from '../data/organizers';
 
-// só professores confirmados (com foto); o "+" indica que mais nomes serão divulgados
-const confirmed = organizers.filter((o) => o.name && o.photo);
+const confirmed = organizers.filter((o) => o.name);
 ---
 
 <section class="py-20 sm:py-24" aria-labelledby="teaser-title">
@@ -16,14 +15,21 @@ const confirmed = organizers.filter((o) => o.name && o.photo);
       </div>
       <div class="flex items-center gap-5">
         <div class="flex -space-x-3" aria-hidden="true">
-          {confirmed.slice(0, 6).map((o) => o.photo && <Image src={o.photo} alt="" width={96} height={96} class="avatar" />)}
-          <span class="avatar avatar--empty">+</span>
+          {
+            organizers.slice(0, 6).map((o) =>
+              o.photo ? (
+                <Image src={o.photo} alt="" width={96} height={96} class="avatar" />
+              ) : (
+                <span class="avatar avatar--empty">?</span>
+              ),
+            )
+          }
         </div>
         <span class="arrow" aria-hidden="true">
           <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
         </span>
       </div>
-      <span class="sr-only">Ver todos os organizadores</span>
+      <span class="sr-only">Ver todos os organizadores ({confirmed.length} confirmados)</span>
     </a>
   </div>
 </section>
