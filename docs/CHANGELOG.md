@@ -51,3 +51,11 @@ Uma entrada por etapa de desenvolvimento (cada etapa = um commit).
 - `Faq`: acordeão nativo (`<details>`), acessível e sem JS. Respostas `null` mostram "EM CONSTRUÇÃO".
 - `404.astro`: página de erro no visual do site.
 - `astro check`: 0 erros e 0 avisos. Build ok.
+
+## Etapa 7: Polimento, SEO, acessibilidade e performance (2026-10-07)
+- `public/og-image.png` (1200×630), gerada por `npm run og` (`scripts/make-og-image.mjs`, com sharp).
+- JSON-LD `schema.org/Event` na home. A oferta de inscrição entra sozinha quando o link do Forms existir.
+- `public/robots.txt` e sitemap (`@astrojs/sitemap`).
+- Correção de contraste no rodapé (Lighthouse).
+- Texto de instrução dos cartões vale para mouse e toque.
+- **Resultados (build de produção, mobile):** Lighthouse Acessibilidade 97 → 100 após a correção, Boas práticas 100, SEO 100. LCP 189 ms, CLS 0. Sem rolagem horizontal em 375 px. Toque nos cartões testado com emulação touch.

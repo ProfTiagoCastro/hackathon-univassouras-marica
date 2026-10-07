@@ -1,7 +1,7 @@
 # HANDOFF: Site do Hackathon Univassouras Maricá
 
 > Documento de passagem de bastão. Atualizado a cada etapa concluída.
-> **Última atualização:** 2026-10-07 · **Etapa atual:** 6 de 8 concluídas
+> **Última atualização:** 2026-10-07 · **Etapa atual:** 7 de 8 concluídas
 
 ## 1. Resumo
 Site estático de divulgação do Hackathon (19, 20 e 21/10/2026) dos cursos de Engenharia de Software e ADS da Univassouras, Campus Maricá. Ele mostra a programação dos três dias, o botão de inscrição (Google Forms), os professores organizadores em cartões que giram, o local e o FAQ.
@@ -17,7 +17,7 @@ Stack: **Astro 7 + Tailwind 4 + TypeScript**, com deploy na **Vercel**. Detalhes
 | 4 | Sobre/Regras/Premiação + Programação | ✅ concluída |
 | 5 | Organizadores (cartões flip) | ✅ concluída |
 | 6 | Local/Mapa + FAQ + 404 | ✅ concluída |
-| 7 | Polimento: SEO, acessibilidade, performance | ⏳ |
+| 7 | Polimento: SEO, acessibilidade, performance | ✅ concluída |
 | 8 | Deploy na Vercel | ⏳ |
 
 ## 3. Onde editar cada informação
@@ -31,6 +31,8 @@ Stack: **Astro 7 + Tailwind 4 + TypeScript**, com deploy na **Vercel**. Detalhes
 | Fotos dos professores | `src/assets/professores/` | jpg quadrado, mín. 600×600 |
 | FAQ, regras, premiação | `src/data/faq.ts` | `faq`, `rules`, `prizes` |
 | Cores e fontes | `src/styles/global.css` | bloco `@theme` |
+| Imagem de compartilhamento | `scripts/make-og-image.mjs` | editar e rodar `npm run og` |
+| Domínio final (SEO) | `astro.config.mjs` + `public/robots.txt` | `site` / linha `Sitemap:` |
 
 Campos vazios ou `null` aparecem no site com o selo **EM CONSTRUÇÃO**.
 

@@ -7,9 +7,31 @@ import OrganizersTeaser from '../components/OrganizersTeaser.astro';
 import RegisterCta from '../components/RegisterCta.astro';
 import Location from '../components/Location.astro';
 import Faq from '../components/Faq.astro';
+import { event } from '../data/event';
+
+// Dados estruturados (schema.org/Event) para buscadores
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Event',
+  name: `${event.name} – ${event.edition}`,
+  description: `Hackathon dos cursos de ${event.courses.join(' e ')} da Universidade de Vassouras, Campus Maricá.`,
+  startDate: event.startsAt,
+  endDate: event.endsAt,
+  eventStatus: 'https://schema.org/EventScheduled',
+  eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+  image: [new URL('/og-image.png', Astro.site).href],
+  location: {
+    '@type': 'Place',
+    name: event.location.name,
+    address: { '@type': 'PostalAddress', streetAddress: event.location.address ?? undefined, addressLocality: 'Maricá', addressRegion: 'RJ', addressCountry: 'BR' },
+  },
+  organizer: { '@type': 'CollegeOrUniversity', name: 'Universidade de Vassouras', url: 'https://www.univassouras.edu.br' },
+  ...(event.registrationUrl ? { offers: { '@type': 'Offer', url: event.registrationUrl, availability: 'https://schema.org/InStock' } } : {}),
+};
 ---
 
 <BaseLayout>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <Hero />
   <About />
   <Schedule />
