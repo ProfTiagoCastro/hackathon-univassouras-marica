@@ -1,0 +1,71 @@
+---
+import SectionTitle from './ui/SectionTitle.astro';
+import UnderConstruction from './ui/UnderConstruction.astro';
+import { event } from '../data/event';
+
+const q = encodeURIComponent(event.location.address ?? event.location.mapQuery);
+const embedUrl = `https://www.google.com/maps?q=${q}&output=embed&hl=pt-BR`;
+const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${q}`;
+
+const rows: { k: string; v: string | null }[] = [
+  { k: 'Campus', v: event.location.name },
+  { k: 'Cidade', v: event.location.city },
+  { k: 'Endereço', v: event.location.address },
+  { k: 'Sala / auditório', v: event.location.room },
+];
+---
+
+<section id="local" class="py-20 sm:py-28" aria-labelledby="local-title">
+  <div class="shell">
+    <SectionTitle id="local-title" eyebrow="Local" title="Onde vai acontecer" />
+
+    <div class="grid gap-6 lg:grid-cols-[1fr_1.5fr]">
+      <div class="panel flex flex-col p-6 sm:p-8">
+        <dl class="divide-y divide-white/8">
+          {
+            rows.map((r) => (
+              <div class="flex flex-col gap-1.5 py-4 first:pt-0">
+                <dt class="font-mono text-[0.68rem] tracking-[0.18em] text-stone uppercase">{r.k}</dt>
+                <dd class="text-lg">{r.v ?? <UnderConstruction />}</dd>
+              </div>
+            ))
+          }
+        </dl>
+        <a href={mapsUrl} target="_blank" rel="noopener noreferrer" class="mt-6 inline-flex items-center gap-2 self-start font-mono text-sm text-sky underline underline-offset-4 hover:text-paper">
+          Abrir no Google Maps
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9" /></svg>
+          <span class="sr-only">(abre em nova aba)</span>
+        </a>
+      </div>
+
+      <div class="map">
+        <iframe
+          src={embedUrl}
+          title={`Mapa: ${event.location.name}`}
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .map {
+    position: relative;
+    min-height: 22rem;
+    overflow: hidden;
+    border-radius: 1rem;
+    border: 1px solid rgb(255 255 255 / 0.08);
+    background: var(--color-ink-2);
+  }
+  .map iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    /* deixa o mapa no tema escuro do site */
+    filter: invert(0.92) hue-rotate(180deg) saturate(0.7) contrast(0.95);
+  }
+</style>

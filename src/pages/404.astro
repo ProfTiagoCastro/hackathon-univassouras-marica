@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Página não encontrada">
+  <section class="shell flex min-h-[80vh] flex-col items-start justify-center pt-24">
+    <p class="eyebrow">Erro 404</p>
+    <h1 class="mt-4 font-display text-[clamp(4rem,14vw,9rem)] leading-none font-bold">
+      <span class="text-rose">40</span><span class="text-sky">4</span>
+    </h1>
+    <p class="mt-4 max-w-md text-lg text-stone">Esta página não existe. Ela pode ter mudado de endereço ou o link está incorreto.</p>
+    <a href="/" class="mt-8 font-mono text-sm text-sky underline underline-offset-4 hover:text-paper">Voltar para a página inicial</a>
+  </section>
+</BaseLayout>

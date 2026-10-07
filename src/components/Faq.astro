@@ -1,0 +1,84 @@
+---
+import SectionTitle from './ui/SectionTitle.astro';
+import UnderConstruction from './ui/UnderConstruction.astro';
+import { faq } from '../data/faq';
+---
+
+<section id="faq" class="py-20 sm:py-28" aria-labelledby="faq-title">
+  <div class="shell max-w-3xl">
+    <SectionTitle id="faq-title" eyebrow="FAQ" title="Perguntas frequentes" />
+
+    <div class="space-y-3">
+      {
+        faq.map((f) => (
+          <details class="faq-item panel">
+            <summary>
+              <span class="font-display text-lg font-bold">{f.question}</span>
+              <span class="plus" aria-hidden="true" />
+            </summary>
+            <div class="px-5 pb-5 text-paper/85 sm:px-6">
+              {f.answer ? <p>{f.answer}</p> : (
+                <p class="flex flex-wrap items-center gap-3 text-stone">
+                  <UnderConstruction /> Resposta em breve.
+                </p>
+              )}
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-item {
+    border-radius: 1rem;
+    transition: border-color 0.25s;
+  }
+  .faq-item[open] {
+    border-color: color-mix(in oklab, var(--color-rose) 45%, transparent);
+  }
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.1rem 1.25rem;
+    cursor: pointer;
+    list-style: none;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  @media (min-width: 640px) {
+    summary {
+      padding-inline: 1.5rem;
+    }
+  }
+  .plus {
+    position: relative;
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border: 1px solid rgb(255 255 255 / 0.15);
+    border-radius: 999px;
+  }
+  .plus::before,
+  .plus::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 11px;
+    height: 1.5px;
+    background: var(--color-rose);
+    translate: -50% -50%;
+    transition: rotate 0.3s var(--ease-out-expo);
+  }
+  .plus::after {
+    rotate: 90deg;
+  }
+  .faq-item[open] .plus::after {
+    rotate: 0deg;
+  }
+</style>

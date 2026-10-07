@@ -1,7 +1,7 @@
 # HANDOFF: Site do Hackathon Univassouras Maricá
 
 > Documento de passagem de bastão. Atualizado a cada etapa concluída.
-> **Última atualização:** 2026-10-07 · **Etapa atual:** 5 de 8 concluídas
+> **Última atualização:** 2026-10-07 · **Etapa atual:** 6 de 8 concluídas
 
 ## 1. Resumo
 Site estático de divulgação do Hackathon (19, 20 e 21/10/2026) dos cursos de Engenharia de Software e ADS da Univassouras, Campus Maricá. Ele mostra a programação dos três dias, o botão de inscrição (Google Forms), os professores organizadores em cartões que giram, o local e o FAQ.
@@ -16,7 +16,7 @@ Stack: **Astro 7 + Tailwind 4 + TypeScript**, com deploy na **Vercel**. Detalhes
 | 3 | Hero + contagem regressiva + CTA de inscrição | ✅ concluída |
 | 4 | Sobre/Regras/Premiação + Programação | ✅ concluída |
 | 5 | Organizadores (cartões flip) | ✅ concluída |
-| 6 | Local/Mapa + FAQ + 404 | ⏳ |
+| 6 | Local/Mapa + FAQ + 404 | ✅ concluída |
 | 7 | Polimento: SEO, acessibilidade, performance | ⏳ |
 | 8 | Deploy na Vercel | ⏳ |
 
@@ -24,7 +24,7 @@ Stack: **Astro 7 + Tailwind 4 + TypeScript**, com deploy na **Vercel**. Detalhes
 | O que | Arquivo | Campo |
 |---|---|---|
 | **Link do Google Forms** | `src/data/event.ts` | `registrationUrl` |
-| Endereço / sala | `src/data/event.ts` | `location.address`, `location.room` |
+| Endereço / sala | `src/data/event.ts` | `location.address`, `location.room` (com o endereço preenchido, o pino do mapa fica exato; hoje a busca genérica acha duas unidades) |
 | Contato | `src/data/event.ts` | `contact` |
 | Horários de cada dia | `src/data/schedule.ts` | `activities` de cada dia (o exemplo está no comentário do arquivo) |
 | Professores | `src/data/organizers.ts` | trocar um `pending(n)` pelos dados reais (o passo a passo está no comentário) |

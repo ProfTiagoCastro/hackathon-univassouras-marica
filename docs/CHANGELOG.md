@@ -45,3 +45,9 @@ Uma entrada por etapa de desenvolvimento (cada etapa = um commit).
   - teclado: Tab até o botão, Enter fixa e Esc solta. O Tab até o link do Lattes também vira o cartão.
 - Entrada escalonada ao rolar (IntersectionObserver). Sem JS, os cartões aparecem normalmente (classe `.js` no `<html>`).
 - Home: bloco `OrganizersTeaser` com avatares, levando para `/organizadores`.
+
+## Etapa 6: Local, FAQ e 404 (2026-10-07)
+- `Location`: ficha com campus, cidade, endereço e sala ("EM CONSTRUÇÃO" enquanto vazios) e mapa do Google embutido com filtro escuro, mais o link "Abrir no Google Maps". Quando `location.address` for preenchido, o mapa passa a usar o endereço exato.
+- `Faq`: acordeão nativo (`<details>`), acessível e sem JS. Respostas `null` mostram "EM CONSTRUÇÃO".
+- `404.astro`: página de erro no visual do site.
+- `astro check`: 0 erros e 0 avisos. Build ok.
