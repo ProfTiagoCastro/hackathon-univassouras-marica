@@ -115,14 +115,16 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
   .nav-link[aria-current='page']::after {
     transform: scaleX(1);
   }
+  /* grid + linhas com largura/altura explícitas: no Safari (iPhone), flexbox dentro de
+     <button> deixava as linhas com largura 0 e o ícone ficava invisível */
   .menu-btn {
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 5px;
+    position: relative;
+    display: grid;
+    place-content: center;
+    row-gap: 5px;
     width: 42px;
     height: 42px;
-    padding: 0 10px;
+    padding: 0;
     border: 1px solid rgb(255 255 255 / 0.12);
     border-radius: 10px;
   }
@@ -132,18 +134,22 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
     }
   }
   .menu-btn .bar {
-    height: 1.5px;
+    display: block;
+    width: 20px;
+    height: 2px;
+    border-radius: 2px;
     background: var(--color-paper);
     transition: transform 0.3s var(--ease-out-expo), opacity 0.2s;
   }
+  /* abrir: as linhas viram um "X" (deslocamento = gap 5px + altura 2px) */
   .menu-btn[aria-expanded='true'] .bar:nth-child(2) {
-    transform: translateY(6.5px) rotate(45deg);
+    transform: translateY(7px) rotate(45deg);
   }
   .menu-btn[aria-expanded='true'] .bar:nth-child(3) {
     opacity: 0;
   }
   .menu-btn[aria-expanded='true'] .bar:nth-child(4) {
-    transform: translateY(-6.5px) rotate(-45deg);
+    transform: translateY(-7px) rotate(-45deg);
   }
 </style>
 

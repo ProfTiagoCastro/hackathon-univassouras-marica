@@ -105,3 +105,7 @@ Uma entrada por etapa de desenvolvimento (cada etapa = um commit).
 - **Novo:** clicar ou tocar de novo no cartão aberto **desvira**. Também desvira com clique fora ou Esc. Clicar no link do Lattes não desvira. No computador, o hover continua virando o cartão.
 - O verso fechado agora fica fora da navegação por Tab. O teclado usa o botão "Ver especializações" (Enter alterna, `aria-pressed`).
 - Testado: hover no desktop, clique e toque alternando, troca entre cartões, clique fora, Esc e link do Lattes. Em cada estado, a face de costas fica `visibility: hidden`.
+
+## Correção do menu "sanduíche" no iPhone (2026-10-07)
+- No Safari do iPhone, as 3 linhas do botão de menu não apareciam: flexbox dentro de `<button>` deixava as `<span>` com largura 0. **Correção:** o botão passou a usar `display: grid` e as linhas têm tamanho explícito (20×2 px). O "X" ao abrir foi recalculado (deslocamento de 7 px).
+- Testado com emulação mobile: 3 linhas visíveis (20×2 px cada), abrir vira "X" ("Fechar menu"), menu aparece, e o botão continua oculto a partir de 1024 px.
