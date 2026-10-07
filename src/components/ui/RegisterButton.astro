@@ -1,0 +1,87 @@
+---
+/**
+ * Botão de inscrição. Usa `event.registrationUrl` (src/data/event.ts).
+ * Sem link definido, vira um botão desabilitado "Inscrições em breve".
+ */
+import { event, hasRegistration } from '../../data/event';
+
+interface Props {
+  size?: 'sm' | 'lg';
+  class?: string;
+}
+const { size = 'lg', class: className = '' } = Astro.props;
+const classes = ['reg-btn', size === 'sm' ? 'reg-btn--sm' : 'reg-btn--lg', className];
+---
+
+{
+  hasRegistration ? (
+    <a href={event.registrationUrl} target="_blank" rel="noopener noreferrer" class:list={classes}>
+      <span>Fazer inscrição</span>
+      <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M7 17 17 7M8 7h9v9" />
+      </svg>
+      <span class="sr-only">(abre o formulário do Google em nova aba)</span>
+    </a>
+  ) : (
+    <span class:list={[...classes, 'reg-btn--soon']} role="note" aria-label="Inscrições em breve: o link do formulário ainda não foi publicado">
+      <span class="reg-pulse" aria-hidden="true" />
+      Inscrições em breve
+    </span>
+  )
+}
+
+<style>
+  .reg-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-paper);
+    background: linear-gradient(135deg, var(--color-wine), var(--color-brick));
+    border: 1px solid color-mix(in oklab, var(--color-rose) 55%, transparent);
+    /* recorte angular, ecoando a faixa "IDEIAS QUE TRANSFORMAM" da logo */
+    clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+    transition:
+      filter 0.25s,
+      transform 0.25s var(--ease-out-expo);
+  }
+  .reg-btn--lg {
+    padding: 1rem 1.75rem;
+    font-size: 0.95rem;
+  }
+  .reg-btn--sm {
+    padding: 0.55rem 1rem;
+    font-size: 0.75rem;
+    clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+  }
+  a.reg-btn:hover {
+    filter: brightness(1.18);
+    transform: translateY(-2px);
+  }
+  .reg-btn--soon {
+    cursor: default;
+    background: repeating-linear-gradient(-45deg, color-mix(in oklab, var(--color-wine) 55%, transparent) 0 8px, color-mix(in oklab, var(--color-wine) 30%, transparent) 8px 16px);
+  }
+  .reg-pulse {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: var(--color-rose);
+    animation: reg-blink 1.6s steps(2, jump-none) infinite;
+  }
+  @keyframes reg-blink {
+    50% {
+      opacity: 0.25;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reg-pulse {
+      animation: none;
+    }
+  }
+</style>

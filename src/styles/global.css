@@ -1,0 +1,105 @@
+@import '@fontsource/chakra-petch/500.css';
+@import '@fontsource/chakra-petch/700.css';
+@import '@fontsource-variable/ibm-plex-sans';
+@import '@fontsource/ibm-plex-mono/400.css';
+@import '@fontsource/ibm-plex-mono/500.css';
+@import 'tailwindcss';
+
+/* ------------------------------------------------------------------
+   Tokens de design. Origem de cada cor em docs/DECISOES.md
+------------------------------------------------------------------- */
+@theme {
+  --color-wine: #7a1530;
+  --color-brick: #8b2c2e;
+  --color-navy: #14336e;
+  --color-stone: #a39a96;
+  --color-ink: #060b18;
+  --color-ink-2: #0b1428;
+  --color-ink-3: #12203d;
+  --color-paper: #eee9e6;
+  --color-rose: #e0577a;
+  --color-sky: #7fa2ee;
+
+  --font-display: 'Chakra Petch', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'IBM Plex Sans Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    color-scheme: dark;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+  body {
+    @apply bg-ink font-sans text-paper antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: var(--color-wine);
+    color: var(--color-paper);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-rose);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  /* Contêiner padrão das seções */
+  .shell {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Eyebrow em mono com os colchetes de código da logo */
+  .eyebrow {
+    @apply font-mono text-xs tracking-[0.2em] text-rose uppercase;
+  }
+  .eyebrow::before {
+    content: '</ ';
+    color: var(--color-stone);
+  }
+  .eyebrow::after {
+    content: ' >';
+    color: var(--color-stone);
+  }
+
+  /* Trilha de circuito: linha com terminais redondos */
+  .trace {
+    position: relative;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--color-rose) 55%, transparent) 15%, color-mix(in oklab, var(--color-sky) 40%, transparent) 85%, transparent);
+  }
+  .trace::before,
+  .trace::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 9px;
+    height: 9px;
+    border: 1.5px solid var(--color-rose);
+    border-radius: 999px;
+    background: var(--color-ink);
+    translate: 0 -50%;
+  }
+  .trace::before {
+    left: 12%;
+  }
+  .trace::after {
+    right: 12%;
+    border-color: var(--color-sky);
+  }
+
+  /* Painel de vidro escuro */
+  .panel {
+    @apply rounded-2xl border border-white/8 bg-ink-2/70 backdrop-blur-md;
+  }
+}

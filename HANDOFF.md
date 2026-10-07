@@ -1,7 +1,7 @@
 # HANDOFF: Site do Hackathon Univassouras Maricá
 
 > Documento de passagem de bastão. Atualizado a cada etapa concluída.
-> **Última atualização:** 2026-10-07 · **Etapa atual:** 1 de 8 concluída
+> **Última atualização:** 2026-10-07 · **Etapa atual:** 2 de 8 concluídas
 
 ## 1. Resumo
 Site estático de divulgação do Hackathon (19, 20 e 21/10/2026) dos cursos de Engenharia de Software e ADS da Univassouras, Campus Maricá. Ele mostra a programação dos três dias, o botão de inscrição (Google Forms), os professores organizadores em cartões que giram, o local e o FAQ.
@@ -12,7 +12,7 @@ Stack: **Astro 7 + Tailwind 4 + TypeScript**, com deploy na **Vercel**. Detalhes
 | # | Etapa | Status |
 |---|---|---|
 | 1 | Setup, organização dos arquivos, docs | ✅ concluída |
-| 2 | Design system + layout (header, footer, partículas) | ⏳ |
+| 2 | Design system + layout (header, footer, partículas) | ✅ concluída |
 | 3 | Hero + contagem regressiva + CTA de inscrição | ⏳ |
 | 4 | Sobre/Regras/Premiação + Programação | ⏳ |
 | 5 | Organizadores (cartões flip) | ⏳ |

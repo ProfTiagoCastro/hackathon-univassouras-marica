@@ -12,3 +12,11 @@ Uma entrada por etapa de desenvolvimento (cada etapa = um commit).
   - `lattes_atualizado.pdf` → `docs/referencias/lattes-tiago-ruiz-de-castro.pdf` (fora do build e ignorado pelo git)
 - Camada de dados criada: `src/data/event.ts`, `schedule.ts`, `organizers.ts`, `faq.ts`.
 - Documentação: `README.md`, `HANDOFF.md`, `docs/DECISOES.md`, `docs/CHANGELOG.md`.
+
+## Etapa 2: Design system e layout (2026-10-07)
+- Tokens de cor e fonte no `@theme` (`src/styles/global.css`), com utilitários `.shell`, `.eyebrow` (`</ … >`), `.trace` (trilha de circuito) e `.panel`.
+- `BaseLayout`: meta tags de SEO e Open Graph, link "pular para o conteúdo", favicon `< >`.
+- `Header`: fixo, ganha blur ao rolar, menu mobile acessível (aria-expanded, Esc fecha) e botão de inscrição compacto.
+- `Footer`: logo Univassouras Maricá e dados do evento.
+- `ParticlesBackground`: canvas próprio com nós ligados por trilhas de 45° que reagem ao mouse. Pausa com a aba oculta e fica estático com `prefers-reduced-motion`.
+- `UnderConstruction` (selo e bloco "EM CONSTRUÇÃO"), `RegisterButton` (lê `registrationUrl`, "Inscrições em breve" quando vazio), `SectionTitle`.

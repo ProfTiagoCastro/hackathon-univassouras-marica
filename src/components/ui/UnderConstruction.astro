@@ -1,0 +1,87 @@
+---
+/**
+ * Selo "EM CONSTRUÇÃO" para conteúdo que ainda não foi definido.
+ * - variant="badge": selo pequeno inline
+ * - variant="block": caixa tracejada ocupando o espaço do conteúdo
+ */
+interface Props {
+  variant?: 'badge' | 'block';
+  label?: string;
+  hint?: string;
+  class?: string;
+}
+const { variant = 'badge', label = 'Em construção', hint, class: className = '' } = Astro.props;
+---
+
+{
+  variant === 'badge' ? (
+    <span class:list={['uc-badge', className]}>
+      <span class="uc-dot" aria-hidden="true" />
+      {label}
+    </span>
+  ) : (
+    <div class:list={['uc-block', className]}>
+      <span class="uc-badge">
+        <span class="uc-dot" aria-hidden="true" />
+        {label}
+      </span>
+      {hint && <p class="mt-3 text-sm text-stone">{hint}</p>}
+      <slot />
+    </div>
+  )
+}
+
+<style>
+  .uc-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.3rem 0.7rem 0.3rem 0.6rem;
+    border: 1px solid color-mix(in oklab, var(--color-rose) 45%, transparent);
+    border-radius: 999px;
+    background: repeating-linear-gradient(
+        -45deg,
+        color-mix(in oklab, var(--color-wine) 32%, transparent) 0 6px,
+        transparent 6px 12px
+      ),
+      color-mix(in oklab, var(--color-ink) 70%, transparent);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-paper);
+    white-space: nowrap;
+  }
+  .uc-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--color-rose);
+    box-shadow: 0 0 0 0 var(--color-rose);
+    animation: uc-pulse 2.2s infinite;
+  }
+  @keyframes uc-pulse {
+    0% {
+      box-shadow: 0 0 0 0 color-mix(in oklab, var(--color-rose) 70%, transparent);
+    }
+    70%,
+    100% {
+      box-shadow: 0 0 0 7px transparent;
+    }
+  }
+  .uc-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.25rem;
+    border: 1px dashed color-mix(in oklab, var(--color-stone) 35%, transparent);
+    border-radius: 1rem;
+    background: color-mix(in oklab, var(--color-ink-2) 60%, transparent);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .uc-dot {
+      animation: none;
+    }
+  }
+</style>

@@ -1,0 +1,57 @@
+---
+import '../styles/global.css';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import ParticlesBackground from '../components/ParticlesBackground.astro';
+import { event } from '../data/event';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = 'Hackathon dos cursos de Engenharia de Software e Análise e Desenvolvimento de Sistemas da Univassouras, Campus Maricá. De 19 a 21 de outubro de 2026. Veja a programação e faça sua inscrição.',
+} = Astro.props;
+
+const fullTitle = title ? `${title} · ${event.name} Maricá 2026` : `${event.name} Maricá 2026 · 19 a 21 de outubro`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL('/og-image.png', Astro.site);
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="theme-color" content="#060b18" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content={event.name} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <slot name="head" />
+  </head>
+  <body>
+    <a href="#conteudo" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded-md focus:bg-paper focus:px-4 focus:py-2 focus:text-ink">
+      Pular para o conteúdo
+    </a>
+    <ParticlesBackground />
+    <Header />
+    <main id="conteudo">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

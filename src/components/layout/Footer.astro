@@ -1,0 +1,23 @@
+---
+import { Image } from 'astro:assets';
+import univassouras from '../../assets/logos/univassouras-marica.png';
+import { event } from '../../data/event';
+---
+
+<footer class="relative mt-24 border-t border-white/8 bg-ink/80 backdrop-blur-sm">
+  <div class="trace absolute inset-x-0 top-0" aria-hidden="true"></div>
+  <div class="shell grid gap-10 py-14 md:grid-cols-[1.4fr_1fr] md:items-end">
+    <div>
+      <Image src={univassouras} alt="Univassouras: Campus Universitário de Maricá" width={360} class="h-auto w-64 sm:w-80" />
+      <p class="mt-6 max-w-md text-sm text-stone">
+        Evento organizado pelos professores e pela coordenação dos cursos de {event.courses[0]} e {event.courses[1]}.
+      </p>
+    </div>
+    <div class="font-mono text-xs leading-relaxed text-stone md:text-right">
+      <p class="text-paper">{event.name}</p>
+      <p>19 · 20 · 21 de outubro de 2026</p>
+      <p>{event.location.name}</p>
+      <p class="mt-4 text-stone/70">&copy; 2026 Universidade de Vassouras</p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,199 @@
+---
+/**
+ * Fundo animado: "nós" de circuito que flutuam devagar e se ligam com trilhas
+ * de 45° (como na logo do Hackathon). Perto do cursor, os nós se afastam de leve
+ * e se conectam ao ponteiro.
+ * - Pausa quando a aba não está visível
+ * - Com prefers-reduced-motion, desenha um quadro estático
+ */
+---
+
+<canvas id="circuit-bg" aria-hidden="true"></canvas>
+<div class="bg-vignette" aria-hidden="true"></div>
+
+<style>
+  #circuit-bg,
+  .bg-vignette {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+  }
+  #circuit-bg {
+    width: 100%;
+    height: 100%;
+  }
+  .bg-vignette {
+    background:
+      radial-gradient(60rem 40rem at 85% -10%, color-mix(in oklab, var(--color-navy) 55%, transparent), transparent 70%),
+      radial-gradient(50rem 35rem at -10% 30%, color-mix(in oklab, var(--color-wine) 30%, transparent), transparent 70%),
+      radial-gradient(ellipse at center, transparent 40%, var(--color-ink) 100%);
+  }
+</style>
+
+<script>
+  type Node = { x: number; y: number; vx: number; vy: number; ox: number; oy: number; r: number; hue: 0 | 1 };
+
+  const canvas = document.getElementById('circuit-bg') as HTMLCanvasElement | null;
+  const ctx = canvas?.getContext('2d');
+
+  if (canvas && ctx) {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const COLORS = ['224, 87, 122', '127, 162, 238']; // rose, sky
+    const LINK = 130; // distância máx. para ligar dois nós
+    const MOUSE_R = 170; // raio de influência do cursor
+
+    let w = 0;
+    let h = 0;
+    let dpr = 1;
+    let nodes: Node[] = [];
+    const mouse = { x: -9999, y: -9999, active: false };
+    let raf = 0;
+
+    const resize = () => {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = window.innerWidth;
+      h = window.innerHeight;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const count = Math.min(95, Math.round((w * h) / 16000));
+      nodes = Array.from({ length: count }, () => {
+        const x = Math.random() * w;
+        const y = Math.random() * h;
+        return {
+          x,
+          y,
+          ox: 0,
+          oy: 0,
+          vx: (Math.random() - 0.5) * 0.18,
+          vy: (Math.random() - 0.5) * 0.18,
+          r: Math.random() * 1.4 + 1.1,
+          hue: Math.random() < 0.55 ? 0 : 1,
+        };
+      });
+    };
+
+    // Trilha estilo PCB: anda reto e depois faz a diagonal de 45°
+    const trace = (ax: number, ay: number, bx: number, by: number) => {
+      const dx = bx - ax;
+      const dy = by - ay;
+      const adx = Math.abs(dx);
+      const ady = Math.abs(dy);
+      ctx.beginPath();
+      ctx.moveTo(ax, ay);
+      if (adx > ady) {
+        ctx.lineTo(bx - Math.sign(dx) * ady, ay);
+      } else {
+        ctx.lineTo(ax, by - Math.sign(dy) * adx);
+      }
+      ctx.lineTo(bx, by);
+      ctx.stroke();
+    };
+
+    const draw = () => {
+      ctx.clearRect(0, 0, w, h);
+      ctx.lineWidth = 1;
+
+      for (const n of nodes) {
+        if (!reduceMotion) {
+          n.x += n.vx;
+          n.y += n.vy;
+          if (n.x < -20) n.x = w + 20;
+          if (n.x > w + 20) n.x = -20;
+          if (n.y < -20) n.y = h + 20;
+          if (n.y > h + 20) n.y = -20;
+
+          // afastamento suave perto do cursor (deslocamento que volta com mola)
+          let tx = 0;
+          let ty = 0;
+          if (mouse.active) {
+            const mdx = n.x - mouse.x;
+            const mdy = n.y - mouse.y;
+            const d = Math.hypot(mdx, mdy);
+            if (d < MOUSE_R && d > 0.1) {
+              const f = (1 - d / MOUSE_R) * 22;
+              tx = (mdx / d) * f;
+              ty = (mdy / d) * f;
+            }
+          }
+          n.ox += (tx - n.ox) * 0.08;
+          n.oy += (ty - n.oy) * 0.08;
+        }
+      }
+
+      for (let i = 0; i < nodes.length; i++) {
+        const a = nodes[i];
+        const ax = a.x + a.ox;
+        const ay = a.y + a.oy;
+        for (let j = i + 1; j < nodes.length; j++) {
+          const b = nodes[j];
+          const bx = b.x + b.ox;
+          const by = b.y + b.oy;
+          const d = Math.hypot(ax - bx, ay - by);
+          if (d < LINK) {
+            ctx.strokeStyle = `rgba(${COLORS[a.hue]}, ${(1 - d / LINK) * 0.22})`;
+            trace(ax, ay, bx, by);
+          }
+        }
+        // ligação com o cursor
+        if (mouse.active) {
+          const d = Math.hypot(ax - mouse.x, ay - mouse.y);
+          if (d < MOUSE_R) {
+            ctx.strokeStyle = `rgba(${COLORS[a.hue]}, ${(1 - d / MOUSE_R) * 0.5})`;
+            trace(mouse.x, mouse.y, ax, ay);
+          }
+        }
+      }
+
+      for (const n of nodes) {
+        const x = n.x + n.ox;
+        const y = n.y + n.oy;
+        const near = mouse.active && Math.hypot(x - mouse.x, y - mouse.y) < MOUSE_R;
+        ctx.beginPath();
+        ctx.arc(x, y, near ? n.r + 1.4 : n.r, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(${COLORS[n.hue]}, ${near ? 0.95 : 0.55})`;
+        ctx.lineWidth = 1.2;
+        ctx.stroke();
+        ctx.lineWidth = 1;
+      }
+
+      if (!reduceMotion) raf = requestAnimationFrame(draw);
+    };
+
+    const start = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(draw);
+    };
+
+    resize();
+    start();
+
+    let resizeTimer = 0;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(() => {
+        resize();
+        if (reduceMotion) draw();
+      }, 150);
+    });
+
+    if (!reduceMotion) {
+      window.addEventListener(
+        'pointermove',
+        (e) => {
+          if (e.pointerType !== 'mouse') return;
+          mouse.x = e.clientX;
+          mouse.y = e.clientY;
+          mouse.active = true;
+        },
+        { passive: true },
+      );
+      document.documentElement.addEventListener('pointerleave', () => (mouse.active = false));
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) cancelAnimationFrame(raf);
+        else start();
+      });
+    }
+  }
+</script>
