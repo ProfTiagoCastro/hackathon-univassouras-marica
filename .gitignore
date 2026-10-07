@@ -1,0 +1,26 @@
+# build
+dist/
+.astro/
+
+# deps
+node_modules/
+
+# env / logs
+.env
+.env.*
+npm-debug.log*
+
+# editor / SO
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+
+# Vercel
+.vercel
+
+# Documentos pessoais de referência (não publicar)
+docs/referencias/*.pdf
+
+# Claude Code local
+.claude/settings.local.json
