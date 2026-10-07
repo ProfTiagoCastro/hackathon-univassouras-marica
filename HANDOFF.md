@@ -1,7 +1,7 @@
 # HANDOFF: Site do Hackathon Univassouras Maricá
 
 > Documento de passagem de bastão. Atualizado a cada etapa concluída.
-> **Última atualização:** 2026-10-07 · **Etapa atual:** 7 de 8 concluídas
+> **Última atualização:** 2026-10-07 · **Etapa atual:** 8 de 8 concluídas · **No ar:** https://hackathon-univassouras-marica.vercel.app
 
 ## 1. Resumo
 Site estático de divulgação do Hackathon (19, 20 e 21/10/2026) dos cursos de Engenharia de Software e ADS da Univassouras, Campus Maricá. Ele mostra a programação dos três dias, o botão de inscrição (Google Forms), os professores organizadores em cartões que giram, o **Mural** de fotos e vídeos por dia, o local e o FAQ.
@@ -18,7 +18,7 @@ Stack: **Astro 7 + Tailwind 4 + TypeScript**, com deploy na **Vercel**. Detalhes
 | 5 | Organizadores (cartões flip) | ✅ concluída |
 | 6 | Local/Mapa + FAQ + 404 | ✅ concluída |
 | 7 | Polimento: SEO, acessibilidade, performance | ✅ concluída |
-| 8 | Deploy na Vercel | ⏳ |
+| 8 | Deploy na Vercel | ✅ concluída (07/10/2026) |
 | + | Aba Mural (fotos e vídeos por dia) | ✅ concluída (aguardando conteúdo) |
 
 ## 3. Onde editar cada informação
@@ -51,18 +51,17 @@ Campos vazios ou `null` aparecem no site com o selo **EM CONSTRUÇÃO**.
 - [ ] Contato oficial
 - [ ] Fotos e vídeos do Mural (durante/depois do evento)
 
-## 5. Deploy na Vercel (etapa 8, aguardando aprovação)
-O site é estático, então a Vercel detecta o Astro sozinha (build `npm run build`, saída `dist/`).
+## 5. Deploy (Vercel) e como publicar atualizações
+- **Site:** https://hackathon-univassouras-marica.vercel.app
+- **Repositório (público):** https://github.com/ProfTiagoCastro/hackathon-univassouras-marica
+- **Vercel:** equipe *TeamBombista* (conta tiagoflp1@hotmail.com), projeto `hackathon-univassouras-marica`, preset Astro (build `npm run build`, saída `dist`).
+- **Publicar uma atualização:** é só `git push` na branch `main`. A Vercel faz o build e publica sozinha em ~30 s. Pushes em outras branches geram URLs de preview.
 
-**Opção A: GitHub + Vercel (recomendada; cada push publica sozinho)**
-1. Criar um repositório no GitHub e enviar o código: `git remote add origin <url>` e depois `git push -u origin main`.
-2. Em vercel.com → *Add New → Project* → importar o repositório → *Deploy*.
-
-**Opção B: CLI**
-1. `npm i -g vercel` e depois `vercel login`
-2. `vercel` (gera uma URL de preview) e, depois de conferir, `vercel --prod`
-
-**Depois do primeiro deploy:** atualize o domínio em `astro.config.mjs` (`site`) e em `public/robots.txt`, se a URL final for diferente de `hackathon-univassouras-marica.vercel.app`.
+**Como a ligação ficou configurada (para não quebrar):**
+- O login da Vercel usa o GitHub **ProfTiagoCastro** (Account Settings → Authentication). Antes era a oBombista, mas a Vercel só enxerga instalações do app que pertencem à conta GitHub do login.
+- O app "Vercel" está instalado na ProfTiagoCastro com acesso **só** a este repositório.
+- A conta **oBombista** é colaboradora (write) do repositório. Foi uma tentativa durante o deploy e não é mais necessária; pode ser removida em *Settings → Collaborators* no GitHub.
+- Domínio próprio: se a universidade apontar um domínio, adicione em Vercel → Project → Domains e atualize `site` em `astro.config.mjs` e a linha `Sitemap:` em `public/robots.txt`.
 
 ## 6. Como testar localmente
 - `npm run dev`, depois abrir http://localhost:4321
@@ -70,6 +69,7 @@ O site é estático, então a Vercel detecta o Astro sozinha (build `npm run bui
 - Cartões: passar o mouse, clicar (fixa), clicar fora (solta), Esc (solta)
 
 ## 7. Observações
+- **GitHub ProfTiagoCastro:** a verificação em duas etapas (2FA) é obrigatória a partir de **07/11/2026**. Ative antes disso, ou a conta fica restrita, e com ela os deploys.
 - **Fotos do Mural:** prefira JPG de até ~3 MB. O build gera versões WebP otimizadas sozinho. Vídeos longos ficam melhor no YouTube (o repositório e o deploy ficam leves).
 - O PDF do Lattes fica em `docs/referencias/` e **não** vai para o git nem para o site.
 - A pasta está no OneDrive. Se a `node_modules` deixar a sincronização lenta, pause a sincronização durante o desenvolvimento.

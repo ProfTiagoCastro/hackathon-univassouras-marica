@@ -92,3 +92,10 @@ Uma entrada por etapa de desenvolvimento (cada etapa = um commit).
   - `vercel.json` com `trailingSlash: false`: a Vercel redireciona `/mural/` para `/mural`.
   - 404 com `noindex` e sem canonical. O `BaseLayout` ganhou a prop `noindex`.
 - Links do Lattes trocados para `https`.
+
+## Etapa 8: Deploy na Vercel (2026-10-07)
+- **No ar:** https://hackathon-univassouras-marica.vercel.app (primeiro deploy `dpl_DbhvFUyXNUXuGaRaD7VoV6cK24Cy`).
+- Repositório `ProfTiagoCastro/hackathon-univassouras-marica` criado e depois tornado **público**. Antes, o histórico foi auditado: nenhum PDF ou segredo.
+- Ligação GitHub ↔ Vercel: o app Vercel foi instalado na ProfTiagoCastro (só este repositório) e o GitHub do login da Vercel trocado de oBombista para ProfTiagoCastro. Detalhes no HANDOFF, seção 5.
+- Verificado em produção: `/`, `/organizadores` e `/mural` com 200, `/mural/` redireciona (308) para `/mural`, 404 funcionando, `og-image`, `sitemap` e `robots` ok, canonical correto, cartões fixam e soltam, fotos carregando.
+- Publicação automática: cada `git push` na `main` publica sozinho.
