@@ -75,3 +75,9 @@ Uma entrada por etapa de desenvolvimento (cada etapa = um commit).
 - Texto de apresentação do hero trocado a pedido: "**Três dias. Grandes desafios. Ideias que podem transformar o futuro.**" (negrito) + "Forme sua equipe, desenvolva sua solução e viva uma experiência de inovação, tecnologia e colaboração." Os nomes dos cursos continuam na ficha "Sobre" e no rodapé.
 - Removida a frase "Escolha um dia para ver as atividades e os horários." da Programação (as abas já são autoexplicativas).
 - Removido o texto de instrução da página Organizadores ("Passe o mouse (ou toque)...").
+
+## Novo organizador e correção dos cartões (2026-10-07)
+- **Prof. Wellington Ávila**, coordenador dos cursos de Eng. de Software e ADS, adicionado como **primeiro** cartão. Foto em `src/assets/professores/wellington-avila.jpeg` e dados tirados do resumo do Lattes (`docs/referencias/lattes-wellington-avila.pdf`, fora do git). Ele ocupou um dos cartões "EM CONSTRUÇÃO": continuam 6 cartões, 2 preenchidos e 4 a definir.
+- **Correção de layout (bug que já existia):** entre ~640 e 700 px os cartões se sobrepunham e a página rolava para o lado. O `aspect-ratio` com `min-height` forçava largura mínima de 333 px.
+- **Cartão flip reestruturado:** frente e verso ficam empilhados na mesma célula de grid (`grid-area: 1/1`), em vez de `position: absolute`. O cartão cresce até caber o lado com mais conteúdo, então o verso nunca é cortado. Os cartões da mesma linha têm a mesma altura e a proporção de 4:5 continua (`min-height: max(26rem, 125cqw)`).
+- Verificado em 375, 640 e 1440 px: sem estouro, sem rolagem lateral, e fixar/trocar/clicar fora/Esc funcionando.

@@ -43,7 +43,8 @@ Campos vazios ou `null` aparecem no site com o selo **EM CONSTRUÇÃO**.
 ## 4. Pendências de conteúdo (aguardando a organização)
 - [ ] Link do Google Forms
 - [ ] Horários e atividades dos 3 dias
-- [ ] Dados e fotos de mais 5 professores
+- [x] Coordenador Wellington Ávila adicionado
+- [ ] Dados e fotos de mais 4 professores
 - [ ] Regras, premiação e respostas do FAQ
 - [ ] Endereço completo e sala
 - [ ] Contato oficial

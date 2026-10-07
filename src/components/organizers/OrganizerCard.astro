@@ -95,6 +95,8 @@ const displayName = o.name ?? 'Professor(a) organizador(a)';
 
 <style>
   .org-item {
+    /* grid: o cartão estica até a altura da linha (cartões da mesma linha ficam iguais) */
+    display: grid;
     perspective: 1400px;
     transition:
       opacity 0.7s var(--ease-out-expo) calc(var(--i) * 90ms),
@@ -108,8 +110,10 @@ const displayName = o.name ?? 'Professor(a) organizador(a)';
 
   .org-card {
     position: relative;
-    aspect-ratio: 4 / 5;
-    min-height: 26rem;
+    display: grid;
+    width: 100%;
+    /* permite usar cqw (largura do cartão) na altura das faces */
+    container-type: inline-size;
     cursor: pointer;
     transition:
       transform 0.5s var(--ease-out-expo),
@@ -117,9 +121,10 @@ const displayName = o.name ?? 'Professor(a) organizador(a)';
       filter 0.4s;
     -webkit-tap-highlight-color: transparent;
   }
+  /* frente e verso empilhados na mesma célula do grid:
+     o cartão fica com a altura do lado mais alto (nada é cortado) */
   .org-inner {
-    position: absolute;
-    inset: 0;
+    display: grid;
     transform-style: preserve-3d;
     transition: transform 0.8s var(--ease-out-expo);
   }
@@ -144,8 +149,10 @@ const displayName = o.name ?? 'Professor(a) organizador(a)';
   }
 
   .face {
-    position: absolute;
-    inset: 0;
+    position: relative;
+    grid-area: 1 / 1;
+    /* proporção 4:5, com mínimo de 26rem */
+    min-height: max(26rem, 125cqw);
     overflow: hidden;
     border-radius: 1.25rem;
     backface-visibility: hidden;
@@ -248,8 +255,7 @@ const displayName = o.name ?? 'Professor(a) organizador(a)';
   /* VERSO */
   .back {
     transform: rotateY(180deg);
-    padding: 1.5rem;
-    overflow-y: auto;
+    padding: 1.35rem 1.4rem;
     border-color: color-mix(in oklab, var(--color-rose) 45%, transparent);
     background:
       radial-gradient(120% 70% at 100% 0%, color-mix(in oklab, var(--color-navy) 85%, transparent), transparent 60%),
@@ -277,7 +283,7 @@ const displayName = o.name ?? 'Professor(a) organizador(a)';
     gap: 0.4rem;
   }
   .chip {
-    padding: 0.3rem 0.6rem;
+    padding: 0.25rem 0.55rem;
     border: 1px solid rgb(255 255 255 / 0.14);
     border-radius: 0.5rem;
     background: rgb(6 11 24 / 0.55);
@@ -289,8 +295,8 @@ const displayName = o.name ?? 'Professor(a) organizador(a)';
     align-items: center;
     gap: 0.4rem;
     align-self: flex-start;
-    margin-top: 1rem;
-    padding-top: 0.75rem;
+    margin-top: 0.75rem;
+    padding-top: 0.5rem;
     font-family: var(--font-mono);
     font-size: 0.75rem;
     color: var(--color-sky);
