@@ -1,0 +1,154 @@
+---
+/**
+ * Abas de dias do evento (usadas na Programação e no Mural).
+ * Renderiza só a lista de abas. Os painéis ficam no componente pai e precisam ter:
+ *   id={`${prefix}-panel-${day.id}`}  aria-labelledby={`${prefix}-tab-${day.id}`}
+ *   role="tabpanel" e o atributo hidden em todos, exceto o primeiro.
+ * Teclado: ←/→, Home e End. Durante o evento, abre sozinha na aba do dia atual.
+ */
+interface Day {
+  id: string;
+  date: string; // 'AAAA-MM-DD'
+  weekday: string;
+}
+interface Props {
+  days: Day[];
+  prefix: string;
+  label?: string;
+}
+const { days, prefix, label = 'Dias do evento' } = Astro.props;
+---
+
+<div role="tablist" aria-label={label} class="day-tabs" data-day-tabs>
+  {
+    days.map((d, i) => (
+      <button
+        type="button"
+        role="tab"
+        id={`${prefix}-tab-${d.id}`}
+        aria-controls={`${prefix}-panel-${d.id}`}
+        aria-selected={i === 0 ? 'true' : 'false'}
+        tabindex={i === 0 ? 0 : -1}
+        data-date={d.date}
+        class="day-tab"
+      >
+        <span class="tab-day">Dia {i + 1}</span>
+        <span class="tab-date">{d.date.slice(8)}</span>
+        <span class="tab-wd">{d.weekday} · out</span>
+      </button>
+    ))
+  }
+</div>
+
+<style>
+  .day-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .day-tab {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem 1.1rem;
+    border: 1px solid rgb(255 255 255 / 0.08);
+    border-radius: 1rem;
+    background: color-mix(in oklab, var(--color-ink-2) 70%, transparent);
+    text-align: left;
+    cursor: pointer;
+    transition:
+      border-color 0.25s,
+      background-color 0.25s;
+  }
+  .day-tab:hover {
+    border-color: rgb(255 255 255 / 0.2);
+  }
+  .day-tab[aria-selected='true'] {
+    border-color: color-mix(in oklab, var(--color-rose) 70%, transparent);
+    background:
+      linear-gradient(140deg, color-mix(in oklab, var(--color-wine) 55%, transparent), transparent 70%),
+      var(--color-ink-2);
+    box-shadow: 0 18px 40px -22px var(--color-wine);
+  }
+  /* terminal que "liga" a aba ao painel */
+  .day-tab[aria-selected='true']::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -0.6rem;
+    width: 10px;
+    height: 10px;
+    translate: -50% 0;
+    border: 2px solid var(--color-rose);
+    border-radius: 999px;
+    background: var(--color-ink);
+  }
+  .tab-day {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-stone);
+  }
+  .tab-date {
+    margin-top: 0.15rem;
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 6vw, 3rem);
+    font-weight: 700;
+    line-height: 1;
+  }
+  .day-tab[aria-selected='true'] .tab-date {
+    color: var(--color-rose);
+  }
+  .tab-wd {
+    margin-top: 0.3rem;
+    font-size: 0.8rem;
+    color: color-mix(in oklab, var(--color-paper) 75%, transparent);
+  }
+  @media (max-width: 560px) {
+    .day-tab {
+      padding: 0.8rem 0.75rem;
+    }
+  }
+</style>
+
+<script>
+  for (const list of document.querySelectorAll<HTMLElement>('[data-day-tabs]')) {
+    const tabs = [...list.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+
+    const select = (tab: HTMLButtonElement, focus = true) => {
+      for (const t of tabs) {
+        const on = t === tab;
+        t.setAttribute('aria-selected', String(on));
+        t.tabIndex = on ? 0 : -1;
+        const panel = document.getElementById(t.getAttribute('aria-controls')!);
+        if (panel) panel.hidden = !on;
+      }
+      if (focus) tab.focus();
+      list.dispatchEvent(new CustomEvent('daychange', { detail: tab.dataset.date }));
+    };
+
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => select(t));
+      t.addEventListener('keydown', (e) => {
+        const map: Record<string, number> = {
+          ArrowRight: (i + 1) % tabs.length,
+          ArrowLeft: (i - 1 + tabs.length) % tabs.length,
+          Home: 0,
+          End: tabs.length - 1,
+        };
+        if (e.key in map) {
+          e.preventDefault();
+          select(tabs[map[e.key]]);
+        }
+      });
+    });
+
+    // Durante o evento, abre direto na aba do dia (horário de Brasília)
+    const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Sao_Paulo' }).format(new Date());
+    const current = tabs.find((t) => t.dataset.date === today);
+    if (current) select(current, false);
+  }
+</script>

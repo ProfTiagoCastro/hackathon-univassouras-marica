@@ -5,6 +5,7 @@
  */
 import SectionTitle from './ui/SectionTitle.astro';
 import UnderConstruction from './ui/UnderConstruction.astro';
+import DayTabs from './ui/DayTabs.astro';
 import { schedule, activityTypes } from '../data/schedule';
 ---
 
@@ -17,31 +18,12 @@ import { schedule, activityTypes } from '../data/schedule';
       lead="Escolha um dia para ver as atividades e os horários."
     />
 
-    <div class="sched" data-tabs>
-      <div role="tablist" aria-label="Dias do evento" class="tabs">
-        {
-          schedule.map((d, i) => (
-            <button
-              type="button"
-              role="tab"
-              id={`tab-${d.id}`}
-              aria-controls={`panel-${d.id}`}
-              aria-selected={i === 0 ? 'true' : 'false'}
-              tabindex={i === 0 ? 0 : -1}
-              data-date={d.date}
-              class="tab"
-            >
-              <span class="tab-day">Dia {i + 1}</span>
-              <span class="tab-date">{d.date.slice(8)}</span>
-              <span class="tab-wd">{d.weekday} · out</span>
-            </button>
-          ))
-        }
-      </div>
+    <div>
+      <DayTabs days={schedule} prefix="prog" />
 
       {
         schedule.map((d, i) => (
-          <div role="tabpanel" id={`panel-${d.id}`} aria-labelledby={`tab-${d.id}`} tabindex="0" hidden={i !== 0} class="panel day-panel">
+          <div role="tabpanel" id={`prog-panel-${d.id}`} aria-labelledby={`prog-tab-${d.id}`} tabindex="0" hidden={i !== 0} class="panel day-panel">
             <header class="mb-8 flex flex-wrap items-center justify-between gap-3">
               <h3 class="font-display text-2xl font-bold sm:text-3xl">
                 {d.weekday}, {d.date.slice(8)} de outubro
@@ -90,87 +72,6 @@ import { schedule, activityTypes } from '../data/schedule';
 </section>
 
 <style>
-  .tabs {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.75rem;
-    margin-bottom: 1rem;
-  }
-  .tab {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 1rem 1.1rem;
-    border: 1px solid rgb(255 255 255 / 0.08);
-    border-radius: 1rem;
-    background: color-mix(in oklab, var(--color-ink-2) 70%, transparent);
-    text-align: left;
-    cursor: pointer;
-    transition:
-      border-color 0.25s,
-      background-color 0.25s,
-      transform 0.3s var(--ease-out-expo);
-  }
-  .tab:hover {
-    border-color: rgb(255 255 255 / 0.2);
-  }
-  .tab[aria-selected='true'] {
-    border-color: color-mix(in oklab, var(--color-rose) 70%, transparent);
-    background:
-      linear-gradient(140deg, color-mix(in oklab, var(--color-wine) 55%, transparent), transparent 70%),
-      var(--color-ink-2);
-    box-shadow: 0 18px 40px -22px var(--color-wine);
-  }
-  /* terminal que "liga" a aba ao painel */
-  .tab[aria-selected='true']::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    bottom: -0.6rem;
-    width: 10px;
-    height: 10px;
-    translate: -50% 0;
-    border: 2px solid var(--color-rose);
-    border-radius: 999px;
-    background: var(--color-ink);
-  }
-  .tab-day {
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--color-stone);
-  }
-  .tab-date {
-    margin-top: 0.15rem;
-    font-family: var(--font-display);
-    font-size: clamp(2rem, 6vw, 3rem);
-    font-weight: 700;
-    line-height: 1;
-  }
-  .tab[aria-selected='true'] .tab-date {
-    color: var(--color-rose);
-  }
-  .tab-wd {
-    margin-top: 0.3rem;
-    font-size: 0.8rem;
-    color: color-mix(in oklab, var(--color-paper) 75%, transparent);
-  }
-
-  .day-panel {
-    padding: clamp(1.25rem, 4vw, 2.5rem);
-  }
-  .day-panel:not([hidden]) {
-    animation: panel-in 0.45s var(--ease-out-expo);
-  }
-  @keyframes panel-in {
-    from {
-      opacity: 0;
-      transform: translateY(8px);
-    }
-  }
-
   /* Linha do tempo como trilha de circuito */
   .timeline {
     position: relative;
@@ -247,52 +148,10 @@ import { schedule, activityTypes } from '../data/schedule';
       grid-template-columns: 1fr;
       gap: 0.25rem;
     }
-    .tab {
-      padding: 0.8rem 0.75rem;
-    }
   }
   @media (prefers-reduced-motion: reduce) {
-    .ghost-bar,
-    .day-panel:not([hidden]) {
+    .ghost-bar {
       animation: none;
     }
   }
 </style>
-
-<script>
-  const root = document.querySelector<HTMLElement>('[data-tabs]');
-  if (root) {
-    const tabs = [...root.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
-
-    const select = (tab: HTMLButtonElement, focus = true) => {
-      for (const t of tabs) {
-        const on = t === tab;
-        t.setAttribute('aria-selected', String(on));
-        t.tabIndex = on ? 0 : -1;
-        document.getElementById(t.getAttribute('aria-controls')!)!.hidden = !on;
-      }
-      if (focus) tab.focus();
-    };
-
-    tabs.forEach((t, i) => {
-      t.addEventListener('click', () => select(t));
-      t.addEventListener('keydown', (e) => {
-        const map: Record<string, number> = {
-          ArrowRight: (i + 1) % tabs.length,
-          ArrowLeft: (i - 1 + tabs.length) % tabs.length,
-          Home: 0,
-          End: tabs.length - 1,
-        };
-        if (e.key in map) {
-          e.preventDefault();
-          select(tabs[map[e.key]]);
-        }
-      });
-    });
-
-    // Durante o evento, abre direto na aba do dia (horário de Brasília)
-    const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Sao_Paulo' }).format(new Date());
-    const current = tabs.find((t) => t.dataset.date === today);
-    if (current) select(current, false);
-  }
-</script>

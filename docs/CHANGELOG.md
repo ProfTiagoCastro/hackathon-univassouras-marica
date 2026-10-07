@@ -59,3 +59,13 @@ Uma entrada por etapa de desenvolvimento (cada etapa = um commit).
 - Correção de contraste no rodapé (Lighthouse).
 - Texto de instrução dos cartões vale para mouse e toque.
 - **Resultados (build de produção, mobile):** Lighthouse Acessibilidade 97 → 100 após a correção, Boas práticas 100, SEO 100. LCP 189 ms, CLS 0. Sem rolagem horizontal em 375 px. Toque nos cartões testado com emulação touch.
+
+## Extra: aba Mural (2026-10-07)
+- Nova página `/mural` com o item "Mural" no menu: fotos e vídeos separados por dia, com as mesmas abas da Programação.
+- **Fotos sem código:** basta colocar os arquivos em `src/assets/mural/dia-1|dia-2|dia-3/`. Elas são carregadas por `import.meta.glob` em `src/data/mural.ts`, em ordem alfabética, com legenda opcional em `captions`.
+- **Vídeos:** YouTube (o player só carrega no clique, com `youtube-nocookie`) ou arquivo `.mp4` em `public/mural/`, listados em `videos`.
+- Galeria em colunas (masonry) e lightbox em `<dialog>` com anterior/próxima, setas do teclado, Esc, clique fora para fechar e foco devolvido à miniatura.
+- Dia sem conteúdo: blocos fantasma com câmera e o aviso "EM CONSTRUÇÃO".
+- **Refatoração:** as abas de dias viraram o componente `src/components/ui/DayTabs.astro`, usado pela Programação e pelo Mural. O estilo `.day-panel` foi para `global.css`.
+- Header: menu mais compacto entre 1024 e 1280 px (6 itens). Botão de inscrição sem quebra de linha.
+- Testado com fotos e um vídeo temporários (removidos depois): galeria, lightbox (com volta do fim ao início) e player do YouTube funcionando.

@@ -37,9 +37,10 @@ src/
 │  ├─ event.ts       datas, local, link do Google Forms
 │  ├─ schedule.ts    programação dos 3 dias
 │  ├─ organizers.ts  professores organizadores
+│  ├─ mural.ts       vídeos e legendas do Mural (fotos: src/assets/mural/dia-N/)
 │  └─ faq.ts         FAQ, regras e premiação
 ├─ layouts/         layout base (head, header, footer)
-├─ pages/           rotas: / e /organizadores
+├─ pages/           rotas: /, /organizadores e /mural
 └─ styles/          tokens de design (cores, fontes) e estilos globais
 docs/               changelog, decisões e referências
 ```
