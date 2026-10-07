@@ -37,6 +37,7 @@ Stack: **Astro 7 + Tailwind 4 + TypeScript**, com deploy na **Vercel**. Detalhes
 | Cores e fontes | `src/styles/global.css` | bloco `@theme` |
 | Imagem de compartilhamento | `scripts/make-og-image.mjs` | editar e rodar `npm run og` |
 | Domínio final (SEO) | `astro.config.mjs` + `public/robots.txt` | `site` / linha `Sitemap:` |
+| Config. da Vercel | `vercel.json` | só `trailingSlash: false` (URLs sem barra final) |
 
 Campos vazios ou `null` aparecem no site com o selo **EM CONSTRUÇÃO**.
 

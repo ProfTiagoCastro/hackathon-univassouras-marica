@@ -6,6 +6,8 @@ import sitemap from '@astrojs/sitemap';
 // Troque `site` pelo domínio final depois do deploy (usado em SEO/sitemap/Open Graph).
 export default defineConfig({
   site: 'https://hackathon-univassouras-marica.vercel.app',
+  // URLs sem barra no final (/mural, /organizadores), iguais aos links do menu
+  trailingSlash: 'never',
   integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],

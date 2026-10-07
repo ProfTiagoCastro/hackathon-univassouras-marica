@@ -83,3 +83,12 @@ Uma entrada por etapa de desenvolvimento (cada etapa = um commit).
 - Verificado em 375, 640 e 1440 px: sem estouro, sem rolagem lateral, e fixar/trocar/clicar fora/Esc funcionando.
 - Home, bloco Organizadores: o texto "6 professores…" virou "Especialistas, mestres e doutores dos cursos de Engenharia de Software e ADS." Os avatares (incluindo os "?") continuam como estavam, a pedido.
 - Home, bloco Organizadores: no hover, a seta da bolinha vermelha agora desliza para a direita em vez de girar 45° (girando, parecia apontar para cima).
+
+## Revisão pré-deploy (2026-10-07)
+- `astro check`: 0 erros, 0 avisos e 0 dicas. Build com 4 páginas e 1,4 MB. 20 links internos checados, nenhum quebrado.
+- **Lighthouse (mobile, build de produção):** Home, Organizadores e Mural com 100 em Acessibilidade, Boas práticas e SEO. Console sem erros. O único aviso vem de dentro do iframe do Google Maps.
+- SEO:
+  - `trailingSlash: 'never'`: endereços canônicos e sitemap sem barra final (`/mural`), iguais aos links do menu, para evitar URL duplicada.
+  - `vercel.json` com `trailingSlash: false`: a Vercel redireciona `/mural/` para `/mural`.
+  - 404 com `noindex` e sem canonical. O `BaseLayout` ganhou a prop `noindex`.
+- Links do Lattes trocados para `https`.

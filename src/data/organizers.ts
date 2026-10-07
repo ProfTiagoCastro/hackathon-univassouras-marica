@@ -50,7 +50,7 @@ export const organizers: Organizer[] = [
       'Gerenciamento de Projetos',
       'Educação a Distância',
     ],
-    lattes: 'http://lattes.cnpq.br/9415369722030148',
+    lattes: 'https://lattes.cnpq.br/9415369722030148',
   },
   {
     id: 'tiago-ruiz-de-castro',
@@ -67,7 +67,7 @@ export const organizers: Organizer[] = [
       'IA & Machine Learning',
       'Empreendedorismo Tecnológico',
     ],
-    lattes: 'http://lattes.cnpq.br/2893734599338416',
+    lattes: 'https://lattes.cnpq.br/2893734599338416',
   },
   pending(3),
   pending(4),
