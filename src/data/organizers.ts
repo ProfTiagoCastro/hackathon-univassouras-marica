@@ -1,5 +1,6 @@
 import type { ImageMetadata } from 'astro';
 import wellington from '../assets/professores/wellington-avila.jpeg';
+import marcio from '../assets/professores/marcio-garrido.jpg';
 import tiago from '../assets/professores/tiago-ruiz-de-castro.jpg';
 
 /**
@@ -53,6 +54,27 @@ export const organizers: Organizer[] = [
     lattes: 'https://lattes.cnpq.br/9415369722030148',
   },
   {
+    id: 'marcio-garrido',
+    name: 'Marcio Garrido',
+    role: 'Professor · Engenharia de Software',
+    photo: marcio,
+    education: [
+      'Doutorando em Engenharia Elétrica · CEFET-RJ',
+      'Mestre em Eng. Elétrica e Telecomunicações · UFF',
+      'Graduado em Eng. de Software, Sistemas de Informação e ADS',
+    ],
+    specialties: [
+      'Engenharia e Teste de Software',
+      'Arquitetura de Software',
+      'IoT e Sensoriamento Remoto',
+      'Data Science',
+      'Python, C/C++ e JavaScript',
+      'Bancos de Dados SQL',
+      'AWS Academy Educator',
+    ],
+    lattes: 'https://lattes.cnpq.br/7310316924480839',
+  },
+  {
     id: 'tiago-ruiz-de-castro',
     name: 'Tiago Ruiz de Castro',
     role: 'Professor · Eng. de Software e ADS',
@@ -69,7 +91,6 @@ export const organizers: Organizer[] = [
     ],
     lattes: 'https://lattes.cnpq.br/2893734599338416',
   },
-  pending(3),
   pending(4),
   pending(5),
   pending(6),

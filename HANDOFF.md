@@ -53,7 +53,7 @@ O site está no ar, e o próximo passo é **alimentar as informações**. Itens 
 - [ ] **Público** e **formato** (ficha "Sobre") → `About.astro` › `specs`
 - [ ] **Endereço completo e sala/auditório** (deixa o pino do mapa exato) → `event.ts` › `location`
 - [ ] **Contato oficial** (e-mail ou Instagram) → `event.ts` › `contact`
-- [ ] **Demais professores organizadores** (até 4 cartões "a definir" hoje): nome, cargo, foto quadrada, formação, 4 a 7 especialidades, link do Lattes. O PDF do Lattes também serve, porque eu extraio os dados. → `organizers.ts` e `src/assets/professores/`
+- [ ] **Demais professores organizadores** (3 cartões "a definir" hoje): nome, cargo, foto quadrada, formação, 4 a 7 especialidades, link do Lattes. O PDF do Lattes também serve, porque eu extraio os dados. → `organizers.ts` e `src/assets/professores/`
 
 **Durante e depois do evento:**
 - [ ] **Fotos** de cada dia → `src/assets/mural/dia-1`, `dia-2` e `dia-3`
@@ -64,7 +64,7 @@ O site está no ar, e o próximo passo é **alimentar as informações**. Itens 
 - [ ] Mural: manter ou tirar a frase "Escolha uma data para ver os registros" (a frase equivalente já saiu da Programação)
 
 **Já concluído:**
-- [x] Prof. Tiago Ruiz de Castro e Coordenador Wellington Ávila nos cartões
+- [x] Cartões preenchidos, nesta ordem: Coordenador Wellington Ávila, Prof. Marcio Garrido, Prof. Tiago Ruiz de Castro
 
 ## 5. Deploy (Vercel) e como publicar atualizações
 - **Site:** https://hackathon-univassouras-marica.vercel.app

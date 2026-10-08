@@ -110,3 +110,8 @@ Uma entrada por etapa de desenvolvimento (cada etapa = um commit).
 - No Safari do iPhone, as 3 linhas do botão de menu não apareciam: flexbox dentro de `<button>` deixava as `<span>` com largura 0. **Correção:** o botão passou a usar `display: grid` e as linhas têm tamanho explícito (20×2 px). O "X" ao abrir foi recalculado (deslocamento de 7 px).
 - Testado com emulação mobile: 3 linhas visíveis (20×2 px cada), abrir vira "X" ("Fechar menu"), menu aparece, e o botão continua oculto a partir de 1024 px.
 - `HANDOFF.md` atualizado: checklist detalhado de pendências para a próxima sessão, textos a validar, comportamento atual dos cartões e seção de compatibilidade com iPhone.
+
+## Novo organizador: Prof. Marcio Garrido (2026-10-07)
+- **Marcio Garrido** (Marcio Alexandre Dias Garrido), professor de Engenharia de Software, adicionado como **segundo** cartão. O Prof. Tiago passou para o terceiro. Ordem atual: Wellington → Marcio → Tiago → 3 cartões "a definir" (6 no total).
+- Foto em `src/assets/professores/marcio-garrido.jpg` (2048×2048). Dados tirados do resumo do Lattes (`docs/referencias/lattes-marcio-garrido.pdf`, fora do git): doutorando no CEFET-RJ, mestre pela UFF, graduações em Eng. de Software, Sistemas de Informação e ADS. Especialidades: Eng./Teste e Arquitetura de Software, IoT, Data Science, linguagens, SQL, AWS Academy Educator.
+- Verificado em 1440, 640 e 375 px: verso cabe inteiro e sem rolagem lateral.
