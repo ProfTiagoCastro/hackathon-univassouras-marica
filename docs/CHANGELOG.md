@@ -152,3 +152,10 @@ Uma entrada por etapa de desenvolvimento (cada etapa = um commit).
 - `OrganizersGrid` agora recebe `items`, `single` (cartão único centralizado) e `partner`. A lógica de virar e fixar vale para todos os cartões da página: fixar um cartão de uma grade solta o da outra.
 - Testado em 1440 e 375 px: ordem, centralização, troca entre grades, clique fora, verso sem estouro e sem rolagem lateral.
 - Título da seção ajustado para "Parceria Hackenf FACMAR" (só o H maiúsculo), a pedido. A meta description da página foi ajustada igual.
+
+## Nova organizadora: Profa. Isabel Cristina (2026-10-08)
+- **Isabel Cristina** (Isabel Cristina Silva Valentim) adicionada à equipe do Hackathon como **quinto** cartão, no lugar de um "a definir". Ordem atual: Wellington → Marcio → Tiago → Rafael → Isabel → 1 "a definir". A Kíssyla continua na seção Parceria Hackenf FACMAR.
+- Foto em `src/assets/professores/isabel-cristina.jpg` (2048×2048). Dados do resumo do Lattes (`docs/referencias/lattes-isabel-cristina.pdf`, fora do git): mestranda em Psicologia (Universo), especialista em Gerência Estratégica da Informação (UFRJ), licenciada em Matemática e tecnóloga em Processamento de Dados. Especialidades: gestão de projetos, fábrica de software, IA, análise de negócios, metodologias ativas, neurociências e educação, empreendedorismo.
+- O e-mail e o telefone que aparecem no resumo do Lattes **não** foram colocados no site.
+- Cargo "Professora · Eng. de Software e ADS", igual ao dos demais (falta confirmar).
+- Verificado em 1440 e 375 px: verso cabe inteiro, sem rolagem lateral.

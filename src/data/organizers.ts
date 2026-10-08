@@ -4,6 +4,7 @@ import marcio from '../assets/professores/marcio-garrido.jpg';
 import tiago from '../assets/professores/tiago-ruiz-de-castro.jpg';
 import rafael from '../assets/professores/rafael-mynssem.jpg';
 import kissyla from '../assets/professores/kissyla-harley.jpg';
+import isabel from '../assets/professores/isabel-cristina.jpg';
 
 /**
  * Professores organizadores.
@@ -110,7 +111,27 @@ export const organizers: Organizer[] = [
     ],
     lattes: 'https://lattes.cnpq.br/9858650975484255',
   },
-  pending(5),
+  {
+    id: 'isabel-cristina',
+    name: 'Isabel Cristina',
+    role: 'Professora · Eng. de Software e ADS',
+    photo: isabel,
+    education: [
+      'Mestranda em Psicologia · Universo',
+      'Esp. em Gerência Estratégica da Informação · UFRJ',
+      'Licenciada em Matemática · Tecnóloga em Processamento de Dados',
+    ],
+    specialties: [
+      'Gestão de Projetos',
+      'Fábrica de Software',
+      'Inteligência Artificial',
+      'Análise de Negócios',
+      'Metodologias Ativas',
+      'Neurociências e Educação',
+      'Empreendedorismo',
+    ],
+    lattes: 'https://lattes.cnpq.br/8601491485348340',
+  },
   pending(6),
 ];
 
