@@ -115,3 +115,4 @@ Uma entrada por etapa de desenvolvimento (cada etapa = um commit).
 - **Marcio Garrido** (Marcio Alexandre Dias Garrido), professor de Engenharia de Software, adicionado como **segundo** cartão. O Prof. Tiago passou para o terceiro. Ordem atual: Wellington → Marcio → Tiago → 3 cartões "a definir" (6 no total).
 - Foto em `src/assets/professores/marcio-garrido.jpg` (2048×2048). Dados tirados do resumo do Lattes (`docs/referencias/lattes-marcio-garrido.pdf`, fora do git): doutorando no CEFET-RJ, mestre pela UFF, graduações em Eng. de Software, Sistemas de Informação e ADS. Especialidades: Eng./Teste e Arquitetura de Software, IoT, Data Science, linguagens, SQL, AWS Academy Educator.
 - Verificado em 1440, 640 e 375 px: verso cabe inteiro e sem rolagem lateral.
+- Cargo do Prof. Marcio corrigido para "Professor · Eng. de Software e ADS", a pedido. Ele dá aula nos dois cursos.

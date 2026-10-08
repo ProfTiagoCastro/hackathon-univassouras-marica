@@ -56,7 +56,7 @@ export const organizers: Organizer[] = [
   {
     id: 'marcio-garrido',
     name: 'Marcio Garrido',
-    role: 'Professor · Engenharia de Software',
+    role: 'Professor · Eng. de Software e ADS',
     photo: marcio,
     education: [
       'Doutorando em Engenharia Elétrica · CEFET-RJ',
