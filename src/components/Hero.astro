@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import logo from '../assets/logos/logo-hackathon.png';
+import hackenf from '../assets/banners/hackenf.jpg';
 import RegisterButton from './ui/RegisterButton.astro';
 import Countdown from './Countdown.astro';
 import { event } from '../data/event';
@@ -8,12 +9,12 @@ import { schedule } from '../data/schedule';
 ---
 
 <section class="hero relative overflow-hidden pt-28 pb-20 sm:pt-32 lg:pt-36" aria-labelledby="hero-title">
-  <div class="shell grid items-center gap-14 lg:grid-cols-[1.15fr_1fr]">
+  <div class="shell grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
     <div class="reveal">
       <p class="eyebrow">Univassouras · Campus Maricá</p>
 
       <h1 id="hero-title" class="mt-5 font-display leading-[0.88] font-bold tracking-tight">
-        <span class="block text-[clamp(3.4rem,11vw,7.5rem)]">
+        <span class="block text-[clamp(3.4rem,11vw,7.5rem)] lg:text-[clamp(3.6rem,6.2vw,5.5rem)]">
           <span class="text-rose">HACK</span><span class="text-sky">ATHON</span>
         </span>
         <span class="mt-3 block text-[clamp(1.25rem,3vw,1.9rem)] font-medium tracking-[0.12em] text-paper/90 uppercase">
@@ -50,21 +51,48 @@ import { schedule } from '../data/schedule';
     </div>
 
     <div class="reveal reveal-delay flex flex-col gap-5">
-      <figure class="logo-card">
-        <span class="pad pad-tl" aria-hidden="true"></span>
-        <span class="pad pad-tr" aria-hidden="true"></span>
-        <span class="pad pad-bl" aria-hidden="true"></span>
-        <span class="pad pad-br" aria-hidden="true"></span>
-        <Image
-          src={logo}
-          alt="Logo do Hackathon Universidade de Vassouras, Campus Maricá: Engenharia de Software e Análise e Desenvolvimento de Sistemas, Ideias que transformam"
-          widths={[480, 720, 960]}
-          sizes="(min-width: 1024px) 460px, 90vw"
-          loading="eager"
-          fetchpriority="high"
-          class="relative h-auto w-full"
-        />
-      </figure>
+      <!--
+        Deck de "crachás": Hackathon (ES/ADS) e HackEnf (Enfermagem FACMAR) empilhados.
+        Clicar no cartão de trás ou nos botões abaixo traz o cartão para a frente.
+      -->
+      <div class="deck" data-deck data-front="hack">
+        <figure class="badge badge--hack logo-card" data-card="hack">
+          <span class="pad pad-tl" aria-hidden="true"></span>
+          <span class="pad pad-tr" aria-hidden="true"></span>
+          <span class="pad pad-bl" aria-hidden="true"></span>
+          <span class="pad pad-br" aria-hidden="true"></span>
+          <Image
+            src={logo}
+            alt="Logo do Hackathon Universidade de Vassouras, Campus Maricá: Engenharia de Software e Análise e Desenvolvimento de Sistemas, Ideias que transformam"
+            widths={[480, 720, 960]}
+            sizes="(min-width: 1024px) 420px, 80vw"
+            loading="eager"
+            fetchpriority="high"
+            class="relative h-auto w-full"
+          />
+        </figure>
+        <figure class="badge badge--enf enf-card" data-card="enf">
+          <Image
+            src={hackenf}
+            alt="Banner do HackEnf FACMAR 2026: desafios reais, soluções inovadoras da enfermagem para o futuro. A participação da enfermagem em tecnologia."
+            widths={[480, 720, 960]}
+            sizes="(min-width: 1024px) 420px, 80vw"
+            loading="eager"
+            class="h-auto w-full"
+          />
+        </figure>
+      </div>
+
+      <div class="deck-switch" role="group" aria-label="Escolher o banner em destaque">
+        <button type="button" class="deck-chip" data-show="hack" aria-pressed="true">
+          <span class="chip-dot chip-dot--hack" aria-hidden="true"></span>Hackathon
+        </button>
+        <span class="chip-trace" aria-hidden="true"></span>
+        <button type="button" class="deck-chip" data-show="enf" aria-pressed="false">
+          <span class="chip-dot chip-dot--enf" aria-hidden="true"></span>HackEnf · FACMAR
+        </button>
+      </div>
+
       <Countdown />
     </div>
   </div>
@@ -126,9 +154,71 @@ import { schedule } from '../data/schedule';
     color: var(--color-sky);
   }
 
-  .logo-card {
+  /* ---------- Deck de crachás ---------- */
+  .deck {
+    display: grid;
+    padding: 14px; /* espaço para os terminais (pads) não serem cortados */
+  }
+  .badge {
+    grid-area: 1 / 1;
     position: relative;
-    padding: clamp(1rem, 3vw, 1.75rem);
+    margin: 0;
+    transition:
+      transform 0.7s var(--ease-out-expo),
+      filter 0.5s ease;
+  }
+  /* cada cartão ocupa um canto, deixando o outro "espiando" atrás */
+  .badge--hack {
+    align-self: start;
+    margin-right: 17%;
+    margin-bottom: 13%;
+  }
+  .badge--enf {
+    align-self: end;
+    margin-left: 17%;
+    margin-top: 13%;
+  }
+
+  /* cartão da frente */
+  .deck[data-front='hack'] .badge--hack,
+  .deck[data-front='enf'] .badge--enf {
+    z-index: 2;
+  }
+  .deck[data-front='hack'] .badge--hack {
+    transform: rotate(-1.2deg);
+  }
+  .deck[data-front='enf'] .badge--enf {
+    transform: rotate(1.2deg);
+  }
+  /* cartão de trás: menor, girado e escurecido; clicável */
+  .deck[data-front='hack'] .badge--enf,
+  .deck[data-front='enf'] .badge--hack {
+    z-index: 1;
+    cursor: pointer;
+    filter: brightness(0.62) saturate(0.8);
+  }
+  .deck[data-front='hack'] .badge--enf {
+    transform: rotate(3.5deg) scale(0.96);
+  }
+  .deck[data-front='enf'] .badge--hack {
+    transform: rotate(-4deg) scale(0.96);
+  }
+  .deck[data-front='hack'] .badge--enf:hover,
+  .deck[data-front='enf'] .badge--hack:hover {
+    filter: brightness(0.85) saturate(0.95);
+  }
+  /* "salto" ao vir para a frente */
+  .badge.is-rising {
+    animation: rise-front 0.6s var(--ease-out-expo);
+  }
+  @keyframes rise-front {
+    40% {
+      translate: 0 -18px;
+    }
+  }
+
+  .logo-card {
+    padding: clamp(0.9rem, 2.6vw, 1.5rem);
     border-radius: 1.5rem;
     background: #fff;
     box-shadow:
@@ -137,11 +227,79 @@ import { schedule } from '../data/schedule';
       0 0 0 9px color-mix(in oklab, var(--color-rose) 35%, transparent),
       0 30px 80px -20px color-mix(in oklab, var(--color-wine) 70%, transparent),
       0 0 120px -10px color-mix(in oklab, var(--color-navy) 80%, transparent);
-    transform: rotate(-1.2deg);
-    transition: transform 0.6s var(--ease-out-expo);
   }
-  .logo-card:hover {
-    transform: rotate(0deg) scale(1.01);
+  .enf-card {
+    overflow: hidden;
+    border-radius: 1.25rem;
+    box-shadow:
+      0 0 0 1px rgb(255 255 255 / 0.18),
+      0 0 0 8px color-mix(in oklab, var(--color-ink-3) 80%, transparent),
+      0 0 0 9px color-mix(in oklab, var(--color-sky) 40%, transparent),
+      0 30px 80px -20px color-mix(in oklab, var(--color-navy) 90%, transparent);
+  }
+  .enf-card :global(img) {
+    display: block;
+  }
+
+  /* seletor abaixo do deck: dois "pads" ligados por uma trilha */
+  .deck-switch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+  }
+  .deck-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.85rem;
+    border: 1px solid rgb(255 255 255 / 0.12);
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--color-stone);
+    background: color-mix(in oklab, var(--color-ink-2) 80%, transparent);
+    cursor: pointer;
+    transition:
+      color 0.25s,
+      border-color 0.25s,
+      background-color 0.25s;
+  }
+  .deck-chip:hover {
+    color: var(--color-paper);
+  }
+  .deck-chip[aria-pressed='true'] {
+    color: var(--color-paper);
+    border-color: color-mix(in oklab, var(--color-rose) 55%, transparent);
+    background: color-mix(in oklab, var(--color-wine) 35%, transparent);
+  }
+  .deck-chip[data-show='enf'][aria-pressed='true'] {
+    border-color: color-mix(in oklab, var(--color-sky) 55%, transparent);
+    background: color-mix(in oklab, var(--color-navy) 55%, transparent);
+  }
+  .chip-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    border: 1.5px solid currentColor;
+  }
+  .chip-dot--hack {
+    color: var(--color-rose);
+  }
+  .chip-dot--enf {
+    color: var(--color-sky);
+  }
+  .deck-chip[aria-pressed='true'] .chip-dot {
+    background: currentColor;
+  }
+  .chip-trace {
+    width: 1.5rem;
+    height: 1px;
+    background: linear-gradient(90deg, var(--color-rose), var(--color-sky));
+    opacity: 0.6;
   }
   .pad {
     position: absolute;
@@ -188,9 +346,10 @@ import { schedule } from '../data/schedule';
     .reveal {
       animation: none;
     }
-    .logo-card,
-    .logo-card:hover {
-      transform: none;
+    .badge,
+    .badge.is-rising {
+      transition: none;
+      animation: none;
     }
   }
   @media (max-width: 420px) {
@@ -206,3 +365,25 @@ import { schedule } from '../data/schedule';
     }
   }
 </style>
+
+<script>
+  const deck = document.querySelector<HTMLElement>('[data-deck]');
+  if (deck) {
+    const chips = [...document.querySelectorAll<HTMLButtonElement>('[data-show]')];
+    const show = (which: string) => {
+      if (deck.dataset.front === which) return;
+      deck.dataset.front = which;
+      chips.forEach((c) => c.setAttribute('aria-pressed', String(c.dataset.show === which)));
+      const card = deck.querySelector<HTMLElement>(`[data-card="${which}"]`);
+      if (!card) return;
+      card.classList.remove('is-rising');
+      void card.offsetWidth; // reinicia a animação
+      card.classList.add('is-rising');
+    };
+    chips.forEach((c) => c.addEventListener('click', () => show(c.dataset.show!)));
+    // clicar no cartão de trás traz ele para a frente
+    deck.querySelectorAll<HTMLElement>('[data-card]').forEach((card) =>
+      card.addEventListener('click', () => show(card.dataset.card!)),
+    );
+  }
+</script>

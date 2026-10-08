@@ -36,6 +36,8 @@ Stack: **Astro 7 + Tailwind 4 + TypeScript**, com deploy na **Vercel**. Detalhes
 | **Vídeos do Mural** | `src/data/mural.ts` | `videos` → `{ title, youtube: 'ID' }` ou `{ title, file: '/mural/video.mp4' }` (arquivo em `public/mural/`) |
 | Cores e fontes | `src/styles/global.css` | bloco `@theme` |
 | Imagem de compartilhamento | `scripts/make-og-image.mjs` | editar e rodar `npm run og` |
+| Banner do HackEnf (hero) | `src/assets/banners/hackenf.jpg` | trocar o arquivo mantendo o nome; o deck fica em `Hero.astro` |
+| Logos do rodapé | `src/assets/logos/` (`univassouras-marica.png`, `facmar.png`) | tamanhos em `Footer.astro` (`.logo--univ`, `.logo--facmar`) |
 | Domínio final (SEO) | `astro.config.mjs` + `public/robots.txt` | `site` / linha `Sitemap:` |
 | Config. da Vercel | `vercel.json` | só `trailingSlash: false` (URLs sem barra final) |
 

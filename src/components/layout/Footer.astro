@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import univassouras from '../../assets/logos/univassouras-marica.png';
+import facmar from '../../assets/logos/facmar.png';
 import { event } from '../../data/event';
 ---
 
@@ -8,7 +9,12 @@ import { event } from '../../data/event';
   <div class="trace absolute inset-x-0 top-0" aria-hidden="true"></div>
   <div class="shell grid gap-10 py-14 md:grid-cols-[1.4fr_1fr] md:items-end">
     <div>
-      <Image src={univassouras} alt="Univassouras: Campus Universitário de Maricá" width={360} class="h-auto w-64 sm:w-80" />
+      <!-- logos institucionais, separadas por uma trilha de circuito vertical -->
+      <div class="logos">
+        <Image src={univassouras} alt="Univassouras: Campus Universitário de Maricá" height={80} class="logo logo--univ" />
+        <span class="logo-trace" aria-hidden="true"></span>
+        <Image src={facmar} alt="FACMAR: Faculdade de Ciências Médicas de Maricá" height={128} class="logo logo--facmar" />
+      </div>
       <p class="mt-6 max-w-md text-sm text-stone">
         Evento organizado pelos professores e pela coordenação dos cursos de {event.courses[0]} e {event.courses[1]}.
       </p>
@@ -21,3 +27,57 @@ import { event } from '../../data/event';
     </div>
   </div>
 </footer>
+
+<style>
+  .logos {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.9rem, 3vw, 1.5rem);
+  }
+  /* alturas diferentes para equilibrar o peso visual (a Univassouras é mais alongada) */
+  .logo {
+    width: auto;
+    max-width: 100%;
+  }
+  .logo--univ {
+    height: 2rem;
+  }
+  .logo--facmar {
+    height: 3rem;
+  }
+  @media (min-width: 640px) {
+    .logo--univ {
+      height: 2.5rem;
+    }
+    .logo--facmar {
+      height: 3.75rem;
+    }
+  }
+  .logo-trace {
+    position: relative;
+    flex-shrink: 0;
+    width: 1px;
+    height: 3.25rem;
+    background: linear-gradient(var(--color-rose), var(--color-sky));
+    opacity: 0.7;
+  }
+  .logo-trace::before,
+  .logo-trace::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    width: 7px;
+    height: 7px;
+    translate: -50% 0;
+    border: 1.5px solid var(--color-rose);
+    border-radius: 999px;
+    background: var(--color-ink);
+  }
+  .logo-trace::before {
+    top: -4px;
+  }
+  .logo-trace::after {
+    bottom: -4px;
+    border-color: var(--color-sky);
+  }
+</style>
