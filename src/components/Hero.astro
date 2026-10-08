@@ -22,9 +22,14 @@ import { schedule } from '../data/schedule';
         </span>
       </h1>
 
-      <p class="mt-7 max-w-xl text-lg text-pretty text-stone">
-        <strong class="block font-semibold text-paper">Três dias. Grandes desafios. Ideias que podem transformar o futuro.</strong>
-        <span class="mt-2 block">Forme sua equipe, desenvolva sua solução e viva uma experiência de inovação, tecnologia e colaboração.</span>
+      <!-- Três "batidas" numa trilha de circuito: fato → desafio → recompensa -->
+      <p class="beats mt-8">
+        <span class="beat">Três dias<span class="sr-only">.</span></span>
+        <span class="beat">Grandes desafios<span class="sr-only">.</span></span>
+        <span class="beat beat--payoff">Ideias que podem transformar o futuro<span class="sr-only">.</span></span>
+      </p>
+      <p class="mt-5 max-w-xl text-lg text-pretty text-stone">
+        Forme sua equipe, desenvolva sua solução e viva uma experiência de inovação, tecnologia e colaboração.
       </p>
 
       <!-- Datas como "pads" de circuito -->
@@ -152,6 +157,80 @@ import { schedule } from '../data/schedule';
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--color-sky);
+  }
+
+  /* ---------- Três batidas na trilha ---------- */
+  .beats {
+    position: relative;
+    display: grid;
+    gap: 0.45rem;
+    padding-left: 1.75rem;
+  }
+  /* a trilha vertical que liga as três batidas */
+  .beats::before {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 0.75em;
+    bottom: 0.9em;
+    width: 2px;
+    border-radius: 2px;
+    background: linear-gradient(var(--color-rose), var(--color-sky));
+    opacity: 0.75;
+  }
+  .beat {
+    position: relative;
+    display: block;
+    font-family: var(--font-display);
+    font-size: clamp(1.15rem, 2.1vw, 1.4rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+    color: var(--color-paper);
+    animation: beat-in 0.7s var(--ease-out-expo) both;
+  }
+  /* "pad" de cada batida, passando de bordô para azul */
+  .beat::before {
+    content: '';
+    position: absolute;
+    left: -1.75rem;
+    top: 0.32em;
+    width: 12px;
+    height: 12px;
+    border-radius: 999px;
+    border: 2px solid var(--color-rose);
+    background: var(--color-ink);
+  }
+  .beat:nth-child(1) {
+    animation-delay: 0.35s;
+  }
+  .beat:nth-child(2) {
+    animation-delay: 0.5s;
+  }
+  .beat:nth-child(2)::before {
+    border-color: color-mix(in oklab, var(--color-rose) 50%, var(--color-sky));
+  }
+  .beat--payoff {
+    animation-delay: 0.65s;
+    font-size: clamp(1.4rem, 2.9vw, 1.95rem);
+    line-height: 1.12;
+    text-wrap: balance;
+    background: linear-gradient(90deg, var(--color-rose) 0%, var(--color-sky) 70%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .beat--payoff::before {
+    top: 0.42em;
+    border-color: var(--color-sky);
+    background: var(--color-sky);
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-sky) 22%, transparent);
+  }
+  @keyframes beat-in {
+    from {
+      opacity: 0;
+      translate: -10px 0;
+    }
   }
 
   /* ---------- Deck de crachás ---------- */
@@ -347,7 +426,8 @@ import { schedule } from '../data/schedule';
       animation: none;
     }
     .badge,
-    .badge.is-rising {
+    .badge.is-rising,
+    .beat {
       transition: none;
       animation: none;
     }

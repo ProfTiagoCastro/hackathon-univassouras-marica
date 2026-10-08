@@ -123,3 +123,10 @@ Uma entrada por etapa de desenvolvimento (cada etapa = um commit).
 - Para os dois crachás caberem com destaque, o hero passou a ter **colunas 50/50** e o título "HACKATHON" no desktop agora é `clamp(3.6rem, 6.2vw, 5.5rem)`, ajustado à coluna. No celular, nada muda.
 - Testado em 1440, 1024 e 375 px: título dentro da coluna, sem rolagem lateral, troca por clique e pelos botões funcionando, logos carregando. Lighthouse mobile: Acessibilidade 100, SEO 100. Boas práticas 77 por causa de cookies de terceiros do iframe do Google Maps (seção Local), que já existia antes desta mudança.
 - Rodapé: texto passou a ser "…dos cursos de Engenharia de Software, Análise e Desenvolvimento de Sistemas e Enfermagem.", a pedido.
+
+## Hero: "Três dias. Grandes desafios. Ideias…" redesenhado (2026-10-07)
+- Antes era um texto corrido em negrito com pontos no meio, e as três frases tinham o mesmo peso. Agora são **três batidas**, uma por linha, na fonte de títulos, presas numa **trilha vertical de circuito** com um pad para cada uma. Os pads mudam de bordô para azul ao longo da frase.
+- A última batida, "Ideias que podem transformar o futuro", é maior, com degradê rosa → azul e o pad preenchido.
+- Os pontos saíram do visual, porque a quebra de linha faz esse papel, mas continuam para leitores de tela (`sr-only`).
+- Entrada escalonada das três linhas, desligada com `prefers-reduced-motion`.
+- Testado em 1440 e 375 px.
