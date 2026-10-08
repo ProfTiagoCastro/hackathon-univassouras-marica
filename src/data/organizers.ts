@@ -2,6 +2,7 @@ import type { ImageMetadata } from 'astro';
 import wellington from '../assets/professores/wellington-avila.jpeg';
 import marcio from '../assets/professores/marcio-garrido.jpg';
 import tiago from '../assets/professores/tiago-ruiz-de-castro.jpg';
+import rafael from '../assets/professores/rafael-mynssem.jpg';
 
 /**
  * Professores organizadores.
@@ -91,7 +92,23 @@ export const organizers: Organizer[] = [
     ],
     lattes: 'https://lattes.cnpq.br/2893734599338416',
   },
-  pending(4),
+  {
+    id: 'rafael-mynssem',
+    name: 'Rafael Mynssem',
+    role: 'Professor · Eng. de Software e ADS',
+    photo: rafael,
+    education: ['Doutor em Física · UFF (2018)', 'Mestre em Física · UFF (2014)', 'Graduado em Física · UFF (2012)'],
+    specialties: [
+      'Ciência de Dados',
+      'Física Estatística',
+      'Sistemas Complexos',
+      'Modelos Baseados em Agentes',
+      'Redes Complexas',
+      'Simulação de Monte Carlo',
+      'Consultoria em Dados',
+    ],
+    lattes: 'https://lattes.cnpq.br/9858650975484255',
+  },
   pending(5),
   pending(6),
 ];

@@ -131,3 +131,9 @@ Uma entrada por etapa de desenvolvimento (cada etapa = um commit).
 - Entrada escalonada das três linhas, desligada com `prefers-reduced-motion`.
 - Testado em 1440 e 375 px.
 - Hero: o crachá do HackEnf ganhou os 4 terminais (pads) nos cantos, como o do Hackathon, com as cores invertidas (azul em cima à esquerda e embaixo à direita). O `overflow: hidden` saiu do quadro, porque cortaria os pads, e o arredondamento passou para a própria imagem.
+
+## Novo organizador: Prof. Rafael Mynssem (2026-10-07)
+- **Rafael Mynssem** (Rafael Mynssem Brum) adicionado como **quarto** cartão, depois do Prof. Tiago. Ordem atual: Wellington → Marcio → Tiago → Rafael → 2 cartões "a definir".
+- Foto em `src/assets/professores/rafael-mynssem.jpg`. Dados do resumo do Lattes (`docs/referencias/lattes-rafael-mynssem.pdf`, fora do git): graduação, mestrado e doutorado em Física pela UFF. Especialidades: ciência de dados, física estatística, sistemas complexos, modelos baseados em agentes, redes complexas, Monte Carlo e consultoria em dados.
+- Cargo "Professor · Eng. de Software e ADS", igual ao dos demais. O Lattes, atualizado em 09/2024, não cita o vínculo, então falta confirmar.
+- Verificado em 1440 e 375 px: verso cabe inteiro, sem rolagem lateral.
