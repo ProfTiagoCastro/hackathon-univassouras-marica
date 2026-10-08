@@ -130,3 +130,4 @@ Uma entrada por etapa de desenvolvimento (cada etapa = um commit).
 - Os pontos saíram do visual, porque a quebra de linha faz esse papel, mas continuam para leitores de tela (`sr-only`).
 - Entrada escalonada das três linhas, desligada com `prefers-reduced-motion`.
 - Testado em 1440 e 375 px.
+- Hero: o crachá do HackEnf ganhou os 4 terminais (pads) nos cantos, como o do Hackathon, com as cores invertidas (azul em cima à esquerda e embaixo à direita). O `overflow: hidden` saiu do quadro, porque cortaria os pads, e o arredondamento passou para a própria imagem.

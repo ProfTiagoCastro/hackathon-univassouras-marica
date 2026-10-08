@@ -77,6 +77,10 @@ import { schedule } from '../data/schedule';
           />
         </figure>
         <figure class="badge badge--enf enf-card" data-card="enf">
+          <span class="pad pad-tl pad--alt" aria-hidden="true"></span>
+          <span class="pad pad-tr pad--alt" aria-hidden="true"></span>
+          <span class="pad pad-bl pad--alt" aria-hidden="true"></span>
+          <span class="pad pad-br pad--alt" aria-hidden="true"></span>
           <Image
             src={hackenf}
             alt="Banner do HackEnf FACMAR 2026: desafios reais, soluções inovadoras da enfermagem para o futuro. A participação da enfermagem em tecnologia."
@@ -307,8 +311,8 @@ import { schedule } from '../data/schedule';
       0 30px 80px -20px color-mix(in oklab, var(--color-wine) 70%, transparent),
       0 0 120px -10px color-mix(in oklab, var(--color-navy) 80%, transparent);
   }
+  /* sem overflow: hidden (cortaria os pads); quem arredonda é a própria imagem */
   .enf-card {
-    overflow: hidden;
     border-radius: 1.25rem;
     box-shadow:
       0 0 0 1px rgb(255 255 255 / 0.18),
@@ -318,6 +322,7 @@ import { schedule } from '../data/schedule';
   }
   .enf-card :global(img) {
     display: block;
+    border-radius: 1.25rem;
   }
 
   /* seletor abaixo do deck: dois "pads" ligados por uma trilha */
@@ -406,6 +411,15 @@ import { schedule } from '../data/schedule';
   .pad-br {
     bottom: -14px;
     right: -14px;
+  }
+  /* HackEnf: cores invertidas (azul onde o Hackathon é bordô e vice-versa) */
+  .pad--alt.pad-tl,
+  .pad--alt.pad-br {
+    border-color: var(--color-sky);
+  }
+  .pad--alt.pad-tr,
+  .pad--alt.pad-bl {
+    border-color: var(--color-rose);
   }
 
   /* entrada da página */
