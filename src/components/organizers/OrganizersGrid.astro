@@ -1,6 +1,8 @@
 ---
 /**
  * Grade de cartões de professores + lógica de "fixar" o cartão virado.
+ * Pode haver mais de uma grade na página (equipe do Hackathon e parceria HackEnf);
+ * a lógica vale para todos os cartões da página de uma vez.
  * Regras:
  *  - clique/toque num cartão → fica fixado virado (e solta qualquer outro)
  *  - clique/toque de novo no mesmo cartão → desvira
@@ -8,11 +10,20 @@
  *  (no computador, o hover continua virando o cartão enquanto o mouse está em cima)
  */
 import OrganizerCard from './OrganizerCard.astro';
-import { organizers } from '../../data/organizers';
+import type { Organizer } from '../../data/organizers';
+
+interface Props {
+  items: Organizer[];
+  /** cartão único, centralizado (ex.: parceria) */
+  single?: boolean;
+  /** tom azul da parceria HackEnf */
+  partner?: boolean;
+}
+const { items, single = false, partner = false } = Astro.props;
 ---
 
-<ul class="org-grid" data-org-grid role="list">
-  {organizers.map((o, i) => <OrganizerCard organizer={o} index={i} />)}
+<ul class:list={['org-grid', single && 'org-grid--single']} data-org-grid role="list">
+  {items.map((o, i) => <OrganizerCard organizer={o} index={i} partner={partner} />)}
 </ul>
 
 <style is:global>
@@ -20,6 +31,11 @@ import { organizers } from '../../data/organizers';
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(min(100%, 17.5rem), 1fr));
     gap: clamp(1rem, 2.5vw, 1.75rem);
+  }
+  /* um cartão só: mesma largura de uma coluna da grade principal, centralizado */
+  .org-grid--single {
+    grid-template-columns: minmax(0, 22rem);
+    justify-content: center;
   }
   /* destaque: os outros cartões recuam quando um está em foco/fixado */
   .org-grid:has(.org-card[data-pinned]) .org-card:not([data-pinned]) {
@@ -35,10 +51,10 @@ import { organizers } from '../../data/organizers';
 </style>
 
 <script>
-  const grid = document.querySelector<HTMLElement>('[data-org-grid]');
-  if (grid) {
-    const cards = [...grid.querySelectorAll<HTMLElement>('[data-org-card]')];
+  const grids = [...document.querySelectorAll<HTMLElement>('[data-org-grid]')];
+  const cards = [...document.querySelectorAll<HTMLElement>('[data-org-card]')];
 
+  if (cards.length) {
     const setPinned = (card: HTMLElement | null) => {
       for (const c of cards) {
         const on = c === card;
@@ -60,21 +76,21 @@ import { organizers } from '../../data/organizers';
       if (!(e.target as HTMLElement).closest('[data-org-card]')) setPinned(null);
     });
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        setPinned(null);
-      }
+      if (e.key === 'Escape') setPinned(null);
     });
 
-    // entrada escalonada ao aparecer na tela
+    // entrada escalonada de cada grade ao aparecer na tela
     const io = new IntersectionObserver(
       (entries) => {
-        if (entries.some((en) => en.isIntersecting)) {
-          grid.classList.add('is-in');
-          io.disconnect();
+        for (const en of entries) {
+          if (en.isIntersecting) {
+            en.target.classList.add('is-in');
+            io.unobserve(en.target);
+          }
         }
       },
       { threshold: 0.1 },
     );
-    io.observe(grid);
+    grids.forEach((g) => io.observe(g));
   }
 </script>

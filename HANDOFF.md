@@ -28,7 +28,7 @@ Stack: **Astro 7 + Tailwind 4 + TypeScript**, com deploy na **Vercel**. Detalhes
 | Endereço / sala | `src/data/event.ts` | `location.address`, `location.room` (com o endereço preenchido, o pino do mapa fica exato; hoje a busca genérica acha duas unidades) |
 | Contato | `src/data/event.ts` | `contact` |
 | Horários de cada dia | `src/data/schedule.ts` | `activities` de cada dia (o exemplo está no comentário do arquivo) |
-| Professores | `src/data/organizers.ts` | trocar um `pending(n)` pelos dados reais (o passo a passo está no comentário) |
+| Professores | `src/data/organizers.ts` | equipe do Hackathon em `organizers` (trocar um `pending(n)`); parceria HackEnf FACMAR em `partners` (seção própria, cartão azul) |
 | Fotos dos professores | `src/assets/professores/` | jpg quadrado, mín. 600×600 |
 | FAQ, regras, premiação | `src/data/faq.ts` | `faq`, `rules`, `prizes` |
 | **Fotos do Mural** | `src/assets/mural/dia-1`, `dia-2`, `dia-3` | é só colocar os arquivos .jpg/.png/.webp na pasta do dia (ordem alfabética; ex.: `01-abertura.jpg`) |
@@ -55,7 +55,7 @@ O site está no ar, e o próximo passo é **alimentar as informações**. Itens 
 - [ ] **Público** e **formato** (ficha "Sobre") → `About.astro` › `specs`
 - [ ] **Endereço completo e sala/auditório** (deixa o pino do mapa exato) → `event.ts` › `location`
 - [ ] **Contato oficial** (e-mail ou Instagram) → `event.ts` › `contact`
-- [ ] **Demais professores organizadores** (1 cartão "a definir" hoje; a grade aceita mais, basta adicionar em organizers.ts): nome, cargo, foto quadrada, formação, 4 a 7 especialidades, link do Lattes. O PDF do Lattes também serve, porque eu extraio os dados. → `organizers.ts` e `src/assets/professores/`
+- [ ] **Demais professores organizadores** (2 cartões "a definir" na equipe do Hackathon; parceiros HackEnf vão na lista `partners` de organizers.ts): nome, cargo, foto quadrada, formação, 4 a 7 especialidades, link do Lattes. O PDF do Lattes também serve, porque eu extraio os dados. → `organizers.ts` e `src/assets/professores/`
 
 **Durante e depois do evento:**
 - [ ] **Fotos** de cada dia → `src/assets/mural/dia-1`, `dia-2` e `dia-3`
@@ -66,7 +66,7 @@ O site está no ar, e o próximo passo é **alimentar as informações**. Itens 
 - [ ] Mural: manter ou tirar a frase "Escolha uma data para ver os registros" (a frase equivalente já saiu da Programação)
 
 **Já concluído:**
-- [x] Cartões preenchidos, nesta ordem: Coord. Wellington Ávila (ES/ADS), Coord. Kíssyla Harley (Enfermagem FACMAR), Prof. Marcio Garrido, Prof. Tiago Ruiz de Castro, Prof. Rafael Mynssem
+- [x] Cartões preenchidos, nesta ordem: equipe do Hackathon: Coord. Wellington Ávila, Prof. Marcio Garrido, Prof. Tiago Ruiz de Castro, Prof. Rafael Mynssem; seção Parceria HackEnf FACMAR: Coord. Kíssyla Harley
 
 ## 5. Deploy (Vercel) e como publicar atualizações
 - **Site:** https://hackathon-univassouras-marica.vercel.app

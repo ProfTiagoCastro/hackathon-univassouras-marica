@@ -12,14 +12,16 @@ import type { Organizer } from '../../data/organizers';
 interface Props {
   organizer: Organizer;
   index: number;
+  /** tom azul da parceria HackEnf FACMAR */
+  partner?: boolean;
 }
-const { organizer: o, index } = Astro.props;
+const { organizer: o, index, partner = false } = Astro.props;
 const pending = !o.name;
 const displayName = o.name ?? 'Professor(a) organizador(a)';
 ---
 
 <li class="org-item" style={`--i:${index}`}>
-  <article class:list={['org-card', pending && 'is-pending']} data-org-card aria-label={displayName}>
+  <article class:list={['org-card', pending && 'is-pending', partner && 'is-partner']} data-org-card aria-label={displayName}>
     <div class="org-inner">
       <!-- FRENTE -->
       <div class="face front">
@@ -280,6 +282,25 @@ const displayName = o.name ?? 'Professor(a) organizador(a)';
       radial-gradient(100% 60% at 0% 100%, color-mix(in oklab, var(--color-wine) 75%, transparent), transparent 65%),
       var(--color-ink-2);
     box-shadow: 0 30px 70px -25px var(--color-wine);
+  }
+  /* Parceria HackEnf: cantos e verso em azul (cores do crachá HackEnf no hero) */
+  .is-partner .c-tl {
+    border-color: var(--color-sky);
+  }
+  .is-partner .c-br {
+    border-color: var(--color-rose);
+  }
+  .is-partner .flip-btn {
+    border-color: color-mix(in oklab, var(--color-sky) 55%, transparent);
+    background: color-mix(in oklab, var(--color-navy) 55%, transparent);
+  }
+  .is-partner .back {
+    border-color: color-mix(in oklab, var(--color-sky) 50%, transparent);
+    background:
+      radial-gradient(120% 70% at 100% 0%, color-mix(in oklab, var(--color-sky) 30%, transparent), transparent 60%),
+      radial-gradient(100% 60% at 0% 100%, color-mix(in oklab, var(--color-navy) 90%, transparent), transparent 65%),
+      var(--color-ink-2);
+    box-shadow: 0 30px 70px -25px var(--color-navy);
   }
   .back::before {
     /* trilha de circuito decorativa no verso */

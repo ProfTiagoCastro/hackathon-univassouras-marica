@@ -143,3 +143,11 @@ Uma entrada por etapa de desenvolvimento (cada etapa = um commit).
 - Foto em `src/assets/professores/kissyla-harley.jpg`. Dados do resumo do Lattes (`docs/referencias/lattes-kissyla-harley.pdf`, fora do git): doutoranda em Enfermagem (UERJ), mestre em Enfermagem (EEAN/UFRJ), especialista em Oncologia. Especialidades: educação em saúde, segurança do paciente, tecnologias em saúde, SAE, terapia intensiva, oncologia, saúde do idoso.
 - Grafia "Kíssyla", com acento, como está no Lattes.
 - Verificado em 1440 e 375 px: verso cabe inteiro, sem rolagem lateral.
+
+## Seção "Parceria HackEnf FACMAR" em /organizadores (2026-10-07)
+- A Coord. **Kíssyla Harley** saiu da grade da equipe do Hackathon e foi para uma **seção própria**, "Parceria HackEnf FACMAR", abaixo da equipe. A seção é separada por uma trilha de circuito, tem título centralizado e o cartão dela vem sozinho no centro.
+- O cartão da parceria tem **tom azul**, com as cores do crachá HackEnf do hero: botão, cantos e verso em azul/navy (prop `partner` no `OrganizerCard`).
+- Equipe do Hackathon reorganizada: Wellington → Marcio → Tiago → Rafael → 2 cartões "a definir" (duas linhas completas de 3).
+- Dados: `organizers.ts` passou a ter duas listas, `organizers` (equipe do Hackathon) e `partners` (parceria HackEnf).
+- `OrganizersGrid` agora recebe `items`, `single` (cartão único centralizado) e `partner`. A lógica de virar e fixar vale para todos os cartões da página: fixar um cartão de uma grade solta o da outra.
+- Testado em 1440 e 375 px: ordem, centralização, troca entre grades, clique fora, verso sem estouro e sem rolagem lateral.

@@ -56,27 +56,6 @@ export const organizers: Organizer[] = [
     lattes: 'https://lattes.cnpq.br/9415369722030148',
   },
   {
-    id: 'kissyla-harley',
-    name: 'Kíssyla Harley',
-    role: 'Coordenadora · Enfermagem FACMAR',
-    photo: kissyla,
-    education: [
-      'Doutoranda em Enfermagem · UERJ',
-      'Mestre em Enfermagem · EEAN/UFRJ',
-      'Especialista em Oncologia',
-    ],
-    specialties: [
-      'Educação em Saúde',
-      'Segurança do Paciente',
-      'Tecnologias em Saúde',
-      'Sistematização da Assistência (SAE)',
-      'Terapia Intensiva',
-      'Oncologia',
-      'Saúde do Idoso',
-    ],
-    lattes: 'https://lattes.cnpq.br/0937389560429380',
-  },
-  {
     id: 'marcio-garrido',
     name: 'Marcio Garrido',
     role: 'Professor · Eng. de Software e ADS',
@@ -131,5 +110,34 @@ export const organizers: Organizer[] = [
     ],
     lattes: 'https://lattes.cnpq.br/9858650975484255',
   },
+  pending(5),
   pending(6),
+];
+
+/**
+ * Parceria HackEnf FACMAR (curso de Enfermagem).
+ * Aparece numa seção própria, abaixo da equipe do Hackathon, em /organizadores.
+ */
+export const partners: Organizer[] = [
+  {
+    id: 'kissyla-harley',
+    name: 'Kíssyla Harley',
+    role: 'Coordenadora · Enfermagem FACMAR',
+    photo: kissyla,
+    education: [
+      'Doutoranda em Enfermagem · UERJ',
+      'Mestre em Enfermagem · EEAN/UFRJ',
+      'Especialista em Oncologia',
+    ],
+    specialties: [
+      'Educação em Saúde',
+      'Segurança do Paciente',
+      'Tecnologias em Saúde',
+      'Sistematização da Assistência (SAE)',
+      'Terapia Intensiva',
+      'Oncologia',
+      'Saúde do Idoso',
+    ],
+    lattes: 'https://lattes.cnpq.br/0937389560429380',
+  },
 ];
