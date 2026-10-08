@@ -3,6 +3,7 @@ import wellington from '../assets/professores/wellington-avila.jpeg';
 import marcio from '../assets/professores/marcio-garrido.jpg';
 import tiago from '../assets/professores/tiago-ruiz-de-castro.jpg';
 import rafael from '../assets/professores/rafael-mynssem.jpg';
+import kissyla from '../assets/professores/kissyla-harley.jpg';
 
 /**
  * Professores organizadores.
@@ -53,6 +54,27 @@ export const organizers: Organizer[] = [
       'Educação a Distância',
     ],
     lattes: 'https://lattes.cnpq.br/9415369722030148',
+  },
+  {
+    id: 'kissyla-harley',
+    name: 'Kíssyla Harley',
+    role: 'Coordenadora · Enfermagem FACMAR',
+    photo: kissyla,
+    education: [
+      'Doutoranda em Enfermagem · UERJ',
+      'Mestre em Enfermagem · EEAN/UFRJ',
+      'Especialista em Oncologia',
+    ],
+    specialties: [
+      'Educação em Saúde',
+      'Segurança do Paciente',
+      'Tecnologias em Saúde',
+      'Sistematização da Assistência (SAE)',
+      'Terapia Intensiva',
+      'Oncologia',
+      'Saúde do Idoso',
+    ],
+    lattes: 'https://lattes.cnpq.br/0937389560429380',
   },
   {
     id: 'marcio-garrido',
@@ -109,6 +131,5 @@ export const organizers: Organizer[] = [
     ],
     lattes: 'https://lattes.cnpq.br/9858650975484255',
   },
-  pending(5),
   pending(6),
 ];

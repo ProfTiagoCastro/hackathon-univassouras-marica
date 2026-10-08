@@ -137,3 +137,9 @@ Uma entrada por etapa de desenvolvimento (cada etapa = um commit).
 - Foto em `src/assets/professores/rafael-mynssem.jpg`. Dados do resumo do Lattes (`docs/referencias/lattes-rafael-mynssem.pdf`, fora do git): graduação, mestrado e doutorado em Física pela UFF. Especialidades: ciência de dados, física estatística, sistemas complexos, modelos baseados em agentes, redes complexas, Monte Carlo e consultoria em dados.
 - Cargo "Professor · Eng. de Software e ADS", igual ao dos demais. O Lattes, atualizado em 09/2024, não cita o vínculo, então falta confirmar.
 - Verificado em 1440 e 375 px: verso cabe inteiro, sem rolagem lateral.
+
+## Nova organizadora: Coord. Kíssyla Harley (Enfermagem FACMAR) (2026-10-07)
+- **Kíssyla Harley** (Kíssyla Harley Della Pascôa França), coordenadora acadêmica de Enfermagem da FACMAR, adicionada em **segundo**, ao lado do coordenador Wellington, a pedido. Ordem atual: Wellington → Kíssyla → Marcio → Tiago → Rafael → 1 cartão "a definir" (6 no total, duas linhas completas de 3).
+- Foto em `src/assets/professores/kissyla-harley.jpg`. Dados do resumo do Lattes (`docs/referencias/lattes-kissyla-harley.pdf`, fora do git): doutoranda em Enfermagem (UERJ), mestre em Enfermagem (EEAN/UFRJ), especialista em Oncologia. Especialidades: educação em saúde, segurança do paciente, tecnologias em saúde, SAE, terapia intensiva, oncologia, saúde do idoso.
+- Grafia "Kíssyla", com acento, como está no Lattes.
+- Verificado em 1440 e 375 px: verso cabe inteiro, sem rolagem lateral.
