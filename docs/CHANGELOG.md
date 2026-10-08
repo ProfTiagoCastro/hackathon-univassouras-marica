@@ -151,3 +151,4 @@ Uma entrada por etapa de desenvolvimento (cada etapa = um commit).
 - Dados: `organizers.ts` passou a ter duas listas, `organizers` (equipe do Hackathon) e `partners` (parceria HackEnf).
 - `OrganizersGrid` agora recebe `items`, `single` (cartão único centralizado) e `partner`. A lógica de virar e fixar vale para todos os cartões da página: fixar um cartão de uma grade solta o da outra.
 - Testado em 1440 e 375 px: ordem, centralização, troca entre grades, clique fora, verso sem estouro e sem rolagem lateral.
+- Título da seção ajustado para "Parceria Hackenf FACMAR" (só o H maiúsculo), a pedido. A meta description da página foi ajustada igual.
