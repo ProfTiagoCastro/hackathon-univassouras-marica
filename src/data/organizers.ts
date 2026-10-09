@@ -5,6 +5,7 @@ import tiago from '../assets/professores/tiago-ruiz-de-castro.jpg';
 import rafael from '../assets/professores/rafael-mynssem.jpg';
 import kissyla from '../assets/professores/kissyla-harley.jpg';
 import isabel from '../assets/professores/isabel-cristina.jpg';
+import lais from '../assets/professores/lais-cristine.jpg';
 
 /**
  * Professores organizadores.
@@ -132,7 +133,27 @@ export const organizers: Organizer[] = [
     ],
     lattes: 'https://lattes.cnpq.br/8601491485348340',
   },
-  pending(6),
+  {
+    id: 'lais-cristine',
+    name: 'Laís Cristine',
+    role: 'Professora · Eng. de Software e ADS',
+    photo: lais,
+    education: [
+      'Pós em Inteligência Artificial · Educaminas',
+      'MBA em Gestão de Projetos de TI (cursando)',
+      'Graduanda em Ciência da Computação · UoPeople',
+    ],
+    specialties: [
+      'Desenvolvimento Full Stack',
+      'Arquitetura de Software e TDD',
+      'SaaS Multi-tenant',
+      'Agentes de IA e RAG',
+      'Sistemas Multiagente com LLM',
+      'Angular, React, Java e NestJS',
+      'Mulheres na Tecnologia',
+    ],
+    lattes: 'https://lattes.cnpq.br/4432205145670634',
+  },
 ];
 
 /**

@@ -159,3 +159,10 @@ Uma entrada por etapa de desenvolvimento (cada etapa = um commit).
 - O e-mail e o telefone que aparecem no resumo do Lattes **não** foram colocados no site.
 - Cargo "Professora · Eng. de Software e ADS", igual ao dos demais (falta confirmar).
 - Verificado em 1440 e 375 px: verso cabe inteiro, sem rolagem lateral.
+
+## Nova organizadora: Profa. Laís Cristine (2026-10-09)
+- **Laís Cristine** (Laís Cristine Bordallo Pinheiro) adicionada à equipe do Hackathon como **sexto** cartão, no lugar do último "a definir". Ordem atual: Wellington → Marcio → Tiago → Rafael → Isabel → Laís (6 cartões preenchidos, duas linhas completas). A Kíssyla continua na seção Parceria Hackenf FACMAR.
+- Foto em `src/assets/professores/lais-cristine.jpg` (2048×2048). Dados do resumo do Lattes (`docs/referencias/lattes-lais-cristine.pdf`, fora do git): pós em IA (Educaminas), MBA em Gestão de Projetos de TI (cursando), graduanda em Ciência da Computação (University of the People). Especialidades: full stack, arquitetura e TDD, SaaS multi-tenant, agentes de IA/RAG, sistemas multiagente com LLM, Angular/React/Java/NestJS, mentoria de mulheres na tecnologia.
+- A formação foi escrita de forma enxuta para o cartão ter a mesma altura dos outros (430 px). Com o texto completo, a segunda linha da grade ficava com 464 px.
+- Cargo "Professora · Eng. de Software e ADS", igual ao dos demais (falta confirmar).
+- Verificado em 1440 e 375 px.

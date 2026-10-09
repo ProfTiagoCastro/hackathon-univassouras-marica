@@ -55,7 +55,7 @@ O site está no ar, e o próximo passo é **alimentar as informações**. Itens 
 - [ ] **Público** e **formato** (ficha "Sobre") → `About.astro` › `specs`
 - [ ] **Endereço completo e sala/auditório** (deixa o pino do mapa exato) → `event.ts` › `location`
 - [ ] **Contato oficial** (e-mail ou Instagram) → `event.ts` › `contact`
-- [ ] **Demais professores organizadores** (1 cartão "a definir" na equipe do Hackathon; parceiros HackEnf vão na lista `partners` de organizers.ts): nome, cargo, foto quadrada, formação, 4 a 7 especialidades, link do Lattes. O PDF do Lattes também serve, porque eu extraio os dados. → `organizers.ts` e `src/assets/professores/`
+- [ ] **Demais professores organizadores** (equipe do Hackathon completa com 6; para incluir mais, adicione em `organizers` (pode usar `pending(n)` para um cartão "a definir"); parceiros HackEnf vão na lista `partners` de organizers.ts): nome, cargo, foto quadrada, formação, 4 a 7 especialidades, link do Lattes. O PDF do Lattes também serve, porque eu extraio os dados. → `organizers.ts` e `src/assets/professores/`
 
 **Durante e depois do evento:**
 - [ ] **Fotos** de cada dia → `src/assets/mural/dia-1`, `dia-2` e `dia-3`
@@ -66,7 +66,7 @@ O site está no ar, e o próximo passo é **alimentar as informações**. Itens 
 - [ ] Mural: manter ou tirar a frase "Escolha uma data para ver os registros" (a frase equivalente já saiu da Programação)
 
 **Já concluído:**
-- [x] Cartões preenchidos, nesta ordem: equipe do Hackathon: Coord. Wellington Ávila, Prof. Marcio Garrido, Prof. Tiago Ruiz de Castro, Prof. Rafael Mynssem, Profa. Isabel Cristina; seção Parceria HackEnf FACMAR: Coord. Kíssyla Harley
+- [x] Cartões preenchidos, nesta ordem: equipe do Hackathon: Coord. Wellington Ávila, Prof. Marcio Garrido, Prof. Tiago Ruiz de Castro, Prof. Rafael Mynssem, Profa. Isabel Cristina, Profa. Laís Cristine; seção Parceria HackEnf FACMAR: Coord. Kíssyla Harley
 
 ## 5. Deploy (Vercel) e como publicar atualizações
 - **Site:** https://hackathon-univassouras-marica.vercel.app
