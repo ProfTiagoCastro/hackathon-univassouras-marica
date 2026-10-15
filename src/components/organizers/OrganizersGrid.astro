@@ -27,10 +27,37 @@ const { items, single = false, partner = false } = Astro.props;
 </ul>
 
 <style is:global>
+  /* colunas fixas por largura (1 / 2 / 3) para saber quando o último cartão sobra sozinho */
   .org-grid {
+    --org-gap: clamp(1rem, 2.5vw, 1.75rem);
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 17.5rem), 1fr));
-    gap: clamp(1rem, 2.5vw, 1.75rem);
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--org-gap);
+  }
+  @media (min-width: 40rem) {
+    .org-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    /* 2 colunas: último cartão sozinho fica centralizado, com a largura de uma coluna */
+    .org-grid:not(.org-grid--single) > li:last-child:nth-child(2n + 1) {
+      grid-column: 1 / -1;
+      justify-self: center;
+      width: calc((100% - var(--org-gap)) / 2);
+    }
+  }
+  @media (min-width: 64rem) {
+    .org-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .org-grid:not(.org-grid--single) > li:last-child:nth-child(2n + 1) {
+      grid-column: auto;
+      justify-self: stretch;
+      width: auto;
+    }
+    /* 3 colunas: último cartão sozinho vai para a coluna do meio */
+    .org-grid:not(.org-grid--single) > li:last-child:nth-child(3n + 1) {
+      grid-column: 2;
+    }
   }
   /* um cartão só: mesma largura de uma coluna da grade principal, centralizado */
   .org-grid--single {

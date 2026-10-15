@@ -6,6 +6,7 @@ import rafael from '../assets/professores/rafael-mynssem.jpg';
 import kissyla from '../assets/professores/kissyla-harley.jpg';
 import isabel from '../assets/professores/isabel-cristina.jpg';
 import lais from '../assets/professores/lais-cristine.jpg';
+import delguel from '../assets/professores/delguel-arcanjo.jpg';
 
 /**
  * Professores organizadores.
@@ -153,6 +154,27 @@ export const organizers: Organizer[] = [
       'Mulheres na Tecnologia',
     ],
     lattes: 'https://lattes.cnpq.br/4432205145670634',
+  },
+  {
+    id: 'delguel-arcanjo',
+    name: 'Delguel Arcanjo',
+    role: 'Professor · Eng. de Software e ADS',
+    photo: delguel,
+    education: [
+      'Mestre em Educação · UCP (2010)',
+      'Esp. em Marketing Institucional · UniverCidade',
+      'Engenheiro Eletricista · UCP (1983)',
+    ],
+    specialties: [
+      'Sistemas Fotovoltaicos',
+      'Energias Alternativas',
+      'Sistemas de Potência',
+      'Engenharia de Projetos',
+      'Educação a Distância',
+      'Consultoria em Engenharia',
+      'Iniciação Científica',
+    ],
+    lattes: 'https://lattes.cnpq.br/6773231326581220',
   },
 ];
 

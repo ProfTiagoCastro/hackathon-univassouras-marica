@@ -166,3 +166,10 @@ Uma entrada por etapa de desenvolvimento (cada etapa = um commit).
 - A formação foi escrita de forma enxuta para o cartão ter a mesma altura dos outros (430 px). Com o texto completo, a segunda linha da grade ficava com 464 px.
 - Cargo "Professora · Eng. de Software e ADS", igual ao dos demais (falta confirmar).
 - Verificado em 1440 e 375 px.
+
+## Novo organizador: Prof. Delguel Arcanjo + último cartão centralizado (2026-10-15)
+- **Delguel Arcanjo** (Delguel Arcanjo Paulominas) adicionado à equipe do Hackathon como **sétimo** cartão, com o cargo "Professor · Eng. de Software e ADS", igual aos demais, a pedido. Ordem atual: Wellington → Marcio → Tiago → Rafael → Isabel → Laís → Delguel. A Kíssyla continua na seção Parceria Hackenf FACMAR.
+- Dados do resumo do Lattes (`docs/referencias/lattes-delguel-arcanjo.pdf`, fora do git): mestre em Educação (UCP), especialista em Marketing Institucional (UniverCidade), engenheiro eletricista (UCP). Especialidades: sistemas fotovoltaicos, energias alternativas, sistemas de potência, engenharia de projetos, EAD, consultoria em engenharia, iniciação científica.
+- **Foto:** a original (1792×1754) era um plano aberto, com mesa e braços, e o rosto ficava pequeno no cartão. Foi recortada para busto, 1200×1200 (`src/assets/professores/delguel-arcanjo.jpg`), no mesmo enquadramento dos colegas. O original continua nos Downloads.
+- **Grade:** passou de `auto-fill` para colunas fixas por largura (1 abaixo de 640 px, 2 entre 640 e 1023 px, 3 a partir de 1024 px), com a mesma distribuição de antes. Quando o último cartão sobra sozinho na linha, ele fica **centralizado** (coluna do meio em 3 colunas, centralizado com largura de 1 coluna em 2 colunas). A regra não vale para a grade de cartão único (parceria).
+- Testado em 1440, 1024, 768, 640 e 375 px: último cartão centralizado, todos os cartões com 430 px de altura, sem rolagem lateral, cartão da parceria intacto.
