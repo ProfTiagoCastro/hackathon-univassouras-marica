@@ -42,9 +42,9 @@ import { schedule } from '../data/schedule';
             </li>
           ))
         }
-        <li class="days-month" aria-hidden="true">out<br />2026</li>
+        <li class="days-month" aria-hidden="true">out 2026<br /><span class="days-hours">18h – 21h</span></li>
       </ol>
-      <p class="sr-only">De 19 a 21 de outubro de 2026.</p>
+      <p class="sr-only">De 19 a 21 de outubro de 2026, das 18h às 21h.</p>
 
       <div class="mt-10 flex flex-wrap items-center gap-4">
         <RegisterButton />
@@ -151,6 +151,9 @@ import { schedule } from '../data/schedule';
     letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--color-stone);
+  }
+  .days-hours {
+    color: var(--color-paper);
   }
   .days-month {
     align-self: center;

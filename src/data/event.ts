@@ -9,9 +9,9 @@ export const event = {
   tagline: 'Ideias que transformam',
   courses: ['Engenharia de Software', 'Análise e Desenvolvimento de Sistemas'],
 
-  /** Início e fim do evento (horário de Brasília, UTC-3). */
-  startsAt: '2026-10-19T00:00:00-03:00',
-  endsAt: '2026-10-21T23:59:59-03:00',
+  /** Início e fim do evento (horário de Brasília, UTC-3). Encontros diários das 18h às 21h. */
+  startsAt: '2026-10-19T18:00:00-03:00',
+  endsAt: '2026-10-21T21:00:00-03:00',
 
   /**
    * LINK DO GOOGLE FORMS DE INSCRIÇÃO.

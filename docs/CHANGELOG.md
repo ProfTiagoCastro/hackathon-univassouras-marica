@@ -173,3 +173,12 @@ Uma entrada por etapa de desenvolvimento (cada etapa = um commit).
 - **Foto:** a original (1792×1754) era um plano aberto, com mesa e braços, e o rosto ficava pequeno no cartão. Foi recortada para busto, 1200×1200 (`src/assets/professores/delguel-arcanjo.jpg`), no mesmo enquadramento dos colegas. O original continua nos Downloads.
 - **Grade:** passou de `auto-fill` para colunas fixas por largura (1 abaixo de 640 px, 2 entre 640 e 1023 px, 3 a partir de 1024 px), com a mesma distribuição de antes. Quando o último cartão sobra sozinho na linha, ele fica **centralizado** (coluna do meio em 3 colunas, centralizado com largura de 1 coluna em 2 colunas). A regra não vale para a grade de cartão único (parceria).
 - Testado em 1440, 1024, 768, 640 e 375 px: último cartão centralizado, todos os cartões com 430 px de altura, sem rolagem lateral, cartão da parceria intacto.
+
+## Conteúdo do edital + janela das 18h às 21h (2026-10-16)
+- Fonte: Edital Hackathon ESW & ADS 2026 (`docs/referencias/edital-hackathon-2026.pdf`, fora do git) e a programação de palestras enviada pela coordenação.
+- **Programação:** os encontros são das **18h às 21h** nos 3 dias, conforme a coordenação. A sequência do item 12 do edital (que previa das 8h às 18h) foi adaptada a essa janela e marcada como indicativa. Cada dia ganhou um bloco "Palestras e minicursos do dia" com cartões (palestrante/instrutor, "Horário a definir", "Título em definição" quando for o caso). Novo campo `talks` em `schedule.ts`.
+- **Contagem regressiva** até 19/10 às 18h; fim em 21/10 às 21h. O hero mostra "out 2026 · 18h – 21h", e a ficha mostra "das 18h às 21h".
+- **Sobre:** texto de apresentação do item 1 do edital; ficha com público, formato, desafios (11 em 2 categorias) e e-mail de contato (`event.contact`).
+- **Regras** (7 itens), **premiação** (categorias Software/IoT, 5 prêmios especiais e certificado, com valores "a definir") e **FAQ** (7 respostas, mais 2 pendentes) preenchidos a partir do edital.
+- `docs/Informacoes_Pendentes_Site_Hackathon.pdf` (gerado por `scripts/make-checklist-pdf.py`): PDF editável **só com o que ainda falta**, para a coordenação preencher.
+- `scripts/google-forms-inscricao.gs`: Apps Script que monta o formulário de inscrição (item 5.2 do edital).
