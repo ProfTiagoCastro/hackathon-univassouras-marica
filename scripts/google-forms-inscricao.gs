@@ -45,6 +45,7 @@ function montarFormulario() {
         '',
         '• Quem pode participar: estudantes de Engenharia de Software e de Análise e Desenvolvimento de Sistemas. Cada equipe pode ter até 2 estudantes de outros cursos (Enfermagem, Nutrição, Educação Física, Administração…).',
         '• Ainda sem equipe? Inscreva-se individualmente: a organização forma as equipes no primeiro dia.',
+        '• Inscrição gratuita.',
         '• A inscrição implica a aceitação integral das normas do edital.',
         '',
         'Programação, desafios e regras: ' + SITE,

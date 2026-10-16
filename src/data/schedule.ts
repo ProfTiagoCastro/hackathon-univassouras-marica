@@ -105,7 +105,13 @@ export const schedule: EventDay[] = [
       { start: '20:20', end: '21:00', title: 'Checkpoint obrigatório', description: 'Cada equipe apresenta o progresso a um mentor.', type: 'mentoria' },
     ],
     talks: [
-      { time: null, title: null, speaker: 'Sandro', role: 'Palestrante', kind: 'palestra' },
+      {
+        time: null,
+        title: 'Da sala de aula ao mercado de tecnologia: construindo uma carreira em constante evolução',
+        speaker: 'Sandro Carvalho do Nascimento',
+        role: 'Palestrante',
+        kind: 'palestra',
+      },
       {
         time: null,
         title: 'GitHub e Versionamento de Código: Colaboração, Projetos Reais e Valorização Curricular',

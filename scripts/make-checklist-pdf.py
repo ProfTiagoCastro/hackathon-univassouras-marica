@@ -182,13 +182,12 @@ def build(path):
             ['19/10', 'Empreendedorismo na Era Digital', 'Cláudio Eduardo Barral', '', None],
             ['19/10', 'Das redes neurais aos LLMs', 'Laís Bordallo', '', None],
             ['19/10', 'Quando a Máquina Aprende a Ouvir: IA na Escuta Psiquiátrica', 'Rafael', '', ''],
-            ['20/10', 'Palestra (título em definição)', 'Sandro', '', ''],
+            ['20/10', 'Da sala de aula ao mercado de tecnologia', 'Sandro Carvalho do Nascimento', '', None],
             ['20/10', 'Minicurso: GitHub e Versionamento de Código', 'Anderson Souza', '', None],
             ['21/10', 'Robótica Inteligente e ROS', 'Karen', '', ''],
         ],
         field_cols={3, 4},
     )
-    d.labeled('Título da palestra do Sandro (20/10)', h=30, multiline=True)
 
     d.section(2, 'Grade horária proposta (18h às 21h)', 'O edital previa atividades das 8h às 18h. O site agora mostra a mesma sequência adaptada à janela das 18h às 21h. Confirme ou ajuste cada bloco.')
     d.table(

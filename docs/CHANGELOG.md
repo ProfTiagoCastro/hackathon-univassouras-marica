@@ -190,3 +190,4 @@ Uma entrada por etapa de desenvolvimento (cada etapa = um commit).
 - `event.registrationUrl` preenchido: os botões de inscrição (header, hero, faixa de inscrição e menu mobile) abrem o formulário em nova aba, e o JSON-LD passa a ter a oferta de inscrição.
 - Formulário, campo "Curso" da inscrição individual: virou múltipla escolha com a opção "Outro: ___" para digitar o curso, a pedido. O campo "E-mail" repetido dessa seção foi removido, porque o formulário já coleta o e-mail no início.
 - Inscrição **gratuita**: resposta do FAQ preenchida e faixa de inscrição atualizada. Saiu o "aguarde a confirmação por e-mail", porque o formulário não envia confirmação automática. Item removido do PDF de pendências.
+- Palestra de 20/10: **Sandro Carvalho do Nascimento**, "Da sala de aula ao mercado de tecnologia: construindo uma carreira em constante evolução" (antes "Título em definição"). PDF de pendências atualizado: o título saiu da lista e continua pendente só o horário.
