@@ -47,7 +47,7 @@ Campos vazios ou `null` aparecem no site com o selo **EM CONSTRUÇÃO**.
 O site está no ar, e o próximo passo é **alimentar as informações**. Itens a trazer, por prioridade:
 
 **Antes do evento (19/10):**
-- [ ] **Link do Google Forms** de inscrição → `event.ts` › `registrationUrl` (os 3 botões passam a funcionar sozinhos)
+- [x] **Link do Google Forms** ligado: https://forms.gle/sEAVnj7edWpJw6Rz7 (respostas em Forms › Respostas; para encerrar, desmarque "Aceitando respostas")
 - [ ] **Horários e atividades** de cada dia (início, fim, título, descrição curta, tipo: abertura, palestra, mentoria, mão na massa, intervalo, apresentação, premiação) → `schedule.ts`
 - [ ] **Regras** do hackathon (lista de itens) → `faq.ts` › `rules`
 - [ ] **Premiação** (colocação e prêmio) → `faq.ts` › `prizes`

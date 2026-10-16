@@ -18,7 +18,7 @@ export const event = {
    * Enquanto estiver vazio, os botões mostram "Inscrições em breve".
    * Exemplo: 'https://forms.gle/xxxxxxxxxxxx'
    */
-  registrationUrl: '',
+  registrationUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSdvVLW9DMshuGJ5jWtaNKXuuD5kTVjdGU3o6Z_4J9sxm3egpA/viewform',
 
   location: {
     name: 'Univassouras – Campus Maricá',

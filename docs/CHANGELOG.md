@@ -182,3 +182,9 @@ Uma entrada por etapa de desenvolvimento (cada etapa = um commit).
 - **Regras** (7 itens), **premiação** (categorias Software/IoT, 5 prêmios especiais e certificado, com valores "a definir") e **FAQ** (7 respostas, mais 2 pendentes) preenchidos a partir do edital.
 - `docs/Informacoes_Pendentes_Site_Hackathon.pdf` (gerado por `scripts/make-checklist-pdf.py`): PDF editável **só com o que ainda falta**, para a coordenação preencher.
 - `scripts/google-forms-inscricao.gs`: Apps Script que monta o formulário de inscrição (item 5.2 do edital).
+
+## Formulário de inscrição no ar e ligado ao site (2026-10-16)
+- Google Forms "Inscrição · Hackathon ESW & ADS 2026" montado pelo Apps Script vinculado ao formulário (`scripts/google-forms-inscricao.gs`). Fluxo: tipo de inscrição → **equipe** (nome, líder com e-mail/WhatsApp/curso/período/matrícula, integrantes 2 a 5, outros cursos) **ou individual** (dados + áreas de interesse) → **3 desafios em ordem de preferência** → termos (edital, uso de imagem, LGPD). Coleta o e-mail, mostra a barra de progresso e valida WhatsApp, matrícula e e-mail.
+- Visual: cabeçalho próprio (`docs/form-header.png`, gerado por `scripts/make-form-header.mjs`), cor bordô do Hackathon, Chakra Petch nos títulos e IBM Plex Sans no texto (as fontes do site).
+- Publicado para "qualquer pessoa com o link". Link curto: https://forms.gle/sEAVnj7edWpJw6Rz7
+- `event.registrationUrl` preenchido: os botões de inscrição (header, hero, faixa de inscrição e menu mobile) abrem o formulário em nova aba, e o JSON-LD passa a ter a oferta de inscrição.

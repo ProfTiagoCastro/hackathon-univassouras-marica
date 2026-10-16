@@ -115,7 +115,7 @@ function montarFormulario() {
     .setHelpText('Sem problema começar sozinho! A organização promove a formação das equipes no primeiro dia do evento.');
 
   form.addTextItem().setTitle('Nome completo').setRequired(true);
-  addEmail(form, 'E-mail');
+  // o e-mail já é coletado no início do formulário (setCollectEmail)
   addWhatsApp(form, 'WhatsApp');
   form.addListItem().setTitle('Curso').setChoiceValues(CURSOS_TI.concat(['Outro curso da Univassouras (Enfermagem, Nutrição, Educação Física, Administração…)'])).setRequired(true);
   form.addListItem().setTitle('Período').setChoiceValues(PERIODOS).setRequired(true);
