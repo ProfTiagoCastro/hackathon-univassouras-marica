@@ -32,7 +32,7 @@ export const event = {
   },
 
   /** Contato oficial do evento (e-mail ou Instagram). */
-  contact: null as string | null,
+  contact: 'coordengsoftware.marica@univassouras.edu.br' as string | null,
 } as const;
 
 export const hasRegistration = event.registrationUrl.trim().length > 0;

@@ -2,14 +2,16 @@
 import SectionTitle from './ui/SectionTitle.astro';
 import UnderConstruction from './ui/UnderConstruction.astro';
 import { event } from '../data/event';
-import { rules, prizes } from '../data/faq';
+import { rules, prizes, prizesNote } from '../data/faq';
 
 const specs: { k: string; v: string | null }[] = [
   { k: 'quando', v: '19, 20 e 21 de outubro de 2026' },
   { k: 'onde', v: event.location.name },
   { k: 'cursos', v: `${event.courses[0]} · ${event.courses[1]}` },
-  { k: 'público', v: null },
-  { k: 'formato', v: null },
+  { k: 'público', v: 'Estudantes de ESW e ADS · até 2 por equipe de outros cursos' },
+  { k: 'formato', v: 'Equipes de 3 a 5 · protótipo funcional em 3 dias' },
+  { k: 'desafios', v: '11 desafios · categorias Software e IoT' },
+  { k: 'contato', v: event.contact },
 ];
 ---
 
@@ -19,18 +21,26 @@ const specs: { k: string; v: string | null }[] = [
       id="sobre-title"
       eyebrow="Sobre o evento"
       title="Três dias para tirar uma ideia do papel"
-      lead="O Hackathon Univassouras reúne estudantes em equipes para criar soluções de software em três dias, com acompanhamento dos professores dos cursos."
+      lead="Uma maratona de três dias em que equipes de estudantes desenvolvem protótipos funcionais de software (aplicativos, sistemas web, jogos e soluções de IoT) para problemas reais de Maricá e de áreas parceiras, com mentoria dos professores."
     />
 
     <div class="grid gap-6 lg:grid-cols-[1.1fr_1fr]">
       <!-- ficha técnica do evento -->
-      <dl class="panel spec p-6 font-mono text-sm sm:p-8">
+      <dl class="panel spec self-start p-6 font-mono text-sm sm:p-8 lg:sticky lg:top-24">
         <p class="mb-5 text-xs tracking-[0.2em] text-stone uppercase" aria-hidden="true">hackathon.config</p>
         {
           specs.map((s) => (
             <div class="spec-row">
               <dt class="text-sky">{s.k}</dt>
-              <dd>{s.v ?? <UnderConstruction />}</dd>
+              <dd class="min-w-0 break-words">
+                {s.v === null ? (
+                  <UnderConstruction />
+                ) : s.k === 'contato' ? (
+                  <a href={`mailto:${s.v}`} class="text-sky underline underline-offset-4 [overflow-wrap:anywhere] hover:text-paper">{s.v}</a>
+                ) : (
+                  s.v
+                )}
+              </dd>
             </div>
           ))
         }
@@ -59,14 +69,19 @@ const specs: { k: string; v: string | null }[] = [
           <h3 id="premiacao-title" class="font-display text-2xl font-bold">Premiação</h3>
           {
             prizes.length ? (
-              <ol class="mt-4 space-y-2">
-                {prizes.map((p) => (
-                  <li class="flex justify-between gap-4 border-b border-white/8 pb-2">
-                    <span class="font-display font-bold text-rose">{p.place}</span>
-                    <span class="text-paper/85">{p.prize}</span>
-                  </li>
-                ))}
-              </ol>
+              <>
+                <ol class="mt-4 space-y-2">
+                  {prizes.map((p) => (
+                    <li class="flex justify-between gap-4 border-b border-white/8 pb-2">
+                      <span class="shrink-0 font-display font-bold text-rose">{p.place}</span>
+                      <span class="text-right text-paper/85">{p.prize}</span>
+                    </li>
+                  ))}
+                </ol>
+                <p class="mt-4 flex flex-wrap items-center gap-2 text-sm text-stone">
+                  <UnderConstruction label="Valores a definir" /> {prizesNote}
+                </p>
+              </>
             ) : (
               <UnderConstruction variant="block" class="mt-4" hint="Os prêmios das equipes vencedoras serão divulgados em breve." />
             )
