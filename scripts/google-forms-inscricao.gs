@@ -3,10 +3,10 @@
  * Baseado no item 5.2 do edital: equipe, integrantes (nome, curso, período, matrícula),
  * líder e contato, e 3 desafios em ordem de preferência. Inscrição individual (item 4.6).
  *
- * Como usar: Google Apps Script → colar este código → executar a função montarFormulario.
+ * Como usar: no formulário, Mais (⋮) → Apps Script → colar este código → executar a função montarFormulario.
+ * O script é vinculado ao formulário (usa getActiveForm), assim roda na conta dona do formulário.
  * ATENÇÃO: apaga todas as perguntas existentes no formulário antes de montar.
  */
-const FORM_ID = '1GIeUVz3WX6q7avka3A9ka076pCp5UKpccfIRzjLvC1E';
 const SITE = 'https://hackathon-univassouras-marica.vercel.app';
 
 const CURSOS_TI = ['Engenharia de Software', 'Análise e Desenvolvimento de Sistemas'];
@@ -27,7 +27,7 @@ const DESAFIOS = [
 ];
 
 function montarFormulario() {
-  const form = FormApp.openById(FORM_ID);
+  const form = FormApp.getActiveForm();
 
   // limpa o formulário
   form.getItems().forEach((it) => form.deleteItem(it));
