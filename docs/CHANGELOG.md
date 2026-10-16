@@ -189,3 +189,4 @@ Uma entrada por etapa de desenvolvimento (cada etapa = um commit).
 - Publicado para "qualquer pessoa com o link". Link curto: https://forms.gle/sEAVnj7edWpJw6Rz7
 - `event.registrationUrl` preenchido: os botões de inscrição (header, hero, faixa de inscrição e menu mobile) abrem o formulário em nova aba, e o JSON-LD passa a ter a oferta de inscrição.
 - Formulário, campo "Curso" da inscrição individual: virou múltipla escolha com a opção "Outro: ___" para digitar o curso, a pedido. O campo "E-mail" repetido dessa seção foi removido, porque o formulário já coleta o e-mail no início.
+- Inscrição **gratuita**: resposta do FAQ preenchida e faixa de inscrição atualizada. Saiu o "aguarde a confirmação por e-mail", porque o formulário não envia confirmação automática. Item removido do PDF de pendências.

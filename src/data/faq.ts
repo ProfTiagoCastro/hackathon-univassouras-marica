@@ -9,7 +9,7 @@ export const faq: { question: string; answer: string | null }[] = [
     answer:
       'Estudantes regularmente matriculados em Engenharia de Software ou Análise e Desenvolvimento de Sistemas da Univassouras, Campus Maricá. Cada equipe pode incluir até 2 estudantes de outros cursos (como Enfermagem, Nutrição, Educação Física ou Administração), que atuam como especialistas de domínio.',
   },
-  { question: 'Quanto custa a inscrição?', answer: null },
+  { question: 'Quanto custa a inscrição?', answer: 'Nada: a inscrição é gratuita. É só preencher o formulário de inscrição.' },
   {
     question: 'Quantas pessoas por equipe?',
     answer: 'De 3 a 5 integrantes, com a maioria de estudantes de ESW ou ADS. Cada estudante participa de apenas uma equipe, e cada equipe desenvolve um único desafio.',

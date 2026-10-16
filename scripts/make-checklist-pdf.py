@@ -221,7 +221,6 @@ def build(path):
     d.labeled('Início das inscrições')
     d.labeled('Encerramento das inscrições')
     d.labeled('Divulgação da alocação dos desafios')
-    d.labeled('A inscrição é gratuita? (se não, qual o valor)', h=24)
 
     d.section(6, 'Local')
     d.labeled('Endereço completo do campus', h=30, multiline=True)
