@@ -188,3 +188,4 @@ Uma entrada por etapa de desenvolvimento (cada etapa = um commit).
 - Visual: cabeçalho próprio (`docs/form-header.png`, gerado por `scripts/make-form-header.mjs`), cor bordô do Hackathon, Chakra Petch nos títulos e IBM Plex Sans no texto (as fontes do site).
 - Publicado para "qualquer pessoa com o link". Link curto: https://forms.gle/sEAVnj7edWpJw6Rz7
 - `event.registrationUrl` preenchido: os botões de inscrição (header, hero, faixa de inscrição e menu mobile) abrem o formulário em nova aba, e o JSON-LD passa a ter a oferta de inscrição.
+- Formulário, campo "Curso" da inscrição individual: virou múltipla escolha com a opção "Outro: ___" para digitar o curso, a pedido. O campo "E-mail" repetido dessa seção foi removido, porque o formulário já coleta o e-mail no início.

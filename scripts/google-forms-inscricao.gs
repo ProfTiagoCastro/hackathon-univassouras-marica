@@ -117,7 +117,13 @@ function montarFormulario() {
   form.addTextItem().setTitle('Nome completo').setRequired(true);
   // o e-mail já é coletado no início do formulário (setCollectEmail)
   addWhatsApp(form, 'WhatsApp');
-  form.addListItem().setTitle('Curso').setChoiceValues(CURSOS_TI.concat(['Outro curso da Univassouras (Enfermagem, Nutrição, Educação Física, Administração…)'])).setRequired(true);
+  form
+    .addMultipleChoiceItem()
+    .setTitle('Curso')
+    .setHelpText('De outro curso da Univassouras (Enfermagem, Nutrição, Educação Física, Administração…)? Marque "Outro" e escreva o nome do curso.')
+    .setChoiceValues(CURSOS_TI)
+    .showOtherOption(true)
+    .setRequired(true);
   form.addListItem().setTitle('Período').setChoiceValues(PERIODOS).setRequired(true);
   addMatricula(form, 'Matrícula');
   form
