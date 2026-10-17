@@ -84,6 +84,10 @@ const kindLabel = { palestra: 'Palestra', minicurso: 'Minicurso', banca: 'Banca 
                       <p class="talk-speaker">
                         <span class="text-stone">{t.role}:</span> {t.speaker}
                       </p>
+                      <p class="talk-place">
+                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" /><circle cx="12" cy="10" r="3" /></svg>
+                        <span class="sr-only">Local:</span> {t.location ?? 'Local a definir'}
+                      </p>
                     </li>
                   ))}
                 </ul>
@@ -224,6 +228,18 @@ const kindLabel = { palestra: 'Palestra', minicurso: 'Minicurso', banca: 'Banca 
   .talk-speaker {
     font-size: 0.9rem;
     color: var(--color-paper);
+  }
+  .talk-place {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: auto;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--color-sky);
+  }
+  .talk-place svg {
+    flex: none;
   }
 
   .ghost-bar {

@@ -26,7 +26,7 @@ export const event = {
     /** Endereço completo (rua, número, bairro). */
     address: null as string | null,
     /** Sala/auditório onde o evento acontece. */
-    room: null as string | null,
+    room: 'Campus 2: Auditório, Sala 513 (Bloco 5) e Laboratório de Informática 3' as string | null,
     /** Texto usado na busca do mapa embutido do Google. */
     mapQuery: 'Universidade de Vassouras Campus Maricá',
   },

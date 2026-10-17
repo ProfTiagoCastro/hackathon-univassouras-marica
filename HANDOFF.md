@@ -1,7 +1,7 @@
 # HANDOFF: Site do Hackathon Univassouras Maricá
 
 > Documento de passagem de bastão. Atualizado a cada etapa concluída.
-> **Última atualização:** 2026-10-07 (fim do dia) · **Etapa atual:** 8 de 8 concluídas + ajustes mobile · **No ar:** https://hackathon-univassouras-marica.vercel.app
+> **Última atualização:** 2026-10-16 (horários e locais das palestras) · **Etapa atual:** 8 de 8 concluídas + ajustes mobile · **No ar:** https://hackathon-univassouras-marica.vercel.app
 
 ## 1. Resumo
 Site estático de divulgação do Hackathon (19, 20 e 21/10/2026) dos cursos de Engenharia de Software e ADS da Univassouras, Campus Maricá. Ele mostra a programação dos três dias, o botão de inscrição (Google Forms), os professores organizadores em cartões que giram, o **Mural** de fotos e vídeos por dia, o local e o FAQ.
@@ -48,13 +48,14 @@ O site está no ar, e o próximo passo é **alimentar as informações**. Itens 
 
 **Antes do evento (19/10):**
 - [x] **Link do Google Forms** ligado: https://forms.gle/sEAVnj7edWpJw6Rz7 (respostas em Forms › Respostas; para encerrar, desmarque "Aceitando respostas")
-- [ ] **Horários e atividades** de cada dia (início, fim, título, descrição curta, tipo: abertura, palestra, mentoria, mão na massa, intervalo, apresentação, premiação) → `schedule.ts`
-- [ ] **Regras** do hackathon (lista de itens) → `faq.ts` › `rules`
-- [ ] **Premiação** (colocação e prêmio) → `faq.ts` › `prizes`
-- [ ] **Respostas do FAQ** (perguntas já criadas: quem pode participar, custo, pessoas por equipe, equipe formada, notebook, certificado; dá para trocar ou incluir perguntas) → `faq.ts` › `faq`
-- [ ] **Público** e **formato** (ficha "Sobre") → `About.astro` › `specs`
-- [ ] **Endereço completo e sala/auditório** (deixa o pino do mapa exato) → `event.ts` › `location`
-- [ ] **Contato oficial** (e-mail ou Instagram) → `event.ts` › `contact`
+- [x] **Palestras e minicurso:** horários e locais oficiais preenchidos → `schedule.ts` › `talks` (`time`, `location`). Falta só o sobrenome do palestrante Rafael (19/10).
+- [ ] **Linha do tempo das atividades** (`activities`): é a proposta adaptada do edital, ainda a confirmar pela coordenação. Em 21/10 a avaliação ficou das 19h às 21h, como no horário oficial da banca → `schedule.ts`
+- [x] **Regras** do hackathon (do edital) → `faq.ts` › `rules`
+- [ ] **Premiação**: categorias preenchidas; faltam os prêmios de cada colocação → `faq.ts` › `prizes`
+- [ ] **Respostas do FAQ**: falta só "Preciso levar notebook?" → `faq.ts` › `faq`
+- [x] **Público** e **formato** (ficha "Sobre") → `About.astro` › `specs`
+- [ ] **Endereço completo** (deixa o pino do mapa exato). A sala já está preenchida: Campus 2, com Auditório, Sala 513 (Bloco 5) e Laboratório de Informática 3 → `event.ts` › `location`
+- [x] **Contato oficial** (e-mail da coordenação) → `event.ts` › `contact`
 - [ ] **Demais professores organizadores** (equipe do Hackathon com 7, e o último cartão sozinho na linha fica centralizado automaticamente; para incluir mais, adicione em `organizers` (pode usar `pending(n)` para um cartão "a definir"); parceiros HackEnf vão na lista `partners` de organizers.ts): nome, cargo, foto quadrada, formação, 4 a 7 especialidades, link do Lattes. O PDF do Lattes também serve, porque eu extraio os dados. → `organizers.ts` e `src/assets/professores/`
 
 **Durante e depois do evento:**

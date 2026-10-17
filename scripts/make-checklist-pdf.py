@@ -174,40 +174,25 @@ def build(path):
     d.field(M + 350, d.y - 9, W - M - (M + 350), 16, 'Data')
     d.y -= 30
 
-    d.section(1, 'Palestras e minicurso: horário e nome completo', 'Todas aparecem no site como "Horário a definir". Os encontros são das 18h às 21h. Informe o horário dentro dessa janela (ex.: 19h00 – 19h40) e, quando faltar, o nome completo do palestrante.')
-    d.table(
-        ['Dia', 'Atividade', 'Palestrante', 'Horário', 'Nome completo / ajuste'],
-        [40, 170, 78, 70, 113],
-        [
-            ['19/10', 'Empreendedorismo na Era Digital', 'Cláudio Eduardo Barral', '', None],
-            ['19/10', 'Das redes neurais aos LLMs', 'Laís Bordallo', '', None],
-            ['19/10', 'Quando a Máquina Aprende a Ouvir: IA na Escuta Psiquiátrica', 'Rafael', '', ''],
-            ['20/10', 'Da sala de aula ao mercado de tecnologia', 'Sandro Carvalho do Nascimento', '', None],
-            ['20/10', 'Minicurso: GitHub e Versionamento de Código', 'Anderson Souza', '', None],
-            ['21/10', 'Robótica Inteligente e ROS', 'Karen', '', ''],
-        ],
-        field_cols={3, 4},
-    )
-
-    d.section(2, 'Grade horária proposta (18h às 21h)', 'O edital previa atividades das 8h às 18h. O site agora mostra a mesma sequência adaptada à janela das 18h às 21h. Confirme ou ajuste cada bloco.')
+    d.section(1, 'Grade horária proposta (18h às 21h)', 'O edital previa atividades das 8h às 18h. O site agora mostra a mesma sequência adaptada à janela das 18h às 21h. Confirme ou ajuste cada bloco.')
     d.table(
         ['Dia', 'Proposta no site', 'OK? / ajuste'],
         [40, 271, 160],
         [
             ['19/10', '18h00 credenciamento e abertura · 18h30 desafios e regras · 19h00 formação das equipes e kits · 19h20 início do desenvolvimento com mentores (até 21h)', ''],
             ['20/10', '18h00 desenvolvimento com mentores, palestra e minicurso em paralelo · 20h20 checkpoint obrigatório (até 21h)', ''],
-            ['21/10', '18h00 sprint final e pitch · 18h40 entrega (congelamento) e apresentações à banca · 20h15 deliberação e voto do público · 20h30 encerramento e premiação', ''],
+            ['21/10', '18h00 sprint final e pitch · 18h50 entrega (congelamento) · 19h00–21h00 avaliação pela banca, com deliberação, voto do público e premiação ao final', ''],
         ],
         field_cols={2},
         row_h=30,
     )
-    d.labeled('O edital previa 210 min de apresentações (~15 min por equipe). Na janela da noite cabem ~95 min (~6 equipes por banca). Haverá bancas paralelas ou tempo menor por equipe?', h=40, multiline=True, label_w=200)
+    d.labeled('O edital previa 210 min de apresentações (~15 min por equipe). A avaliação das 19h às 21h tem 120 min (~8 equipes por banca, já contando a premiação). Haverá bancas paralelas ou tempo menor por equipe?', h=40, multiline=True, label_w=200)
 
-    d.section(3, 'Banca avaliadora (21/10, à noite)', 'O edital pede no mínimo 3 avaliadores (docentes e/ou convidados externos).')
+    d.section(2, 'Banca avaliadora (21/10, à noite)', 'O edital pede no mínimo 3 avaliadores (docentes e/ou convidados externos).')
     for i in range(1, 6):
         d.labeled(f'Avaliador(a) {i}' + (' (opcional)' if i > 3 else ''))
 
-    d.section(4, 'Premiação', 'O site mostra as categorias e os prêmios especiais do edital, mas o prêmio de cada colocação está como "a definir".')
+    d.section(3, 'Premiação', 'O site mostra as categorias e os prêmios especiais do edital, mas o prêmio de cada colocação está como "a definir".')
     d.table(
         ['Colocação', 'Categoria Software (desafios 1, 2, 9, 10, 11)', 'Categoria IoT (desafios 3 a 8)'],
         [70, 201, 200],
@@ -216,20 +201,19 @@ def build(path):
     )
     d.labeled('Prêmios especiais (Melhor Solução Técnica, Mais Inovadora, Melhor UX, Destaque Multidisciplinar, Prêmio do Público)', h=34, multiline=True)
 
-    d.section(5, 'Inscrições', 'Datas em branco no edital (itens 5.1, 5.3 e 11). O formulário de inscrição já está pronto e ligado ao site.')
+    d.section(4, 'Inscrições', 'Datas em branco no edital (itens 5.1, 5.3 e 11). O formulário de inscrição já está pronto e ligado ao site.')
     d.labeled('Início das inscrições')
     d.labeled('Encerramento das inscrições')
     d.labeled('Divulgação da alocação dos desafios')
 
-    d.section(6, 'Local')
+    d.section(5, 'Local')
     d.labeled('Endereço completo do campus', h=30, multiline=True)
-    d.labeled('Sala / auditório / laboratórios', h=30, multiline=True)
 
-    d.section(7, 'Perguntas frequentes e certificado')
+    d.section(6, 'Perguntas frequentes e certificado')
     d.labeled('Os participantes precisam levar notebook?', h=30, multiline=True)
     d.labeled('Carga horária do certificado (item 14)')
 
-    d.section(8, 'Minicursos de apoio (item 13 do edital)', 'O edital prevê os minicursos abaixo "a confirmar". Marque os confirmados e informe dia, horário e ministrante para entrarem na programação.')
+    d.section(7, 'Minicursos de apoio (item 13 do edital)', 'O edital prevê os minicursos abaixo "a confirmar". Marque os confirmados e informe dia, horário e ministrante para entrarem na programação.')
     d.table(
         ['Minicurso', 'Dia e horário', 'Ministrante'],
         [205, 120, 146],
@@ -247,8 +231,9 @@ def build(path):
         row_h=22,
     )
 
-    d.section(9, 'Confirmações rápidas')
+    d.section(8, 'Confirmações rápidas')
     d.labeled('Nome oficial do evento: o edital usa "Hackathon ESW & ADS 2026" e o site usa "Hackathon Univassouras". Qual usar?', h=34, multiline=True, label_w=200)
+    d.labeled('Nome completo do palestrante Rafael (19/10, 20h00, "Quando a Máquina Aprende a Ouvir")', h=24, label_w=200)
     d.labeled('Podemos publicar o PDF do edital no site (botão "Baixar edital")?', h=24, label_w=200)
     d.labeled('Outras observações', h=60, multiline=True, label_w=200)
 

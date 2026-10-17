@@ -191,3 +191,14 @@ Uma entrada por etapa de desenvolvimento (cada etapa = um commit).
 - Formulário, campo "Curso" da inscrição individual: virou múltipla escolha com a opção "Outro: ___" para digitar o curso, a pedido. O campo "E-mail" repetido dessa seção foi removido, porque o formulário já coleta o e-mail no início.
 - Inscrição **gratuita**: resposta do FAQ preenchida e faixa de inscrição atualizada. Saiu o "aguarde a confirmação por e-mail", porque o formulário não envia confirmação automática. Item removido do PDF de pendências.
 - Palestra de 20/10: **Sandro Carvalho do Nascimento**, "Da sala de aula ao mercado de tecnologia: construindo uma carreira em constante evolução" (antes "Título em definição"). PDF de pendências atualizado: o título saiu da lista e continua pendente só o horário.
+
+## Horários e locais oficiais das palestras (2026-10-16)
+- Cada cartão de palestra/minicurso mostra o **horário oficial** e o **local** (novo campo `location` em `Talk`, com ícone de pino). Os cartões estão em ordem de horário.
+  - 19/10: Laís Bordallo 19h–20h (Auditório); Cláudio Eduardo Barral 19h30–20h30 (Sala 513, Bloco 5); Rafael 20h–21h (Auditório).
+  - 20/10: minicurso de Anderson Souza 19h–21h (Laboratório de Informática 3); Sandro Carvalho 19h30–20h30 (Auditório), com o **novo título** "Estratégia, Competências e Excelência Profissional na Carreira em Tecnologia da Informação".
+  - 21/10: Karen Olinto 19h–20h (Auditório); avaliação pela banca 19h–21h (dependências do Campus 2).
+  - Todos no Campus 2. A indicação de quem convidou cada palestrante não aparece no site, a pedido.
+- Linha do tempo de 21/10 ajustada ao horário da banca: sprint e pitch 18h00–18h50, entrega às 18h50, avaliação das 19h às 21h (deliberação, Prêmio do Público e premiação ao final).
+- `event.location.room` preenchido (seção Local). Aviso da programação: palestras confirmadas; atividades indicativas.
+- PDF de pendências: a seção de palestras saiu; a grade de 21/10 e a pergunta sobre o tempo das apresentações foram atualizadas; "sala" saiu de Local; entrou "nome completo do palestrante Rafael" nas confirmações.
+

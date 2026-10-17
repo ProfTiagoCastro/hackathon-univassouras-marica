@@ -27,6 +27,8 @@ export interface Talk {
   /** 'Palestrante' | 'Instrutor' | 'Banca' ... */
   role: string;
   kind: 'palestra' | 'minicurso' | 'banca';
+  /** Sala/auditório (null = local a definir) */
+  location: string | null;
 }
 
 export interface EventDay {
@@ -55,7 +57,7 @@ export const dailyWindow = { start: '18:00', end: '21:00' };
 
 /** Aviso exibido abaixo das abas. */
 export const scheduleNote =
-  'Encontros diários das 18h às 21h. Programação indicativa (sequência do edital adaptada a esse horário), sujeita a ajustes pela organização.';
+  'Encontros diários das 18h às 21h. Horários e locais das palestras confirmados; a linha do tempo das atividades é indicativa e pode ter ajustes da organização.';
 
 export const schedule: EventDay[] = [
   {
@@ -68,29 +70,32 @@ export const schedule: EventDay[] = [
       { start: '18:00', end: '18:30', title: 'Credenciamento e abertura', description: 'Recepção dos participantes e palestra de abertura.', type: 'abertura' },
       { start: '18:30', end: '19:00', title: 'Apresentação dos desafios e das regras', type: 'abertura' },
       { start: '19:00', end: '19:20', title: 'Formação final das equipes', description: 'Retirada dos kits IoT e das amostras da Lagoa de Maricá.', type: 'abertura' },
-      { start: '19:20', end: '21:00', title: 'Início do desenvolvimento com plantão de mentores', description: 'Criação dos repositórios no GitHub.', type: 'desenvolvimento' },
+      { start: '19:20', end: '21:00', title: 'Início do desenvolvimento com plantão de mentores', description: 'Criação dos repositórios no GitHub. Palestras em paralelo.', type: 'desenvolvimento' },
     ],
     talks: [
       {
-        time: null,
-        title: 'Empreendedorismo na Era Digital: Oportunidades e Desafios para os Negócios do Futuro',
-        speaker: 'Cláudio Eduardo Barral',
-        role: 'Palestrante',
-        kind: 'palestra',
-      },
-      {
-        time: null,
+        time: '19:00 – 20:00',
         title: 'Das redes neurais aos LLMs: Quem domina a linguagem, domina a IA',
         speaker: 'Laís Bordallo',
         role: 'Palestrante',
         kind: 'palestra',
+        location: 'Auditório · Campus 2',
       },
       {
-        time: null,
+        time: '19:30 – 20:30',
+        title: 'Empreendedorismo na Era Digital: Oportunidades e Desafios para os Negócios do Futuro',
+        speaker: 'Cláudio Eduardo Barral',
+        role: 'Palestrante',
+        kind: 'palestra',
+        location: 'Sala 513 · Bloco 5 · Campus 2',
+      },
+      {
+        time: '20:00 – 21:00',
         title: 'Quando a Máquina Aprende a Ouvir: Inteligência Artificial na Escuta Psiquiátrica',
         speaker: 'Rafael',
         role: 'Palestrante',
         kind: 'palestra',
+        location: 'Auditório · Campus 2',
       },
     ],
   },
@@ -106,18 +111,20 @@ export const schedule: EventDay[] = [
     ],
     talks: [
       {
-        time: null,
-        title: 'Da sala de aula ao mercado de tecnologia: construindo uma carreira em constante evolução',
-        speaker: 'Sandro Carvalho do Nascimento',
-        role: 'Palestrante',
-        kind: 'palestra',
-      },
-      {
-        time: null,
+        time: '19:00 – 21:00',
         title: 'GitHub e Versionamento de Código: Colaboração, Projetos Reais e Valorização Curricular',
         speaker: 'Anderson Souza',
         role: 'Instrutor',
         kind: 'minicurso',
+        location: 'Laboratório de Informática 3 · Campus 2',
+      },
+      {
+        time: '19:30 – 20:30',
+        title: 'Estratégia, Competências e Excelência Profissional na Carreira em Tecnologia da Informação',
+        speaker: 'Sandro Carvalho',
+        role: 'Palestrante',
+        kind: 'palestra',
+        location: 'Auditório · Campus 2',
       },
     ],
   },
@@ -128,21 +135,27 @@ export const schedule: EventDay[] = [
     label: '21 out',
     theme: 'Entrega, apresentações e premiação',
     activities: [
-      { start: '18:00', end: '18:40', title: 'Sprint final e oficina de pitch', type: 'desenvolvimento' },
-      { start: '18:40', title: 'Prazo final de entrega', description: 'Congelamento dos repositórios.', type: 'apresentacao' },
-      { start: '18:40', end: '20:15', title: 'Avaliação dos desafios das equipes', description: 'Apresentações e arguição técnica perante a banca.', type: 'apresentacao' },
-      { start: '20:15', end: '20:30', title: 'Deliberação da banca', description: 'Votação do Prêmio do Público.', type: 'apresentacao' },
-      { start: '20:30', end: '21:00', title: 'Encerramento e premiação', description: 'Devolução dos kits IoT.', type: 'premiacao' },
+      { start: '18:00', end: '18:50', title: 'Sprint final e oficina de pitch', type: 'desenvolvimento' },
+      { start: '18:50', title: 'Prazo final de entrega', description: 'Congelamento dos repositórios.', type: 'apresentacao' },
+      { start: '19:00', end: '21:00', title: 'Avaliação dos desafios das equipes', description: 'Apresentações e arguição técnica perante a banca. Ao final: deliberação, Prêmio do Público, encerramento e premiação.', type: 'apresentacao' },
     ],
     talks: [
       {
-        time: null,
+        time: '19:00 – 20:00',
         title: 'Robótica Inteligente e ROS: A Ponte de Comunicação entre Programas e Sistemas Robóticos',
-        speaker: 'Karen',
+        speaker: 'Karen Olinto',
         role: 'Palestrante',
         kind: 'palestra',
+        location: 'Auditório · Campus 2',
       },
-      { time: null, title: 'Avaliação dos Desafios das Equipes', speaker: 'Membros a definir', role: 'Banca', kind: 'banca' },
+      {
+        time: '19:00 – 21:00',
+        title: 'Avaliação dos Desafios das Equipes',
+        speaker: 'Membros da Banca Avaliadora',
+        role: 'Banca',
+        kind: 'banca',
+        location: 'Dependências do Campus 2',
+      },
     ],
   },
 ];
