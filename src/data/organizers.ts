@@ -69,6 +69,9 @@ export const organizers: Organizer[] = [
     education: [
       'Doutorando em Engenharia Elétrica · CEFET-RJ',
       'Mestre em Eng. Elétrica e Telecomunicações · UFF',
+      'Engenheiro de Segurança do Trabalho',
+      'Especialista em Engenharia de Automação',
+      'Especialista em Segurança da Informação',
       'Graduado em Eng. de Software, Sistemas de Informação e ADS',
     ],
     specialties: [
