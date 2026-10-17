@@ -75,9 +75,15 @@ const displayName = o.name ?? 'Professor(a) organizador(a)';
               )}
 
               <ul class="chips mt-4" aria-label="Especializações">
-                {o.specialties.map((s) => (
-                  <li class="chip">{s}</li>
-                ))}
+                {o.specialties.map((s) => {
+                  const [main, detail] = s.split('\n');
+                  return (
+                    <li class="chip">
+                      {main}
+                      {detail && <span class="chip-detail">{detail}</span>}
+                    </li>
+                  );
+                })}
               </ul>
 
               {o.lattes && (
@@ -328,6 +334,14 @@ const displayName = o.name ?? 'Professor(a) organizador(a)';
     background: rgb(6 11 24 / 0.55);
     font-size: 0.76rem;
     line-height: 1.2;
+  }
+  .chip-detail {
+    display: block;
+    margin-top: 0.15rem;
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.04em;
+    color: var(--color-stone);
   }
   .lattes {
     display: inline-flex;

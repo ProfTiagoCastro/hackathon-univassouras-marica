@@ -24,6 +24,7 @@ export interface Organizer {
   role: string | null;
   photo: ImageMetadata | null;
   education: string[];
+  /** Um `\n` põe o complemento numa segunda linha menor dentro do mesmo chip. */
   specialties: string[];
   lattes?: string;
 }
@@ -55,7 +56,7 @@ export const organizers: Organizer[] = [
       'Redes de Computadores',
       'Gerenciamento de Projetos',
       'Governança de Dados em Inteligência Artificial',
-      'Tecnologia da Informação na Saúde (eHealth · HIT · EMR · HIS · HIM)',
+      'Tecnologia da Informação na Saúde\neHealth · HIT · EMR · HIS · HIM',
       'Diretor de Pesquisas do IDCiber',
     ],
     lattes: 'https://lattes.cnpq.br/9415369722030148',

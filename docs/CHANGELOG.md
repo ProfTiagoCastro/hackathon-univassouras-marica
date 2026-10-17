@@ -215,4 +215,4 @@ Uma entrada por etapa de desenvolvimento (cada etapa = um commit).
 ## Tema da edição no hero (2026-10-17)
 - A pedido da coordenação, abaixo de "IDEIAS QUE TRANSFORMAM": **"Softwares e IoT em Ação: Soluções Inteligentes para Desafios Reais"** (`event.theme`).
 - Exibido como uma plaquinha "Tema 2026", com o canto cortado da faixa da logo e barra bordô na lateral. O texto antes dos ":" fica em destaque e o complemento fica mais leve, para não pesar o hero. O espaço até as três "batidas" diminuiu um pouco para compensar. Testado em 1440 e 375 px.
-
+- Cartão do Wellington: as siglas "eHealth · HIT · EMR · HIS · HIM" passaram para uma segunda linha, menor, dentro do mesmo chip de "Tecnologia da Informação na Saúde" (antes ficavam entre parênteses ao lado). Nos dados, um `\n` na especialidade separa o título do complemento.
