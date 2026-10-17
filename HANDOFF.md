@@ -1,7 +1,7 @@
 # HANDOFF: Site do Hackathon Univassouras Maricá
 
 > Documento de passagem de bastão. Atualizado a cada etapa concluída.
-> **Última atualização:** 2026-10-17 (conteúdo cruzado com o Edital nº 002/2026 + seção Desafios) · **Etapa atual:** 8 de 8 concluídas + ajustes mobile · **No ar:** https://hackathon-univassouras-marica.vercel.app
+> **Última atualização:** 2026-10-17 (conteúdo cruzado com o Edital nº 002/2026, seção Desafios, edital para download; publicado no commit `900f9a6`) · **Etapa atual:** 8 de 8 concluídas + ajustes mobile · **No ar:** https://hackathon-univassouras-marica.vercel.app
 
 ## 1. Resumo
 Site estático de divulgação do Hackathon (19, 20 e 21/10/2026) dos cursos de Engenharia de Software e ADS da Univassouras, Campus Maricá. Ele mostra a programação dos três dias, o botão de inscrição (Google Forms), os professores organizadores em cartões que giram, o **Mural** de fotos e vídeos por dia, o local e o FAQ.
@@ -79,6 +79,9 @@ O site está no ar, e o próximo passo é **alimentar as informações**. Itens 
 - **Repositório (público):** https://github.com/ProfTiagoCastro/hackathon-univassouras-marica
 - **Vercel:** equipe *TeamBombista* (conta tiagoflp1@hotmail.com), projeto `hackathon-univassouras-marica`, preset Astro (build `npm run build`, saída `dist`).
 - **Publicar uma atualização:** é só `git push` na branch `main`. A Vercel faz o build e publica sozinha em ~30 s. Pushes em outras branches geram URLs de preview.
+- **Dois computadores:** o projeto também é editado num segundo computador (`C:\Users\Tiago\Desktop\SiteHackaton`, fora do OneDrive), com a mesma identidade git (*Tiago Ruiz de Castro <tiago.castro@univassouras.edu.br>*) e push pela conta ProfTiagoCastro. Antes de editar em qualquer um deles, rode `git pull`.
+- **Último deploy:** 17/10/2026, commit `900f9a6`, conferido no ar (seção Desafios e `/edital-hackathon-2026.pdf` respondendo).
+- O `package-lock.json` desse segundo computador ficou com 7 linhas a mais, por causa do `npm install` no Windows. Elas **não** foram commitadas e podem ser descartadas com `git checkout package-lock.json`.
 
 **Como a ligação ficou configurada (para não quebrar):**
 - O login da Vercel usa o GitHub **ProfTiagoCastro** (Account Settings → Authentication). Antes era a oBombista, mas a Vercel só enxerga instalações do app que pertencem à conta GitHub do login.
@@ -104,4 +107,5 @@ Testado com emulação mobile no Chrome. O usuário aprovou a correção dos car
 - **GitHub ProfTiagoCastro:** a verificação em duas etapas (2FA) é obrigatória a partir de **07/11/2026**. Ative antes disso, ou a conta fica restrita, e com ela os deploys.
 - **Fotos do Mural:** prefira JPG de até ~3 MB. O build gera versões WebP otimizadas sozinho. Vídeos longos ficam melhor no YouTube (o repositório e o deploy ficam leves).
 - O PDF do Lattes fica em `docs/referencias/` e **não** vai para o git nem para o site.
-- A pasta está no OneDrive. Se a `node_modules` deixar a sincronização lenta, pause a sincronização durante o desenvolvimento.
+- **Skills de front-end:** antes de qualquer alteração visual, carregue a skill `frontend-design` (plugin `frontend-design@claude-plugins-official`, já instalado) e as skills de design (`design:design-system`, `design:ux-copy`, `design:design-critique`). Regra adotada no enxugamento: cada informação aparece num lugar só.
+- No primeiro computador, a pasta está no OneDrive. Se a `node_modules` deixar a sincronização lenta, pause a sincronização durante o desenvolvimento.
