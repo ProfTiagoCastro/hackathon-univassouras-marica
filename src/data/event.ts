@@ -7,6 +7,8 @@ export const event = {
   name: 'Hackathon Univassouras',
   edition: 'Campus Maricá · 2026',
   tagline: 'Ideias que transformam',
+  /** Tema da edição (aparece logo abaixo da tagline, no hero). Parte antes dos ":" fica em destaque. */
+  theme: 'Softwares e IoT em Ação: Soluções Inteligentes para Desafios Reais',
   courses: ['Engenharia de Software', 'Análise e Desenvolvimento de Sistemas'],
 
   /** Início e fim do evento (horário de Brasília, UTC-3). Encontros diários das 18h às 21h. */

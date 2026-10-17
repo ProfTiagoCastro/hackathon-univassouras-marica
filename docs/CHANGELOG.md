@@ -212,3 +212,7 @@ Uma entrada por etapa de desenvolvimento (cada etapa = um commit).
 - A pedido dele: mestrado corrigido para **Gestão do Trabalho (Ênfase Investigativa em Governança Corporativa de TI)**.
 - "Educação a Distância" removido. Entraram 3 itens: Governança de Dados em Inteligência Artificial; Tecnologia da Informação na Saúde (eHealth · HIT · EMR · HIS · HIM); Diretor de Pesquisas do IDCiber. O verso tem 8 itens agora, e a linha da grade cresce sozinha para caber (testado em 1440 e 375 px).
 
+## Tema da edição no hero (2026-10-17)
+- A pedido da coordenação, abaixo de "IDEIAS QUE TRANSFORMAM": **"Softwares e IoT em Ação: Soluções Inteligentes para Desafios Reais"** (`event.theme`).
+- Exibido como uma plaquinha "Tema 2026", com o canto cortado da faixa da logo e barra bordô na lateral. O texto antes dos ":" fica em destaque e o complemento fica mais leve, para não pesar o hero. O espaço até as três "batidas" diminuiu um pouco para compensar. Testado em 1440 e 375 px.
+
