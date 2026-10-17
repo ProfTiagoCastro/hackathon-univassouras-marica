@@ -1,6 +1,6 @@
 ---
 import RegisterButton from './ui/RegisterButton.astro';
-import { hasRegistration } from '../data/event';
+import { event, hasRegistration } from '../data/event';
 ---
 
 <section id="inscricao" class="py-20 sm:py-28" aria-labelledby="inscricao-title">
@@ -15,18 +15,40 @@ import { hasRegistration } from '../data/event';
           <p class="mt-4 max-w-xl text-pretty text-paper/80">
             {
               hasRegistration
-                ? 'A inscrição é gratuita e feita por um formulário do Google, em poucos minutos. Vale para equipes já formadas e para quem ainda está sem equipe.'
+                ? 'Gratuita, por um formulário do Google, para equipes formadas ou para quem ainda está sem equipe.'
                 : 'A inscrição será feita por um formulário do Google, que será publicado aqui em breve. Volte nesta página para se inscrever.'
             }
           </p>
+          {hasRegistration && <p class="mt-3 font-display text-lg font-bold text-rose">Inscrições {event.registrationPeriod.replace(' de 2026', '')}</p>}
         </div>
-        <RegisterButton />
+        <div class="flex flex-col items-start gap-4 md:items-center">
+          <RegisterButton />
+          <a href={event.edital.url} download class="edital-link">
+            <svg aria-hidden="true" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14" /></svg>
+            Baixar o edital
+            <span class="inline-block text-stone">(PDF, {event.edital.size})</span>
+          </a>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <style>
+  .edital-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    min-height: 2.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--color-sky);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .edital-link:hover {
+    color: var(--color-paper);
+  }
   .cta-band {
     position: relative;
     overflow: hidden;

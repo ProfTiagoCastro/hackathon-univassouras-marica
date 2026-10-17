@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import About from '../components/About.astro';
+import Challenges from '../components/Challenges.astro';
 import Schedule from '../components/Schedule.astro';
 import OrganizersTeaser from '../components/OrganizersTeaser.astro';
 import RegisterCta from '../components/RegisterCta.astro';
@@ -34,6 +35,7 @@ const jsonLd = {
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <Hero />
   <About />
+  <Challenges />
   <Schedule />
   <OrganizersTeaser />
   <RegisterCta />

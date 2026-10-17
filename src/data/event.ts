@@ -22,11 +22,18 @@ export const event = {
    */
   registrationUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSdvVLW9DMshuGJ5jWtaNKXuuD5kTVjdGU3o6Z_4J9sxm3egpA/viewform',
 
+  /** Período de inscrição e divulgação da alocação dos desafios (edital, itens 5.1, 5.3 e 11). */
+  registrationPeriod: 'de 17 a 19 de outubro de 2026',
+  allocationDate: '19 de outubro',
+
+  /** Edital oficial em PDF (arquivo em public/). Para trocar, substitua o arquivo mantendo o nome e atualize o tamanho. */
+  edital: { url: '/edital-hackathon-2026.pdf', label: 'Edital nº 002/2026', size: '650 KB' },
+
   location: {
     name: 'Univassouras – Campus Maricá',
     city: 'Maricá – RJ',
     /** Endereço completo (rua, número, bairro). */
-    address: null as string | null,
+    address: 'Av. Governador Roberto Silveira, nº 1954, Flamengo, Maricá – RJ' as string | null,
     /** Sala/auditório onde o evento acontece. */
     room: 'Campus 2: Auditório, Sala 513 (Bloco 5) e Laboratório de Informática 3' as string | null,
     /** Texto usado na busca do mapa embutido do Google. */

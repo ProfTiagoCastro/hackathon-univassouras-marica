@@ -1,7 +1,7 @@
 # HANDOFF: Site do Hackathon Univassouras Maricá
 
 > Documento de passagem de bastão. Atualizado a cada etapa concluída.
-> **Última atualização:** 2026-10-17 (fotos dos palestrantes) · **Etapa atual:** 8 de 8 concluídas + ajustes mobile · **No ar:** https://hackathon-univassouras-marica.vercel.app
+> **Última atualização:** 2026-10-17 (conteúdo cruzado com o Edital nº 002/2026 + seção Desafios) · **Etapa atual:** 8 de 8 concluídas + ajustes mobile · **No ar:** https://hackathon-univassouras-marica.vercel.app
 
 ## 1. Resumo
 Site estático de divulgação do Hackathon (19, 20 e 21/10/2026) dos cursos de Engenharia de Software e ADS da Univassouras, Campus Maricá. Ele mostra a programação dos três dias, o botão de inscrição (Google Forms), os professores organizadores em cartões que giram, o **Mural** de fotos e vídeos por dia, o local e o FAQ.
@@ -20,6 +20,7 @@ Stack: **Astro 7 + Tailwind 4 + TypeScript**, com deploy na **Vercel**. Detalhes
 | 7 | Polimento: SEO, acessibilidade, performance | ✅ concluída |
 | 8 | Deploy na Vercel | ✅ concluída (07/10/2026) |
 | + | Aba Mural (fotos e vídeos por dia) | ✅ concluída (aguardando conteúdo) |
+| + | Seção Desafios (11 desafios, níveis, critérios da banca) | ✅ concluída (17/10/2026) |
 
 ## 3. Onde editar cada informação
 | O que | Arquivo | Campo |
@@ -31,6 +32,8 @@ Stack: **Astro 7 + Tailwind 4 + TypeScript**, com deploy na **Vercel**. Detalhes
 | Professores | `src/data/organizers.ts` | equipe do Hackathon em `organizers` (trocar um `pending(n)`); parceria HackEnf FACMAR em `partners` (seção própria, cartão azul) |
 | Fotos dos professores | `src/assets/professores/` | jpg quadrado, mín. 600×600 |
 | FAQ, regras, premiação | `src/data/faq.ts` | `faq`, `rules`, `prizes` |
+| Desafios, níveis, critérios da banca | `src/data/challenges.ts` | `challenges`, `criteria` (seção em `Challenges.astro`) |
+| Período de inscrição | `src/data/event.ts` | `registrationPeriod`, `allocationDate` |
 | **Fotos do Mural** | `src/assets/mural/dia-1`, `dia-2`, `dia-3` | é só colocar os arquivos .jpg/.png/.webp na pasta do dia (ordem alfabética; ex.: `01-abertura.jpg`) |
 | Legendas das fotos | `src/data/mural.ts` | `captions` (ex.: `'dia-1/01-abertura.jpg': 'Abertura'`) |
 | **Vídeos do Mural** | `src/data/mural.ts` | `videos` → `{ title, youtube: 'ID' }` ou `{ title, file: '/mural/video.mp4' }` (arquivo em `public/mural/`) |
@@ -39,6 +42,7 @@ Stack: **Astro 7 + Tailwind 4 + TypeScript**, com deploy na **Vercel**. Detalhes
 | Banner do HackEnf (hero) | `src/assets/banners/hackenf.jpg` | trocar o arquivo mantendo o nome; o deck fica em `Hero.astro` |
 | Logos do rodapé | `src/assets/logos/` (`univassouras-marica.png`, `facmar.png`) | tamanhos em `Footer.astro` (`.logo--univ`, `.logo--facmar`) |
 | Domínio final (SEO) | `astro.config.mjs` + `public/robots.txt` | `site` / linha `Sitemap:` |
+| **Edital (PDF para download)** | `public/edital-hackathon-2026.pdf` + `src/data/event.ts` › `edital` | trocar o arquivo mantendo o nome; link na ficha do "Sobre" e no bloco de inscrição |
 | Config. da Vercel | `vercel.json` | só `trailingSlash: false` (URLs sem barra final) |
 
 Campos vazios ou `null` aparecem no site com o selo **EM CONSTRUÇÃO**.
@@ -49,12 +53,13 @@ O site está no ar, e o próximo passo é **alimentar as informações**. Itens 
 **Antes do evento (19/10):**
 - [x] **Link do Google Forms** ligado: https://forms.gle/sEAVnj7edWpJw6Rz7 (respostas em Forms › Respostas; para encerrar, desmarque "Aceitando respostas")
 - [x] **Palestras e minicurso:** horários e locais oficiais preenchidos → `schedule.ts` › `talks` (`time`, `location`). Fotos dos palestrantes em `src/assets/palestrantes/` (quadradas, rosto centralizado), ligadas pelo campo `photo`; sem foto, o cartão mostra as iniciais.
-- [ ] **Linha do tempo das atividades** (`activities`): é a proposta adaptada do edital, ainda a confirmar pela coordenação. Em 21/10 a avaliação ficou das 19h às 21h, como no horário oficial da banca → `schedule.ts`
+- [x] **Linha do tempo das atividades** (`activities`): agora segue exatamente os horários do edital (item 12), por decisão do Tiago em 17/10. Inclui os eventos/experiências gamers/sorteios do dia 20, a entrega às 19h00 do dia 21 e a banca das 19h às 20h (o cartão da banca também passou para 19h–20h) → `schedule.ts`
+- [x] **Edital cruzado com o site** (17/10): premiação por colocação, período de inscrição (17 a 19/10), certificado de 20 h, regra de desclassificação, seção Desafios. Depois veio um enxugamento com a skill frontend-design: cada informação aparece num lugar só (kits na nota IoT e na programação, 7+5 min só na banca, checkpoint só na programação), os desafios abrem ao tocar (`<details>`) e atividades no mesmo horário foram unidas. Os 9 minicursos do edital (item 13) **não** foram incluídos, por decisão do Tiago; o site mantém só os confirmados.
 - [x] **Regras** do hackathon (do edital) → `faq.ts` › `rules`
-- [ ] **Premiação**: categorias preenchidas; faltam os prêmios de cada colocação → `faq.ts` › `prizes`
-- [ ] **Respostas do FAQ**: falta só "Preciso levar notebook?" → `faq.ts` › `faq`
+- [x] **Premiação**: prêmios de cada colocação conforme o edital (item 10) → `faq.ts` › `prizes`
+- [x] **Respostas do FAQ**: todas respondidas (notebook: pode levar) → `faq.ts` › `faq`
 - [x] **Público** e **formato** (ficha "Sobre") → `About.astro` › `specs`
-- [ ] **Endereço completo** (deixa o pino do mapa exato). A sala já está preenchida: Campus 2, com Auditório, Sala 513 (Bloco 5) e Laboratório de Informática 3 → `event.ts` › `location`
+- [x] **Endereço completo**: Av. Governador Roberto Silveira, nº 1954, Flamengo, Maricá – RJ (confirmado pelo Tiago) → `event.ts` › `location`
 - [x] **Contato oficial** (e-mail da coordenação) → `event.ts` › `contact`
 - [ ] **Demais professores organizadores** (equipe do Hackathon com 7, e o último cartão sozinho na linha fica centralizado automaticamente; para incluir mais, adicione em `organizers` (pode usar `pending(n)` para um cartão "a definir"); parceiros HackEnf vão na lista `partners` de organizers.ts): nome, cargo, foto quadrada, formação, 4 a 7 especialidades, link do Lattes. O PDF do Lattes também serve, porque eu extraio os dados. → `organizers.ts` e `src/assets/professores/`
 

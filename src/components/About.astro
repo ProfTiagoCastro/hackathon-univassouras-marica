@@ -2,16 +2,18 @@
 import SectionTitle from './ui/SectionTitle.astro';
 import UnderConstruction from './ui/UnderConstruction.astro';
 import { event } from '../data/event';
-import { rules, prizes, prizesNote } from '../data/faq';
+import { rules, prizes, prizesNote, specialPrizes } from '../data/faq';
 
 const specs: { k: string; v: string | null }[] = [
   { k: 'quando', v: '19, 20 e 21 de outubro de 2026 · das 18h às 21h' },
+  { k: 'inscrições', v: event.registrationPeriod },
   { k: 'onde', v: event.location.name },
   { k: 'cursos', v: `${event.courses[0]} · ${event.courses[1]}` },
   { k: 'público', v: 'Estudantes de ESW e ADS · até 2 por equipe de outros cursos' },
   { k: 'formato', v: 'Equipes de 3 a 5 · protótipo funcional em 3 dias' },
   { k: 'desafios', v: '11 desafios · categorias Software e IoT' },
   { k: 'contato', v: event.contact },
+  { k: 'edital', v: event.edital.label },
 ];
 ---
 
@@ -37,6 +39,10 @@ const specs: { k: string; v: string | null }[] = [
                   <UnderConstruction />
                 ) : s.k === 'contato' ? (
                   <a href={`mailto:${s.v}`} class="text-sky underline underline-offset-4 [overflow-wrap:anywhere] hover:text-paper">{s.v}</a>
+                ) : s.k === 'edital' ? (
+                  <a href={event.edital.url} download class="text-sky underline underline-offset-4 hover:text-paper">
+                    {s.v} <span class="inline-block text-stone">(PDF, {event.edital.size})</span>
+                  </a>
                 ) : (
                   s.v
                 )}
@@ -70,16 +76,17 @@ const specs: { k: string; v: string | null }[] = [
           {
             prizes.length ? (
               <>
-                <ol class="mt-4 space-y-2">
+                <p class="mt-1 text-sm text-stone">{prizesNote}</p>
+                <ol class="mt-4 space-y-3">
                   {prizes.map((p) => (
-                    <li class="flex justify-between gap-4 border-b border-white/8 pb-2">
-                      <span class="shrink-0 font-display font-bold text-rose">{p.place}</span>
-                      <span class="text-right text-paper/85">{p.prize}</span>
+                    <li class="grid grid-cols-[2.5rem_1fr] items-baseline gap-3">
+                      <span class="font-display text-2xl font-bold text-rose">{p.place}</span>
+                      <span class="text-pretty text-paper/85">{p.prize}</span>
                     </li>
                   ))}
                 </ol>
-                <p class="mt-4 flex flex-wrap items-center gap-2 text-sm text-stone">
-                  <UnderConstruction label="Valores a definir" /> {prizesNote}
+                <p class="mt-5 border-t border-white/8 pt-4 text-sm text-pretty text-stone">
+                  <span class="text-paper">Prêmios especiais:</span> {specialPrizes.join(', ')}.
                 </p>
               </>
             ) : (

@@ -16,7 +16,7 @@ import anderson from '../assets/palestrantes/anderson-souza.jpg';
 import sandro from '../assets/palestrantes/sandro-carvalho.jpg';
 import claudio from '../assets/palestrantes/claudio-barral.jpg';
 
-export type ActivityType = 'abertura' | 'palestra' | 'mentoria' | 'desenvolvimento' | 'intervalo' | 'apresentacao' | 'premiacao';
+export type ActivityType = 'abertura' | 'palestra' | 'mentoria' | 'desenvolvimento' | 'intervalo' | 'evento' | 'apresentacao' | 'premiacao';
 
 export interface Activity {
   start: string; // 'HH:MM'
@@ -58,6 +58,7 @@ export const activityTypes: Record<ActivityType, { label: string }> = {
   mentoria: { label: 'Mentoria' },
   desenvolvimento: { label: 'Mão na massa' },
   intervalo: { label: 'Intervalo' },
+  evento: { label: 'Integração' },
   apresentacao: { label: 'Apresentação' },
   premiacao: { label: 'Premiação' },
 };
@@ -67,7 +68,7 @@ export const dailyWindow = { start: '18:00', end: '21:00' };
 
 /** Aviso exibido abaixo das abas. */
 export const scheduleNote =
-  'Encontros diários das 18h às 21h. Horários e locais das palestras confirmados; a linha do tempo das atividades é indicativa e pode ter ajustes da organização.';
+  'Horários do edital, sujeitos a ajustes da organização.';
 
 export const schedule: EventDay[] = [
   {
@@ -78,9 +79,8 @@ export const schedule: EventDay[] = [
     theme: 'Abertura e início do desenvolvimento',
     activities: [
       { start: '18:00', end: '18:30', title: 'Credenciamento e abertura', description: 'Recepção dos participantes e palestra de abertura.', type: 'abertura' },
-      { start: '18:30', end: '19:00', title: 'Apresentação dos desafios e das regras', type: 'abertura' },
-      { start: '19:00', end: '19:20', title: 'Formação final das equipes', description: 'Retirada dos kits IoT e das amostras da Lagoa de Maricá.', type: 'abertura' },
-      { start: '19:20', end: '21:00', title: 'Início do desenvolvimento com plantão de mentores', description: 'Criação dos repositórios no GitHub. Palestras em paralelo.', type: 'desenvolvimento' },
+      { start: '19:00', end: '20:00', title: 'Desafios, regras e formação das equipes', description: 'Retirada dos kits IoT e das amostras da lagoa.', type: 'abertura' },
+      { start: '19:00', end: '21:00', title: 'Início do desenvolvimento com plantão de mentores', description: 'Criação dos repositórios no GitHub. Palestras em paralelo.', type: 'desenvolvimento' },
     ],
     talks: [
       {
@@ -119,8 +119,9 @@ export const schedule: EventDay[] = [
     label: '20 out',
     theme: 'Desenvolvimento e minicursos',
     activities: [
-      { start: '18:00', end: '20:20', title: 'Desenvolvimento com plantão de mentores', description: 'Palestra e minicurso em paralelo.', type: 'desenvolvimento' },
-      { start: '20:20', end: '21:00', title: 'Checkpoint obrigatório', description: 'Cada equipe apresenta o progresso a um mentor.', type: 'mentoria' },
+      { start: '18:00', end: '21:00', title: 'Experiências gamers, sorteios e outros eventos', type: 'evento' },
+      { start: '19:00', end: '21:00', title: 'Desenvolvimento com plantão de mentores', description: 'Palestra e minicurso em paralelo.', type: 'desenvolvimento' },
+      { start: '20:00', end: '21:00', title: 'Checkpoint obrigatório', description: 'Cada equipe apresenta o progresso a um mentor.', type: 'mentoria' },
     ],
     talks: [
       {
@@ -150,9 +151,10 @@ export const schedule: EventDay[] = [
     label: '21 out',
     theme: 'Entrega, apresentações e premiação',
     activities: [
-      { start: '18:00', end: '18:50', title: 'Sprint final e oficina de pitch', type: 'desenvolvimento' },
-      { start: '18:50', title: 'Prazo final de entrega', description: 'Congelamento dos repositórios.', type: 'apresentacao' },
-      { start: '19:00', end: '21:00', title: 'Avaliação dos desafios das equipes', description: 'Apresentações e arguição técnica perante a banca. Ao final: deliberação, Prêmio do Público, encerramento e premiação.', type: 'apresentacao' },
+      { start: '18:00', end: '20:00', title: 'Sprint final e oficina de pitch', description: 'Entrega às 19h00, com o congelamento dos repositórios.', type: 'desenvolvimento' },
+      { start: '19:00', end: '20:00', title: 'Apresentações para a banca', type: 'apresentacao' },
+      { start: '20:00', end: '20:30', title: 'Deliberação e voto do público', type: 'apresentacao' },
+      { start: '20:30', end: '21:00', title: 'Encerramento e premiação', description: 'Devolução dos kits IoT.', type: 'premiacao' },
     ],
     talks: [
       {
@@ -165,7 +167,7 @@ export const schedule: EventDay[] = [
         location: 'Auditório · Campus 2',
       },
       {
-        time: '19:00 – 21:00',
+        time: '19:00 – 20:00',
         title: 'Avaliação dos Desafios das Equipes',
         speaker: 'Membros da Banca Avaliadora',
         role: 'Banca',
