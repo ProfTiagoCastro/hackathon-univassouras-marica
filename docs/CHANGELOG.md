@@ -208,3 +208,7 @@ Uma entrada por etapa de desenvolvimento (cada etapa = um commit).
 - Fotos de Laís Bordallo, Cláudio Eduardo Barral, Rafael de Souza, Anderson Souza, Sandro Carvalho e Karen Olinto, recortadas em quadrado com o rosto centralizado (480×480) em `src/assets/palestrantes/`. O site serve versões WebP pequenas.
 - Palestrante de 19/10 às 20h: nome completo **Rafael de Souza**. Pergunta removida do PDF de pendências.
 
+## Cartão do coordenador Wellington Ávila (2026-10-17)
+- A pedido dele: mestrado corrigido para **Gestão do Trabalho (Ênfase Investigativa em Governança Corporativa de TI)**.
+- "Educação a Distância" removido. Entraram 3 itens: Governança de Dados em Inteligência Artificial; Tecnologia da Informação na Saúde (eHealth · HIT · EMR · HIS · HIM); Diretor de Pesquisas do IDCiber. O verso tem 8 itens agora, e a linha da grade cresce sozinha para caber (testado em 1440 e 375 px).
+
