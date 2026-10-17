@@ -202,3 +202,9 @@ Uma entrada por etapa de desenvolvimento (cada etapa = um commit).
 - `event.location.room` preenchido (seção Local). Aviso da programação: palestras confirmadas; atividades indicativas.
 - PDF de pendências: a seção de palestras saiu; a grade de 21/10 e a pergunta sobre o tempo das apresentações foram atualizadas; "sala" saiu de Local; entrou "nome completo do palestrante Rafael" nas confirmações.
 
+## Fotos dos palestrantes nos cartões da programação (2026-10-17)
+- Cada cartão de palestra/minicurso ganhou um **avatar redondo de 64 px**, no estilo dos "pads" da linha do tempo: anel na cor do tipo (bordô = palestra, azul = minicurso, cinza = banca) e um ponto de solda no canto. O papel ("Palestrante", "Instrutor") aparece em letra pequena acima do nome.
+- Novo campo opcional `photo` em `Talk` (`schedule.ts`). Sem foto, o avatar mostra as iniciais; a banca mostra um ícone de grupo.
+- Fotos de Laís Bordallo, Cláudio Eduardo Barral, Rafael de Souza, Anderson Souza, Sandro Carvalho e Karen Olinto, recortadas em quadrado com o rosto centralizado (480×480) em `src/assets/palestrantes/`. O site serve versões WebP pequenas.
+- Palestrante de 19/10 às 20h: nome completo **Rafael de Souza**. Pergunta removida do PDF de pendências.
+

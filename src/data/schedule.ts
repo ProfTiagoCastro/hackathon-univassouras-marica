@@ -6,7 +6,15 @@
  * `talks`: palestras e minicursos do dia. `time` pode ficar null enquanto o horário não estiver definido
  *          (aparece "Horário a definir" no site).
  * Dia sem `activities` e sem `talks` mostra os blocos "EM CONSTRUÇÃO".
+ * Fotos dos palestrantes: src/assets/palestrantes/ (quadradas, ~480 px, rosto centralizado).
  */
+import type { ImageMetadata } from 'astro';
+import karen from '../assets/palestrantes/karen-olinto.jpg';
+import rafael from '../assets/palestrantes/rafael-de-souza.jpg';
+import lais from '../assets/palestrantes/lais-bordallo.jpg';
+import anderson from '../assets/palestrantes/anderson-souza.jpg';
+import sandro from '../assets/palestrantes/sandro-carvalho.jpg';
+import claudio from '../assets/palestrantes/claudio-barral.jpg';
 
 export type ActivityType = 'abertura' | 'palestra' | 'mentoria' | 'desenvolvimento' | 'intervalo' | 'apresentacao' | 'premiacao';
 
@@ -29,6 +37,8 @@ export interface Talk {
   kind: 'palestra' | 'minicurso' | 'banca';
   /** Sala/auditório (null = local a definir) */
   location: string | null;
+  /** Foto quadrada (aparece redonda no cartão). Sem foto, mostra as iniciais. */
+  photo?: ImageMetadata;
 }
 
 export interface EventDay {
@@ -77,6 +87,7 @@ export const schedule: EventDay[] = [
         time: '19:00 – 20:00',
         title: 'Das redes neurais aos LLMs: Quem domina a linguagem, domina a IA',
         speaker: 'Laís Bordallo',
+        photo: lais,
         role: 'Palestrante',
         kind: 'palestra',
         location: 'Auditório · Campus 2',
@@ -85,6 +96,7 @@ export const schedule: EventDay[] = [
         time: '19:30 – 20:30',
         title: 'Empreendedorismo na Era Digital: Oportunidades e Desafios para os Negócios do Futuro',
         speaker: 'Cláudio Eduardo Barral',
+        photo: claudio,
         role: 'Palestrante',
         kind: 'palestra',
         location: 'Sala 513 · Bloco 5 · Campus 2',
@@ -92,7 +104,8 @@ export const schedule: EventDay[] = [
       {
         time: '20:00 – 21:00',
         title: 'Quando a Máquina Aprende a Ouvir: Inteligência Artificial na Escuta Psiquiátrica',
-        speaker: 'Rafael',
+        speaker: 'Rafael de Souza',
+        photo: rafael,
         role: 'Palestrante',
         kind: 'palestra',
         location: 'Auditório · Campus 2',
@@ -114,6 +127,7 @@ export const schedule: EventDay[] = [
         time: '19:00 – 21:00',
         title: 'GitHub e Versionamento de Código: Colaboração, Projetos Reais e Valorização Curricular',
         speaker: 'Anderson Souza',
+        photo: anderson,
         role: 'Instrutor',
         kind: 'minicurso',
         location: 'Laboratório de Informática 3 · Campus 2',
@@ -122,6 +136,7 @@ export const schedule: EventDay[] = [
         time: '19:30 – 20:30',
         title: 'Estratégia, Competências e Excelência Profissional na Carreira em Tecnologia da Informação',
         speaker: 'Sandro Carvalho',
+        photo: sandro,
         role: 'Palestrante',
         kind: 'palestra',
         location: 'Auditório · Campus 2',
@@ -144,6 +159,7 @@ export const schedule: EventDay[] = [
         time: '19:00 – 20:00',
         title: 'Robótica Inteligente e ROS: A Ponte de Comunicação entre Programas e Sistemas Robóticos',
         speaker: 'Karen Olinto',
+        photo: karen,
         role: 'Palestrante',
         kind: 'palestra',
         location: 'Auditório · Campus 2',

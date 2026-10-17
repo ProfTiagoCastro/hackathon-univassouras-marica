@@ -233,7 +233,6 @@ def build(path):
 
     d.section(8, 'Confirmações rápidas')
     d.labeled('Nome oficial do evento: o edital usa "Hackathon ESW & ADS 2026" e o site usa "Hackathon Univassouras". Qual usar?', h=34, multiline=True, label_w=200)
-    d.labeled('Nome completo do palestrante Rafael (19/10, 20h00, "Quando a Máquina Aprende a Ouvir")', h=24, label_w=200)
     d.labeled('Podemos publicar o PDF do edital no site (botão "Baixar edital")?', h=24, label_w=200)
     d.labeled('Outras observações', h=60, multiline=True, label_w=200)
 

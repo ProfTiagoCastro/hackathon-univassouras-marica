@@ -1,7 +1,7 @@
 # HANDOFF: Site do Hackathon Univassouras Maricá
 
 > Documento de passagem de bastão. Atualizado a cada etapa concluída.
-> **Última atualização:** 2026-10-16 (horários e locais das palestras) · **Etapa atual:** 8 de 8 concluídas + ajustes mobile · **No ar:** https://hackathon-univassouras-marica.vercel.app
+> **Última atualização:** 2026-10-17 (fotos dos palestrantes) · **Etapa atual:** 8 de 8 concluídas + ajustes mobile · **No ar:** https://hackathon-univassouras-marica.vercel.app
 
 ## 1. Resumo
 Site estático de divulgação do Hackathon (19, 20 e 21/10/2026) dos cursos de Engenharia de Software e ADS da Univassouras, Campus Maricá. Ele mostra a programação dos três dias, o botão de inscrição (Google Forms), os professores organizadores em cartões que giram, o **Mural** de fotos e vídeos por dia, o local e o FAQ.
@@ -48,7 +48,7 @@ O site está no ar, e o próximo passo é **alimentar as informações**. Itens 
 
 **Antes do evento (19/10):**
 - [x] **Link do Google Forms** ligado: https://forms.gle/sEAVnj7edWpJw6Rz7 (respostas em Forms › Respostas; para encerrar, desmarque "Aceitando respostas")
-- [x] **Palestras e minicurso:** horários e locais oficiais preenchidos → `schedule.ts` › `talks` (`time`, `location`). Falta só o sobrenome do palestrante Rafael (19/10).
+- [x] **Palestras e minicurso:** horários e locais oficiais preenchidos → `schedule.ts` › `talks` (`time`, `location`). Fotos dos palestrantes em `src/assets/palestrantes/` (quadradas, rosto centralizado), ligadas pelo campo `photo`; sem foto, o cartão mostra as iniciais.
 - [ ] **Linha do tempo das atividades** (`activities`): é a proposta adaptada do edital, ainda a confirmar pela coordenação. Em 21/10 a avaliação ficou das 19h às 21h, como no horário oficial da banca → `schedule.ts`
 - [x] **Regras** do hackathon (do edital) → `faq.ts` › `rules`
 - [ ] **Premiação**: categorias preenchidas; faltam os prêmios de cada colocação → `faq.ts` › `prizes`
