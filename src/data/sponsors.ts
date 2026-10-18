@@ -9,6 +9,7 @@
  * que as logos largas, para todas parecerem do mesmo tamanho.
  */
 import type { ImageMetadata } from 'astro';
+import gbc from '../assets/apoio/gbc-coffee.png';
 import nerd from '../assets/apoio/nerd-ideias.png';
 import kintal from '../assets/apoio/kintal-do-sabor.png';
 import lacell from '../assets/apoio/lacell.png';
@@ -25,6 +26,7 @@ export interface Sponsor {
 }
 
 export const sponsors: Sponsor[] = [
+  { name: 'GBC Coffee', logo: gbc, scale: 0.95, url: 'https://www.instagram.com/gbccoffee/' },
   { name: 'Kintal do Sabor', logo: kintal, scale: 1.1, url: 'https://www.instagram.com/kintaldosabor/' },
   { name: 'Lacell Centro Especializado', logo: lacell, scale: 1.1, url: 'https://www.instagram.com/lacell_smart/' },
   { name: 'Maricá Tem Samba', logo: samba, scale: 0.72, url: 'https://www.instagram.com/maricatemsamba/' },

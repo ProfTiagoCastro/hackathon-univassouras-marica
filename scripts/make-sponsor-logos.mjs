@@ -22,6 +22,8 @@ const lum = (r, g, b) => 0.2126 * r + 0.7152 * g + 0.0722 * b;
 
 /** Regras por apoiador. `crop` em px do original; `circle` zera tudo fora do selo redondo. */
 const logos = [
+  // o arquivo traz duas versões; usa a de cima (branca sobre preto), sem a moldura
+  { id: 'gbc-coffee', file: 'GBC.jpeg', crop: { left: 20, top: 12, width: 770, height: 640 }, alpha: (r, g, b) => clamp((lum(r, g, b) - 40) * 1.4) },
   { id: 'nerd-ideias', file: '411992841_1420164848923105_2893224034822288775_n.jpg', alpha: (r, g, b) => clamp((lum(r, g, b) - 40) * 1.4) },
   {
     id: 'kintal-do-sabor',

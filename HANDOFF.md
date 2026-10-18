@@ -1,7 +1,7 @@
 # HANDOFF: Site do Hackathon Univassouras Maricá
 
 > Documento de passagem de bastão. Atualizado a cada etapa concluída.
-> **Última atualização:** 2026-10-18 (faixa "Apoio" com 7 apoiadores no rodapé; antes: edital assinado, e-mail da coordenação retirado, cartão do Prof. Marcio, seção Desafios) · **Etapa atual:** 8 de 8 concluídas + ajustes mobile · **No ar:** https://hackathon-univassouras-marica.vercel.app
+> **Última atualização:** 2026-10-18 (faixa "Apoio" com 8 apoiadores no rodapé, GBC Coffee incluído por último; antes: edital assinado, e-mail da coordenação retirado, cartão do Prof. Marcio, seção Desafios) · **Etapa atual:** 8 de 8 concluídas + ajustes mobile · **No ar:** https://hackathon-univassouras-marica.vercel.app
 
 ## 1. Resumo
 Site estático de divulgação do Hackathon (19, 20 e 21/10/2026) dos cursos de Engenharia de Software e ADS da Univassouras, Campus Maricá. Ele mostra a programação dos três dias, o botão de inscrição (Google Forms), os professores organizadores em cartões que giram, o **Mural** de fotos e vídeos por dia, o local e o FAQ.
