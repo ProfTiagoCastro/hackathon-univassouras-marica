@@ -1,7 +1,7 @@
 # HANDOFF: Site do Hackathon Univassouras Maricá
 
 > Documento de passagem de bastão. Atualizado a cada etapa concluída.
-> **Última atualização:** 2026-10-17 (conteúdo cruzado com o Edital nº 002/2026, seção Desafios, edital para download; publicado no commit `900f9a6`) · **Etapa atual:** 8 de 8 concluídas + ajustes mobile · **No ar:** https://hackathon-univassouras-marica.vercel.app
+> **Última atualização:** 2026-10-18 (faixa "Apoio" com 7 apoiadores no rodapé; antes: edital assinado, e-mail da coordenação retirado, cartão do Prof. Marcio, seção Desafios) · **Etapa atual:** 8 de 8 concluídas + ajustes mobile · **No ar:** https://hackathon-univassouras-marica.vercel.app
 
 ## 1. Resumo
 Site estático de divulgação do Hackathon (19, 20 e 21/10/2026) dos cursos de Engenharia de Software e ADS da Univassouras, Campus Maricá. Ele mostra a programação dos três dias, o botão de inscrição (Google Forms), os professores organizadores em cartões que giram, o **Mural** de fotos e vídeos por dia, o local e o FAQ.
@@ -43,6 +43,7 @@ Stack: **Astro 7 + Tailwind 4 + TypeScript**, com deploy na **Vercel**. Detalhes
 | Logos do rodapé | `src/assets/logos/` (`univassouras-marica.png`, `facmar.png`) | tamanhos em `Footer.astro` (`.logo--univ`, `.logo--facmar`) |
 | Domínio final (SEO) | `astro.config.mjs` + `public/robots.txt` | `site` / linha `Sitemap:` |
 | **Edital (PDF para download)** | `public/edital-hackathon-2026.pdf` + `src/data/event.ts` › `edital` | trocar o arquivo mantendo o nome e atualizar `size`; link na ficha do "Sobre" e no bloco de inscrição. Desde 17/10 é a versão **assinada** (gov.br, Wellington Avila), 690 KB |
+| **Apoiadores (faixa "Apoio" no rodapé)** | `src/data/sponsors.ts` + `src/assets/apoio/` | logos padronizadas numa cor só (paper) por `node scripts/make-sponsor-logos.mjs <pasta-dos-originais>`; para incluir alguém: regra no script, gerar a logo, adicionar em `sponsors` (com `scale` para equilibrar o tamanho e `url` do Instagram/site, que abre em nova aba). Os originais ficam fora do repositório (estavam em `Downloads\apoio`) |
 | Config. da Vercel | `vercel.json` | só `trailingSlash: false` (URLs sem barra final) |
 
 Campos vazios ou `null` aparecem no site com o selo **EM CONSTRUÇÃO**.
@@ -80,7 +81,7 @@ O site está no ar, e o próximo passo é **alimentar as informações**. Itens 
 - **Vercel:** equipe *TeamBombista* (conta tiagoflp1@hotmail.com), projeto `hackathon-univassouras-marica`, preset Astro (build `npm run build`, saída `dist`).
 - **Publicar uma atualização:** é só `git push` na branch `main`. A Vercel faz o build e publica sozinha em ~30 s. Pushes em outras branches geram URLs de preview.
 - **Dois computadores:** o projeto também é editado num segundo computador (`C:\Users\Tiago\Desktop\SiteHackaton`, fora do OneDrive), com a mesma identidade git (*Tiago Ruiz de Castro <tiago.castro@univassouras.edu.br>*) e push pela conta ProfTiagoCastro. Antes de editar em qualquer um deles, rode `git pull`.
-- **Último deploy:** 17/10/2026, commit `900f9a6`, conferido no ar (seção Desafios e `/edital-hackathon-2026.pdf` respondendo).
+- **Último deploy:** 18/10/2026, faixa de apoiadores (ver o commit mais recente em `git log`), conferida no ar. Deploys anteriores: `1ee0da5` (edital assinado e retirada do e-mail), `76f0010` (cartão do Prof. Marcio), `900f9a6` (edital cruzado e seção Desafios).
 - O `package-lock.json` desse segundo computador ficou com 7 linhas a mais, por causa do `npm install` no Windows. Elas **não** foram commitadas e podem ser descartadas com `git checkout package-lock.json`.
 
 **Como a ligação ficou configurada (para não quebrar):**

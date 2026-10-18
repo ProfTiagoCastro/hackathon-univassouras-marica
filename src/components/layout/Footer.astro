@@ -3,10 +3,38 @@ import { Image } from 'astro:assets';
 import univassouras from '../../assets/logos/univassouras-marica.png';
 import facmar from '../../assets/logos/facmar.png';
 import { event } from '../../data/event';
+import { sponsors } from '../../data/sponsors';
 ---
 
 <footer class="relative mt-24 border-t border-white/8 bg-ink/80 backdrop-blur-sm">
   <div class="trace absolute inset-x-0 top-0" aria-hidden="true"></div>
+
+  {
+    sponsors.length > 0 && (
+      <section class="shell sponsors" aria-labelledby="apoio-title">
+        <h2 id="apoio-title" class="sponsors-title">Apoio</h2>
+        <ul class="sponsor-list" role="list">
+          {sponsors.map((s) => (
+            <li style={`--s:${s.scale}`}>
+              {s.url ? (
+                <a href={s.url} target="_blank" rel="noopener noreferrer" class="sponsor" title={`${s.name} (${s.url.includes('instagram.com') ? 'Instagram' : 'site'})`}>
+                  <Image src={s.logo} alt={s.name} height={120} class="sponsor-logo" />
+                  <span class="sr-only">
+                    {s.url.includes('instagram.com') ? 'no Instagram' : 'site'} (abre em nova aba)
+                  </span>
+                </a>
+              ) : (
+                <span class="sponsor">
+                  <Image src={s.logo} alt={s.name} height={120} class="sponsor-logo" />
+                </span>
+              )}
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+
   <div class="shell grid gap-10 py-14 md:grid-cols-[1.4fr_1fr] md:items-end">
     <div>
       <!-- logos institucionais, separadas por uma trilha de circuito vertical -->
@@ -29,6 +57,59 @@ import { event } from '../../data/event';
 </footer>
 
 <style>
+  /* Faixa de apoiadores: logos pequenas, todas na cor paper, separadas do rodapé por uma linha tracejada */
+  .sponsors {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem 2.5rem;
+    padding-top: 2.5rem;
+    padding-bottom: 2.25rem;
+    border-bottom: 1px dashed rgb(255 255 255 / 0.08);
+  }
+  .sponsors-title {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-stone);
+  }
+  .sponsor-list {
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.25rem 2.25rem;
+  }
+  .sponsor {
+    display: block;
+    padding: 0.25rem;
+    border-radius: 0.5rem;
+  }
+  .sponsor-logo {
+    width: auto;
+    height: calc(2.25rem * var(--s, 1));
+    opacity: 0.72;
+    transition: opacity 0.2s ease;
+  }
+  .sponsor:hover .sponsor-logo,
+  .sponsor:focus-visible .sponsor-logo {
+    opacity: 1;
+  }
+  @media (min-width: 640px) {
+    .sponsors {
+      flex-direction: row;
+      align-items: center;
+    }
+    .sponsor-logo {
+      height: calc(2.75rem * var(--s, 1));
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .sponsor-logo {
+      transition: none;
+    }
+  }
+
   .logos {
     display: flex;
     align-items: center;
