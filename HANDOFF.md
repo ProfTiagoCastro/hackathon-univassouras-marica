@@ -27,7 +27,7 @@ Stack: **Astro 7 + Tailwind 4 + TypeScript**, com deploy na **Vercel**. Detalhes
 |---|---|---|
 | **Link do Google Forms** | `src/data/event.ts` | `registrationUrl` |
 | Endereço / sala | `src/data/event.ts` | `location.address`, `location.room` (com o endereço preenchido, o pino do mapa fica exato; hoje a busca genérica acha duas unidades) |
-| Contato | `src/data/event.ts` | `contact` |
+| Contato | `src/data/event.ts` | `contact` (hoje `null`: com `null` a linha some da ficha, sem selo "em construção") |
 | Horários de cada dia | `src/data/schedule.ts` | `activities` de cada dia (o exemplo está no comentário do arquivo) |
 | Professores | `src/data/organizers.ts` | equipe do Hackathon em `organizers` (trocar um `pending(n)`); parceria HackEnf FACMAR em `partners` (seção própria, cartão azul) |
 | Fotos dos professores | `src/assets/professores/` | jpg quadrado, mín. 600×600 |
@@ -42,7 +42,7 @@ Stack: **Astro 7 + Tailwind 4 + TypeScript**, com deploy na **Vercel**. Detalhes
 | Banner do HackEnf (hero) | `src/assets/banners/hackenf.jpg` | trocar o arquivo mantendo o nome; o deck fica em `Hero.astro` |
 | Logos do rodapé | `src/assets/logos/` (`univassouras-marica.png`, `facmar.png`) | tamanhos em `Footer.astro` (`.logo--univ`, `.logo--facmar`) |
 | Domínio final (SEO) | `astro.config.mjs` + `public/robots.txt` | `site` / linha `Sitemap:` |
-| **Edital (PDF para download)** | `public/edital-hackathon-2026.pdf` + `src/data/event.ts` › `edital` | trocar o arquivo mantendo o nome; link na ficha do "Sobre" e no bloco de inscrição |
+| **Edital (PDF para download)** | `public/edital-hackathon-2026.pdf` + `src/data/event.ts` › `edital` | trocar o arquivo mantendo o nome e atualizar `size`; link na ficha do "Sobre" e no bloco de inscrição. Desde 17/10 é a versão **assinada** (gov.br, Wellington Avila), 690 KB |
 | Config. da Vercel | `vercel.json` | só `trailingSlash: false` (URLs sem barra final) |
 
 Campos vazios ou `null` aparecem no site com o selo **EM CONSTRUÇÃO**.
@@ -60,7 +60,7 @@ O site está no ar, e o próximo passo é **alimentar as informações**. Itens 
 - [x] **Respostas do FAQ**: todas respondidas (notebook: pode levar) → `faq.ts` › `faq`
 - [x] **Público** e **formato** (ficha "Sobre") → `About.astro` › `specs`
 - [x] **Endereço completo**: Av. Governador Roberto Silveira, nº 1954, Flamengo, Maricá – RJ (confirmado pelo Tiago) → `event.ts` › `location`
-- [x] **Contato oficial** (e-mail da coordenação) → `event.ts` › `contact`
+- [x] **Contato oficial**: o e-mail da coordenação foi **retirado do site** a pedido do coordenador (17/10). Ele continua no item 16.3 do edital assinado, que não pode ser editado sem invalidar a assinatura → `event.ts` › `contact`
 - [ ] **Demais professores organizadores** (equipe do Hackathon com 7, e o último cartão sozinho na linha fica centralizado automaticamente; para incluir mais, adicione em `organizers` (pode usar `pending(n)` para um cartão "a definir"); parceiros HackEnf vão na lista `partners` de organizers.ts): nome, cargo, foto quadrada, formação, 4 a 7 especialidades, link do Lattes. O PDF do Lattes também serve, porque eu extraio os dados. → `organizers.ts` e `src/assets/professores/`
 
 **Durante e depois do evento:**

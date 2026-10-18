@@ -12,7 +12,8 @@ const specs: { k: string; v: string | null }[] = [
   { k: 'público', v: 'Estudantes de ESW e ADS · até 2 por equipe de outros cursos' },
   { k: 'formato', v: 'Equipes de 3 a 5 · protótipo funcional em 3 dias' },
   { k: 'desafios', v: '11 desafios · categorias Software e IoT' },
-  { k: 'contato', v: event.contact },
+  // contato só aparece quando houver um (sem selo "em construção": foi retirado de propósito)
+  ...(event.contact ? [{ k: 'contato', v: event.contact }] : []),
   { k: 'edital', v: event.edital.label },
 ];
 ---

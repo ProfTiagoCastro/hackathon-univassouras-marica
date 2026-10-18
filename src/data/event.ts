@@ -27,7 +27,7 @@ export const event = {
   allocationDate: '19 de outubro',
 
   /** Edital oficial em PDF (arquivo em public/). Para trocar, substitua o arquivo mantendo o nome e atualize o tamanho. */
-  edital: { url: '/edital-hackathon-2026.pdf', label: 'Edital nº 002/2026', size: '650 KB' },
+  edital: { url: '/edital-hackathon-2026.pdf', label: 'Edital nº 002/2026', size: '690 KB' },
 
   location: {
     name: 'Univassouras – Campus Maricá',
@@ -40,8 +40,11 @@ export const event = {
     mapQuery: 'Universidade de Vassouras Campus Maricá',
   },
 
-  /** Contato oficial do evento (e-mail ou Instagram). */
-  contact: 'coordengsoftware.marica@univassouras.edu.br' as string | null,
+  /**
+   * Contato oficial do evento (e-mail ou Instagram). Com `null` a linha "contato" some da ficha.
+   * O e-mail da coordenação foi retirado a pedido do coordenador em 17/10/2026.
+   */
+  contact: null as string | null,
 } as const;
 
 export const hasRegistration = event.registrationUrl.trim().length > 0;
