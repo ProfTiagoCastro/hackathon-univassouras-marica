@@ -22,6 +22,12 @@ export const event = {
    */
   registrationUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSdvVLW9DMshuGJ5jWtaNKXuuD5kTVjdGU3o6Z_4J9sxm3egpA/viewform',
 
+  /**
+   * Inscrições encerradas: os botões viram "Inscrições encerradas" (desabilitados) e os textos
+   * que chamam para a inscrição mudam. Para reabrir, volte para `false`.
+   */
+  registrationClosed: true,
+
   /** Período de inscrição e divulgação da alocação dos desafios (edital, itens 5.1, 5.3 e 11). */
   registrationPeriod: 'de 17 a 19 de outubro de 2026',
   allocationDate: '19 de outubro',
@@ -47,4 +53,6 @@ export const event = {
   contact: null as string | null,
 } as const;
 
-export const hasRegistration = event.registrationUrl.trim().length > 0;
+export const registrationClosed = event.registrationClosed;
+/** Inscrições abertas: há link e não foram encerradas. */
+export const hasRegistration = !registrationClosed && event.registrationUrl.trim().length > 0;

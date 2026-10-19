@@ -15,7 +15,7 @@ interface Props {
 const {
   title,
   noindex = false,
-  description = 'Hackathon dos cursos de Engenharia de Software e Análise e Desenvolvimento de Sistemas da Univassouras, Campus Maricá. De 19 a 21 de outubro de 2026. Veja a programação e faça sua inscrição.',
+  description = `Hackathon dos cursos de Engenharia de Software e Análise e Desenvolvimento de Sistemas da Univassouras, Campus Maricá. De 19 a 21 de outubro de 2026. ${event.registrationClosed ? 'Veja a programação, os desafios e o mural do evento.' : 'Veja a programação e faça sua inscrição.'}`,
 } = Astro.props;
 
 const fullTitle = title ? `${title} · ${event.name} Maricá 2026` : `${event.name} Maricá 2026 · 19 a 21 de outubro`;

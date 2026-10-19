@@ -6,7 +6,7 @@ import { rules, prizes, prizesNote, specialPrizes } from '../data/faq';
 
 const specs: { k: string; v: string | null }[] = [
   { k: 'quando', v: '19, 20 e 21 de outubro de 2026 · das 18h às 21h' },
-  { k: 'inscrições', v: event.registrationPeriod },
+  { k: 'inscrições', v: event.registrationClosed ? `encerradas (foram ${event.registrationPeriod})` : event.registrationPeriod },
   { k: 'onde', v: event.location.name },
   { k: 'cursos', v: `${event.courses[0]} · ${event.courses[1]}` },
   { k: 'público', v: 'Estudantes de ESW e ADS · até 2 por equipe de outros cursos' },

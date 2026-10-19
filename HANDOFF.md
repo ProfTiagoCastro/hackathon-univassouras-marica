@@ -26,6 +26,7 @@ Stack: **Astro 7 + Tailwind 4 + TypeScript**, com deploy na **Vercel**. Detalhes
 | O que | Arquivo | Campo |
 |---|---|---|
 | **Link do Google Forms** | `src/data/event.ts` | `registrationUrl` |
+| **Inscrições encerradas** (desde 19/10) | `src/data/event.ts` | `registrationClosed: true` deixa os botões como "Inscrições encerradas" (com cadeado, sem link), troca o texto do bloco de inscrição, do FAQ e da ficha, e tira o link da descrição para buscadores. Para reabrir, volte para `false` |
 | Endereço / sala | `src/data/event.ts` | `location.address`, `location.room` (com o endereço preenchido, o pino do mapa fica exato; hoje a busca genérica acha duas unidades) |
 | Contato | `src/data/event.ts` | `contact` (hoje `null`: com `null` a linha some da ficha, sem selo "em construção") |
 | Horários de cada dia | `src/data/schedule.ts` | `activities` de cada dia (o exemplo está no comentário do arquivo) |

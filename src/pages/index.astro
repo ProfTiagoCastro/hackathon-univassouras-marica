@@ -27,7 +27,7 @@ const jsonLd = {
     address: { '@type': 'PostalAddress', streetAddress: event.location.address ?? undefined, addressLocality: 'Maricá', addressRegion: 'RJ', addressCountry: 'BR' },
   },
   organizer: { '@type': 'CollegeOrUniversity', name: 'Universidade de Vassouras', url: 'https://www.univassouras.edu.br' },
-  ...(event.registrationUrl ? { offers: { '@type': 'Offer', url: event.registrationUrl, availability: 'https://schema.org/InStock' } } : {}),
+  ...(event.registrationUrl && !event.registrationClosed ? { offers: { '@type': 'Offer', url: event.registrationUrl, availability: 'https://schema.org/InStock' } } : {}),
 };
 ---
 

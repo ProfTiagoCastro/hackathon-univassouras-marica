@@ -13,7 +13,7 @@ export const faq: { question: string; answer: string | null }[] = [
   {
     question: 'Até quando posso me inscrever?',
     answer:
-      'Até 19 de outubro. No formulário vão os integrantes (nome, curso, período e matrícula), o líder e três desafios em ordem de preferência. A alocação sai no mesmo dia.',
+      'As inscrições foram encerradas em 19 de outubro. A alocação dos desafios é divulgada pela organização no mesmo dia.',
   },
   {
     question: 'Quantas pessoas por equipe?',
