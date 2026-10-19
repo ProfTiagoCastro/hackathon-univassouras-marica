@@ -7,6 +7,7 @@ import kissyla from '../assets/professores/kissyla-harley.jpg';
 import isabel from '../assets/professores/isabel-cristina.jpg';
 import lais from '../assets/professores/lais-cristine.jpg';
 import delguel from '../assets/professores/delguel-arcanjo.jpg';
+import victor from '../assets/professores/victor-silveira.jpg';
 
 /**
  * Professores organizadores.
@@ -181,6 +182,28 @@ export const organizers: Organizer[] = [
       'Iniciação Científica',
     ],
     lattes: 'https://lattes.cnpq.br/6773231326581220',
+  },
+  {
+    id: 'victor-silveira',
+    name: 'Victor Silveira',
+    role: 'Professor · Eng. de Software e ADS',
+    photo: victor,
+    education: [
+      'Doutorando em Sistemas de Gestão Sustentáveis · UFF',
+      'Mestre em Sistemas de Gestão · UFF',
+      'MBA em Gerenciamento de Projetos · UFF',
+      'Graduado em Sistemas de Informação · UNESA',
+    ],
+    specialties: [
+      'Gestão de Projetos (PMI)',
+      'Blockchain',
+      'Governança de TI',
+      'Estimativa de Software (APF)',
+      'TI no Setor Público',
+      'Ex-coordenador de Eng. de Software',
+      'Subsecretário de Ensino Superior\nPrefeitura de Maricá',
+    ],
+    lattes: 'https://lattes.cnpq.br/4929125427188880',
   },
 ];
 

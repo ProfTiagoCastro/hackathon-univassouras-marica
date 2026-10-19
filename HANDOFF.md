@@ -62,7 +62,7 @@ O site está no ar, e o próximo passo é **alimentar as informações**. Itens 
 - [x] **Público** e **formato** (ficha "Sobre") → `About.astro` › `specs`
 - [x] **Endereço completo**: Av. Governador Roberto Silveira, nº 1954, Flamengo, Maricá – RJ (confirmado pelo Tiago) → `event.ts` › `location`
 - [x] **Contato oficial**: o e-mail da coordenação foi **retirado do site** a pedido do coordenador (17/10). Ele continua no item 16.3 do edital assinado, que não pode ser editado sem invalidar a assinatura → `event.ts` › `contact`
-- [ ] **Demais professores organizadores** (equipe do Hackathon com 7, e o último cartão sozinho na linha fica centralizado automaticamente; para incluir mais, adicione em `organizers` (pode usar `pending(n)` para um cartão "a definir"); parceiros HackEnf vão na lista `partners` de organizers.ts): nome, cargo, foto quadrada, formação, 4 a 7 especialidades, link do Lattes. O PDF do Lattes também serve, porque eu extraio os dados. → `organizers.ts` e `src/assets/professores/`
+- [ ] **Demais professores organizadores** (equipe do Hackathon com 8; na grade de 3 colunas a última linha fica centralizada sozinha quando sobram 1 ou 2 cartões, via 6 trilhas em `OrganizersGrid.astro`; para incluir mais, adicione em `organizers` (pode usar `pending(n)` para um cartão "a definir"); parceiros HackEnf vão na lista `partners` de organizers.ts): nome, cargo, foto quadrada, formação, 4 a 7 especialidades, link do Lattes. O PDF do Lattes também serve, porque eu extraio os dados. → `organizers.ts` e `src/assets/professores/`
 
 **Durante e depois do evento:**
 - [ ] **Fotos** de cada dia → `src/assets/mural/dia-1`, `dia-2` e `dia-3`
@@ -73,7 +73,7 @@ O site está no ar, e o próximo passo é **alimentar as informações**. Itens 
 - [ ] Mural: manter ou tirar a frase "Escolha uma data para ver os registros" (a frase equivalente já saiu da Programação)
 
 **Já concluído:**
-- [x] Cartões preenchidos, nesta ordem: equipe do Hackathon: Coord. Wellington Ávila, Prof. Marcio Garrido, Prof. Tiago Ruiz de Castro, Prof. Rafael Mynssem, Profa. Isabel Cristina, Profa. Laís Cristine, Prof. Delguel Arcanjo; seção Parceria HackEnf FACMAR: Coord. Kíssyla Harley
+- [x] Cartões preenchidos, nesta ordem: equipe do Hackathon: Coord. Wellington Ávila, Prof. Marcio Garrido, Prof. Tiago Ruiz de Castro, Prof. Rafael Mynssem, Profa. Isabel Cristina, Profa. Laís Cristine, Prof. Delguel Arcanjo, Prof. Victor Silveira (incluído em 18/10, dados do Lattes); seção Parceria HackEnf FACMAR: Coord. Kíssyla Harley
 
 ## 5. Deploy (Vercel) e como publicar atualizações
 - **Site:** https://hackathon-univassouras-marica.vercel.app
