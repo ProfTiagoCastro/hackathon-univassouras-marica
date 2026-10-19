@@ -24,6 +24,8 @@ const lum = (r, g, b) => 0.2126 * r + 0.7152 * g + 0.0722 * b;
 const logos = [
   // o arquivo traz duas versões; usa a de cima (branca sobre preto), sem a moldura
   { id: 'gbc-coffee', file: 'GBC.jpeg', crop: { left: 20, top: 12, width: 770, height: 640 }, alpha: (r, g, b) => clamp((lum(r, g, b) - 40) * 1.4) },
+  // dourado sobre preto: o brilho do dourado vira a silhueta
+  { id: 'dra-jully-santos', file: 'Dra.Jully_Santos.jpeg', alpha: (r, g, b) => clamp((Math.max(r, g, b) - 45) * 1.8) },
   { id: 'nerd-ideias', file: '411992841_1420164848923105_2893224034822288775_n.jpg', alpha: (r, g, b) => clamp((lum(r, g, b) - 40) * 1.4) },
   {
     id: 'kintal-do-sabor',

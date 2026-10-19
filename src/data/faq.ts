@@ -59,8 +59,9 @@ export const rules: string[] = [
 
 /** Premiação. Lista vazia aparece como "EM CONSTRUÇÃO". */
 export const prizes: { place: string; prize: string }[] = [
-  { place: '1º', prize: 'Bolsa de 100% do curso, pontuação extra nas disciplinas e outros prêmios' },
-  { place: '2º', prize: 'Bolsa de 100% do curso e outros prêmios' },
+  // texto da bolsa ajustado a pedido do coordenador (19/10/2026)
+  { place: '1º', prize: 'Bolsa 100% de curso de aperfeiçoamento na área de IA e Games, pontuação extra nas disciplinas e outros prêmios' },
+  { place: '2º', prize: 'Bolsa 100% de curso de aperfeiçoamento na área de IA e Games e outros prêmios' },
   { place: '3º', prize: 'Outros prêmios' },
 ];
 
