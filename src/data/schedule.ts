@@ -15,6 +15,8 @@ import lais from '../assets/palestrantes/lais-bordallo.jpg';
 import anderson from '../assets/palestrantes/anderson-souza.jpg';
 import sandro from '../assets/palestrantes/sandro-carvalho.jpg';
 import claudio from '../assets/palestrantes/claudio-barral.jpg';
+import victorSilveira from '../assets/professores/victor-silveira.jpg';
+import rafaelMynssem from '../assets/professores/rafael-mynssem.jpg';
 
 export type ActivityType = 'abertura' | 'palestra' | 'mentoria' | 'desenvolvimento' | 'intervalo' | 'evento' | 'apresentacao' | 'premiacao';
 
@@ -39,6 +41,8 @@ export interface Talk {
   location: string | null;
   /** Foto quadrada (aparece redonda no cartão). Sem foto, mostra as iniciais. */
   photo?: ImageMetadata;
+  /** Banca: membros mostrados lado a lado, cada um com foto e nome. */
+  members?: { name: string; photo?: ImageMetadata }[];
 }
 
 export interface EventDay {
@@ -173,6 +177,12 @@ export const schedule: EventDay[] = [
         role: 'Banca',
         kind: 'banca',
         location: 'Dependências do Campus 2',
+        members: [
+          { name: 'Victor Silveira', photo: victorSilveira },
+          { name: 'Sandro Carvalho', photo: sandro },
+          { name: 'Karen Olinto', photo: karen },
+          { name: 'Rafael Mynssem', photo: rafaelMynssem },
+        ],
       },
     ],
   },

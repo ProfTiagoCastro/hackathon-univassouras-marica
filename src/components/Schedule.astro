@@ -88,6 +88,28 @@ const initials = (name: string) => {
                           Título em definição <UnderConstruction class="ml-1 align-middle" />
                         </p>
                       )}
+                      {t.members?.length ? (
+                        <ul class="bench" role="list" aria-label={t.speaker}>
+                          {t.members.map((m) => {
+                            const [first, ...rest] = m.name.split(' ');
+                            return (
+                              <li class="bench-member">
+                                <span class="avatar avatar--sm" aria-hidden={m.photo ? undefined : 'true'}>
+                                  {m.photo ? (
+                                    <Image src={m.photo} alt={`Foto de ${m.name}`} widths={[56, 112, 168]} sizes="56px" class="avatar-img" />
+                                  ) : (
+                                    <span class="avatar-initials">{initials(m.name)}</span>
+                                  )}
+                                </span>
+                                <span class="bench-name">
+                                  {first}
+                                  <span>{rest.join(' ')}</span>
+                                </span>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      ) : (
                       <div class="talk-person">
                         <span class="avatar" aria-hidden={t.photo ? undefined : 'true'}>
                           {t.photo ? (
@@ -103,6 +125,7 @@ const initials = (name: string) => {
                           {t.speaker}
                         </p>
                       </div>
+                      )}
                       <p class="talk-place">
                         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" /><circle cx="12" cy="10" r="3" /></svg>
                         <span class="sr-only">Local:</span> {t.location ?? 'Local a definir'}
@@ -303,6 +326,40 @@ const initials = (name: string) => {
     font-weight: 700;
     letter-spacing: 0.04em;
     color: var(--color-paper);
+  }
+  /* Banca: membros lado a lado, cada um com o mesmo avatar dos palestrantes, menor */
+  .bench {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+  }
+  .bench-member {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.45rem;
+    text-align: center;
+  }
+  .avatar--sm {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+  .avatar--sm::after {
+    width: 8px;
+    height: 8px;
+    bottom: 2px;
+  }
+  .bench-name {
+    font-size: 0.8rem;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--color-paper);
+  }
+  .bench-name span {
+    display: block;
+    font-weight: 400;
+    color: var(--color-stone);
   }
   .talk-speaker {
     display: flex;
