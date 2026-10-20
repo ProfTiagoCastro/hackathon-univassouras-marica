@@ -1,0 +1,268 @@
+---
+/**
+ * Equipes formadas para o Hackathon, agrupadas por desafio, com busca por nome.
+ * Dados em src/data/teams.ts. A página fica fora dos buscadores (noindex) porque lista
+ * o nome completo dos alunos; ela continua acessível pelo menu e por link.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionTitle from '../components/ui/SectionTitle.astro';
+import { teams, formationNote } from '../data/teams';
+import { challenges, levels, categories } from '../data/challenges';
+
+const groups = challenges
+  .map((ch) => ({ ...ch, teams: teams.filter((t) => t.challenge === ch.n) }))
+  .filter((g) => g.teams.length > 0)
+  .sort((a, b) => a.n - b.n);
+
+const people = teams.reduce((n, t) => n + t.members.length, 0);
+/** texto sem acento e em minúsculas, para a busca achar "joao" em "João" */
+const norm = (s: string) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+---
+
+<BaseLayout title="Equipes" description="Equipes formadas para o Hackathon 2026 da Univassouras Maricá e o desafio de cada uma." noindex>
+  <section class="pt-32 pb-20 sm:pt-40" aria-labelledby="eq-title">
+    <div class="shell">
+      <SectionTitle
+        id="eq-title"
+        eyebrow="Equipes"
+        title="Quem está em cada desafio"
+        lead={`${teams.length} equipes e ${people} participantes em ${groups.length} desafios. Procure seu nome para achar sua equipe.`}
+      />
+
+      <!-- busca: filtra os cartões pelo nome da pessoa ou da equipe -->
+      <div class="search panel">
+        <label for="eq-search" class="search-label">Encontre seu nome</label>
+        <div class="search-field">
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
+          <input id="eq-search" type="search" autocomplete="off" placeholder="Digite seu nome ou o da equipe" data-eq-search />
+        </div>
+        <p class="search-status" role="status" aria-live="polite" data-eq-status></p>
+      </div>
+
+      <div class="mt-12 grid gap-14">
+        {
+          groups.map((g) => (
+            <section aria-labelledby={`d-${g.n}`} data-eq-group>
+              <header class="ch-head">
+                <span class:list={['ch-pad', g.category === 'iot' && 'ch-pad--iot']} aria-hidden="true">{g.n}</span>
+                <div>
+                  <h2 id={`d-${g.n}`} class="font-display text-2xl leading-tight font-bold sm:text-3xl">
+                    <span class="sr-only">Desafio {g.n}: </span>
+                    {g.title}
+                  </h2>
+                  <p class="mt-1 font-mono text-xs text-sky">
+                    {categories[g.category].label}, nível {levels[g.level].label.toLowerCase()}, {g.teams.length} {g.teams.length === 1 ? 'equipe' : 'equipes'}
+                  </p>
+                </div>
+              </header>
+
+              <ul class="team-grid" role="list">
+                {g.teams.map((t) => (
+                  <li class:list={['team', g.category === 'iot' && 'team--iot']} data-eq-team data-search={norm([t.name, ...t.members].join(' '))}>
+                    <div class="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+                      <h3 class="team-name">{t.name}</h3>
+                      <span class="team-count">{t.members.length} integrantes</span>
+                    </div>
+                    {t.provisional && <p class="team-tag">Nome provisório</p>}
+                    <ol class="team-members">
+                      {t.members.map((m, i) => (
+                        <li data-name={norm(m)}>
+                          {m}
+                          {t.hasLeader && i === 0 && <span class="leader">líder</span>}
+                        </li>
+                      ))}
+                    </ol>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))
+        }
+      </div>
+
+      <p class="mt-14 max-w-2xl text-sm text-pretty text-stone">{formationNote}</p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .search {
+    display: grid;
+    gap: 0.6rem;
+    padding: 1.25rem 1.25rem 1rem;
+    border-color: color-mix(in oklab, var(--color-rose) 30%, transparent);
+  }
+  .search-label {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+  }
+  .search-field {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0 1rem;
+    border: 1px solid rgb(255 255 255 / 0.14);
+    border-radius: 0.75rem;
+    background: var(--color-ink);
+    color: var(--color-stone);
+  }
+  .search-field:focus-within {
+    border-color: var(--color-rose);
+  }
+  .search-field input {
+    flex: 1;
+    min-width: 0;
+    min-height: 3.25rem;
+    border: 0;
+    background: transparent;
+    font-size: 1.05rem;
+    color: var(--color-paper);
+    outline: none;
+  }
+  .search-field input::placeholder {
+    color: var(--color-stone);
+  }
+  .search-status {
+    min-height: 1.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--color-sky);
+  }
+
+  /* cabeçalho do desafio: o mesmo "pad" numerado da seção Desafios */
+  .ch-head {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .ch-pad {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border: 2px solid var(--color-rose);
+    border-radius: 999px;
+    background: var(--color-ink);
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .ch-pad--iot {
+    border-color: var(--color-sky);
+  }
+
+  .team-grid {
+    display: grid;
+    gap: 1rem;
+  }
+  @media (min-width: 40rem) {
+    .team-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 64rem) {
+    .team-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  /* cartão da equipe: mesmo tratamento dos cartões de palestra (borda colorida à esquerda) */
+  .team {
+    padding: 1.15rem 1.25rem 1.25rem;
+    border: 1px solid rgb(255 255 255 / 0.08);
+    border-left: 3px solid var(--color-rose);
+    border-radius: 0.85rem;
+    background: color-mix(in oklab, var(--color-ink-2) 80%, transparent);
+  }
+  .team--iot {
+    border-left-color: var(--color-sky);
+  }
+  .team-name {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .team-count {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--color-stone);
+  }
+  .team-tag {
+    display: inline-block;
+    margin-top: 0.4rem;
+    padding: 0.1rem 0.55rem;
+    border: 1px dashed color-mix(in oklab, var(--color-stone) 60%, transparent);
+    border-radius: 999px;
+    font-size: 0.75rem;
+    color: var(--color-stone);
+  }
+  .team-members {
+    display: grid;
+    gap: 0.35rem;
+    margin-top: 0.85rem;
+    padding-left: 1.3rem;
+    list-style: decimal;
+    font-size: 0.95rem;
+    color: rgb(238 233 230 / 0.88);
+  }
+  .team-members li::marker {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-stone);
+  }
+  .leader {
+    display: inline-block;
+    margin-left: 0.45rem;
+    padding: 0 0.45rem;
+    border-radius: 0.3rem;
+    background: color-mix(in oklab, var(--color-wine) 75%, transparent);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--color-paper);
+    vertical-align: 0.1em;
+  }
+  /* resultado da busca: a pessoa encontrada fica destacada */
+  .team-members li.is-match {
+    color: var(--color-paper);
+    font-weight: 600;
+  }
+  .team-members li.is-match::marker {
+    color: var(--color-rose);
+  }
+  .team.is-match {
+    border-color: color-mix(in oklab, var(--color-rose) 45%, transparent);
+  }
+</style>
+
+<script>
+  const input = document.querySelector<HTMLInputElement>('[data-eq-search]');
+  const status = document.querySelector<HTMLElement>('[data-eq-status]');
+  const groups = [...document.querySelectorAll<HTMLElement>('[data-eq-group]')];
+  const norm = (s: string) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim();
+
+  input?.addEventListener('input', () => {
+    const q = norm(input.value);
+    let found = 0;
+    for (const g of groups) {
+      const teams = [...g.querySelectorAll<HTMLElement>('[data-eq-team]')];
+      let visible = 0;
+      for (const t of teams) {
+        const hit = !q || (t.dataset.search ?? '').includes(q);
+        t.hidden = !hit;
+        t.classList.toggle('is-match', Boolean(q) && hit);
+        for (const li of t.querySelectorAll<HTMLElement>('[data-name]')) {
+          li.classList.toggle('is-match', Boolean(q) && (li.dataset.name ?? '').includes(q));
+        }
+        if (hit) visible++;
+      }
+      g.hidden = visible === 0;
+      found += visible;
+    }
+    if (status) {
+      status.textContent = !q ? '' : found === 0 ? 'Nenhuma equipe encontrada. Confira a grafia do nome.' : `${found} ${found === 1 ? 'equipe encontrada' : 'equipes encontradas'}`;
+    }
+  });
+</script>

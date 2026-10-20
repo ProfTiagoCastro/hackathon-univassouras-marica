@@ -8,7 +8,8 @@ export default defineConfig({
   site: 'https://hackathon-univassouras-marica.vercel.app',
   // URLs sem barra no final (/mural, /organizadores), iguais aos links do menu
   trailingSlash: 'never',
-  integrations: [sitemap()],
+  // /equipes lista nomes de alunos: fica fora do sitemap e com noindex
+  integrations: [sitemap({ filter: (page) => !page.includes('/equipes') })],
   vite: {
     plugins: [tailwindcss()],
   },

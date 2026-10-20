@@ -26,6 +26,7 @@ Stack: **Astro 7 + Tailwind 4 + TypeScript**, com deploy na **Vercel**. Detalhes
 | O que | Arquivo | Campo |
 |---|---|---|
 | **Link do Google Forms** | `src/data/event.ts` | `registrationUrl` |
+| **Equipes formadas** (página `/equipes`) | `src/data/teams.ts` | 16 equipes por desafio, do PDF da coordenação de 19/10. Quando um "Grupo 1–4" escolher nome, troque `name` e tire `provisional`. A página tem busca por nome e fica **fora do Google** (`noindex` + fora do sitemap em `astro.config.mjs`), porque lista o nome completo dos alunos |
 | **Inscrições encerradas** (desde 19/10) | `src/data/event.ts` | `registrationClosed: true` deixa os botões como "Inscrições encerradas" (com cadeado, sem link), troca o texto do bloco de inscrição, do FAQ e da ficha, e tira o link da descrição para buscadores. Para reabrir, volte para `false` |
 | Endereço / sala | `src/data/event.ts` | `location.address`, `location.room` (com o endereço preenchido, o pino do mapa fica exato; hoje a busca genérica acha duas unidades) |
 | Contato | `src/data/event.ts` | `contact` (hoje `null`: com `null` a linha some da ficha, sem selo "em construção") |

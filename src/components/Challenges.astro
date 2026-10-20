@@ -61,6 +61,8 @@ const maxWeight = Math.max(...criteria.map((c) => c.weight));
       }
     </div>
 
+    <a href="/equipes" class="teams-link">Ver as equipes de cada desafio</a>
+
     <!-- legenda dos níveis: uma linha só, no lugar da nota de rodapé -->
     <p class="lv-legend" aria-hidden="true">
       <span class="ch-level" data-rank="1"><span class="lv-dots"><i /><i /><i /></span>Básico</span>
@@ -100,6 +102,18 @@ const maxWeight = Math.max(...criteria.map((c) => c.weight));
 </section>
 
 <style>
+  .teams-link {
+    display: inline-flex;
+    margin-top: 1.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--color-sky);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .teams-link:hover {
+    color: var(--color-paper);
+  }
   .ch-list {
     margin-top: 1.25rem;
   }

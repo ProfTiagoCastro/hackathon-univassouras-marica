@@ -4,6 +4,7 @@ import RegisterButton from '../ui/RegisterButton.astro';
 const links = [
   { href: '/#sobre', label: 'Sobre' },
   { href: '/#desafios', label: 'Desafios' },
+  { href: '/equipes', label: 'Equipes' },
   { href: '/#programacao', label: 'Programação' },
   { href: '/organizadores', label: 'Organizadores' },
   { href: '/mural', label: 'Mural' },
@@ -19,7 +20,7 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
       <span class="font-display text-xl font-bold tracking-wide">
         <span class="text-rose">HACK</span><span class="text-sky">ATHON</span>
       </span>
-      <span class="hidden border-l border-white/15 pl-3 font-mono text-[0.65rem] leading-tight tracking-widest text-stone uppercase sm:block lg:hidden xl:block">
+      <span class="hidden border-l border-white/15 pl-3 font-mono text-[0.65rem] leading-tight tracking-widest text-stone uppercase sm:block lg:hidden 2xl:block">
         Univassouras<br />Maricá · 2026
       </span>
     </a>
