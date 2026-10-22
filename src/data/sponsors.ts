@@ -12,6 +12,8 @@ import type { ImageMetadata } from 'astro';
 import jully from '../assets/apoio/dra-jully-santos.png';
 import gbc from '../assets/apoio/gbc-coffee.png';
 import dogao from '../assets/apoio/dogao.png';
+import bistro from '../assets/apoio/bistro-urbano.png';
+import gordices from '../assets/apoio/gordices-da-thata.png';
 import npv from '../assets/apoio/npv-sign.png';
 import pipoca from '../assets/apoio/pipoca-deliciosa.png';
 import nerd from '../assets/apoio/nerd-ideias.png';
@@ -30,8 +32,10 @@ export interface Sponsor {
 }
 
 export const sponsors: Sponsor[] = [
+  { name: 'Bistrô Urbano', logo: bistro, scale: 1.1, url: 'https://www.instagram.com/bistrourbanomarica/' },
   { name: 'Dra. Jully Santos Odontologia Integrada', logo: jully, scale: 1, url: 'https://www.instagram.com/drajullysan_tos/' },
   { name: 'GBC Coffee', logo: gbc, scale: 0.95, url: 'https://www.instagram.com/gbccoffee/' },
+  { name: 'Gordices da Thata', logo: gordices, scale: 1.2, url: 'https://www.instagram.com/gor.dicesdathata/' },
   { name: 'Hoje é o Dia do Dogão', logo: dogao, scale: 1 },
   { name: 'Kintal do Sabor', logo: kintal, scale: 1.1, url: 'https://www.instagram.com/kintaldosabor/' },
   { name: 'Lacell Centro Especializado', logo: lacell, scale: 1.1, url: 'https://www.instagram.com/lacell_smart/' },

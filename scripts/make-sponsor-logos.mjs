@@ -2,7 +2,8 @@
  * Padroniza as logos dos apoiadores: extrai o desenho de cada uma e gera uma silhueta
  * numa cor só (paper do tema), com fundo transparente, em src/assets/apoio/<id>.png.
  *
- * Uso: node scripts/make-sponsor-logos.mjs <pasta-com-os-originais>
+ * Uso: node scripts/make-sponsor-logos.mjs <pasta-com-os-originais> [pasta-de-saida] [altura-max]
+ *   (padrão: src/assets/apoio, 240 px; para versões grandes, ex.: ... banners-apoio/logos 900)
  * Cada logo tem sua própria regra de extração (`alpha`), porque os originais vêm com
  * fundos e cores diferentes (preto, branco, selo colorido, print de celular).
  */
@@ -10,6 +11,8 @@ import sharp from 'sharp';
 import { join } from 'node:path';
 
 const src = process.argv[2];
+const outDir = process.argv[3] ?? 'src/assets/apoio';
+const maxH = Number(process.argv[4] ?? 240);
 if (!src) {
   console.error('Informe a pasta com as logos originais.');
   process.exit(1);
@@ -22,6 +25,10 @@ const lum = (r, g, b) => 0.2126 * r + 0.7152 * g + 0.0722 * b;
 
 /** Regras por apoiador. `crop` em px do original; `circle` zera tudo fora do selo redondo. */
 const logos = [
+  // elementos brancos sobre rosa: só o branco passa
+  { id: 'gordices-da-thata', file: 'Gordices.jpeg', alpha: (r, g, b) => clamp((Math.min(r, g, b) - 175) * 3.4) },
+  // selo marrom sobre branco: só o miolo do selo; letras brancas e chama/URBANO em pêssego passam
+  { id: 'bistro-urbano', file: 'BISTRÔ.jpeg', circle: 0.8, alpha: (r, g, b) => clamp((Math.max(r, g, b) - 120) * 2.4) },
   // cores CMYK e preto sobre branco: tudo que não é fundo vira silhueta
   { id: 'npv-sign', file: 'NPV.jpg', alpha: (r, g, b) => clamp((215 - Math.min(r, g, b)) * 1.8) },
   // ilustração: tira só o branco ligado às bordas e aproveita as partes claras (pipoca, listras, letreiro)
@@ -106,10 +113,10 @@ for (const l of logos) {
     out[i * 4 + 3] = inside ? l.alpha(data[p], data[p + 1], data[p + 2]) : 0;
   }
 
-  const dest = `src/assets/apoio/${l.id}.png`;
+  const dest = join(outDir, `${l.id}.png`);
   await sharp(out, { raw: { width: w, height: h, channels: 4 } })
     .trim({ threshold: 1 })
-    .resize({ height: 240, width: 480, fit: 'inside', withoutEnlargement: true })
+    .resize({ height: maxH, width: maxH * 2, fit: 'inside', withoutEnlargement: true })
     .png({ compressionLevel: 9 })
     .toFile(dest);
   console.log('ok', dest);
