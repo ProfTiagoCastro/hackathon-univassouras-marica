@@ -22,6 +22,13 @@ const lum = (r, g, b) => 0.2126 * r + 0.7152 * g + 0.0722 * b;
 
 /** Regras por apoiador. `crop` em px do original; `circle` zera tudo fora do selo redondo. */
 const logos = [
+  // cores CMYK e preto sobre branco: tudo que não é fundo vira silhueta
+  { id: 'npv-sign', file: 'NPV.jpg', alpha: (r, g, b) => clamp((215 - Math.min(r, g, b)) * 1.8) },
+  // ilustração: tira só o branco ligado às bordas e aproveita as partes claras (pipoca, listras, letreiro)
+  { id: 'pipoca-deliciosa', file: 'PIPOCA DELICIOSA.png', floodBg: 232, alpha: (r, g, b) => clamp((lum(r, g, b) - 135) * 3) },
+  // letras claras sobre roxo
+  // (canal mais forte: o amarelo e o branco passam, o roxo não)
+  { id: 'dogao', file: 'HOJE É DIA DE DOGÃO.png', inset: 2, alpha: (r, g, b) => clamp((Math.max(r, g, b) - 170) * 3.2) },
   // o arquivo traz duas versões; usa a de cima (branca sobre preto), sem a moldura
   { id: 'gbc-coffee', file: 'GBC.jpeg', crop: { left: 20, top: 12, width: 770, height: 640 }, alpha: (r, g, b) => clamp((lum(r, g, b) - 40) * 1.4) },
   // dourado sobre preto: o brilho do dourado vira a silhueta
@@ -69,10 +76,30 @@ for (const l of logos) {
   const cy = h / 2;
   const rad = (Math.min(w, h) / 2) * (l.circle ?? Infinity);
 
+  // floodBg: marca como fundo o branco (mín. dos canais ≥ floodBg) ligado às bordas da imagem
+  let bg = null;
+  if (l.floodBg) {
+    bg = new Uint8Array(w * h);
+    const isWhite = (i) => Math.min(data[i * c], data[i * c + 1], data[i * c + 2]) >= l.floodBg;
+    const stack = [];
+    for (let x = 0; x < w; x++) stack.push(x, (h - 1) * w + x);
+    for (let y = 0; y < h; y++) stack.push(y * w, y * w + w - 1);
+    while (stack.length) {
+      const i = stack.pop();
+      if (bg[i] || !isWhite(i)) continue;
+      bg[i] = 1;
+      const x = i % w;
+      if (x > 0) stack.push(i - 1);
+      if (x < w - 1) stack.push(i + 1);
+      if (i >= w) stack.push(i - w);
+      if (i < w * (h - 1)) stack.push(i + w);
+    }
+  }
+
   for (let i = 0, p = 0; i < w * h; i++, p += c) {
     const x = i % w;
     const y = (i / w) | 0;
-    const inside = !l.circle || Math.hypot(x - cx, y - cy) <= rad;
+    const inside = (!l.circle || Math.hypot(x - cx, y - cy) <= rad) && !(bg && bg[i]);
     out[i * 4] = INK[0];
     out[i * 4 + 1] = INK[1];
     out[i * 4 + 2] = INK[2];

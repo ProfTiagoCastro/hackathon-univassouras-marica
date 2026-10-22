@@ -11,6 +11,9 @@
 import type { ImageMetadata } from 'astro';
 import jully from '../assets/apoio/dra-jully-santos.png';
 import gbc from '../assets/apoio/gbc-coffee.png';
+import dogao from '../assets/apoio/dogao.png';
+import npv from '../assets/apoio/npv-sign.png';
+import pipoca from '../assets/apoio/pipoca-deliciosa.png';
 import nerd from '../assets/apoio/nerd-ideias.png';
 import kintal from '../assets/apoio/kintal-do-sabor.png';
 import lacell from '../assets/apoio/lacell.png';
@@ -29,10 +32,13 @@ export interface Sponsor {
 export const sponsors: Sponsor[] = [
   { name: 'Dra. Jully Santos Odontologia Integrada', logo: jully, scale: 1, url: 'https://www.instagram.com/drajullysan_tos/' },
   { name: 'GBC Coffee', logo: gbc, scale: 0.95, url: 'https://www.instagram.com/gbccoffee/' },
+  { name: 'Hoje é o Dia do Dogão', logo: dogao, scale: 1 },
   { name: 'Kintal do Sabor', logo: kintal, scale: 1.1, url: 'https://www.instagram.com/kintaldosabor/' },
   { name: 'Lacell Centro Especializado', logo: lacell, scale: 1.1, url: 'https://www.instagram.com/lacell_smart/' },
   { name: 'Maricá Tem Samba', logo: samba, scale: 0.72, url: 'https://www.instagram.com/maricatemsamba/' },
   { name: 'Nerd Ideias', logo: nerd, scale: 1.15, url: 'https://www.instagram.com/nerdideias_/' },
+  { name: 'NPV Sign Gráfica, Papelaria e Informática', logo: npv, scale: 1.15, url: 'https://www.instagram.com/graficanpvsign/' },
+  { name: 'Pipoca Deliciosa', logo: pipoca, scale: 1.2 },
   { name: 'Spetfire Lanches', logo: spetfire, scale: 1.3, url: 'https://www.instagram.com/spetfire/' },
   { name: 'Todah Jóias', logo: todah, scale: 1.2, url: 'https://www.instagram.com/todahjoias/' },
   { name: 'Zion Escola de Entretenimento', logo: zion, scale: 1, url: 'https://escolazion.com' },
